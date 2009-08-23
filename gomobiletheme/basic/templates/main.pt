@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:tal="http://xml.zope.org/namespaces/tal">
+
+  <head tal:replace="structure view/render_head">
+    'head' part goes here
+  </head>
+
+  <body>
+
+    <div id="logo">
+      <a tal:attributes="href string:${view/portal_url}" alt="Home">
+        <img tal:attributes="src string:${view/portal_url}/++resource++skinny/logo.png"
+             alt="ACME Corporation" />
+      </a>
+    </div>
+
+    <div tal:replace="structure view/render_navigation">
+      Some navigation will go here
+    </div>
+
+    <div tal:replace="structure view/render_content">
+      The content part goes here.  Look at the ``templates/content/``
+      directory for content templates, and at ``content.py`` for the
+      implementation of the content view registry, which you can
+      override by setting
+      ``collective.skinngin.main.parts['content']`` from your code.
+    </div>
+
+    <div>
+      (c) 2009 ACME Corporation
+    </div>
+
+  </body>
+
+</html>

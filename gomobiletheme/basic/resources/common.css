@@ -1,0 +1,276 @@
+/**
+ * Styles used by all mobile browsers.
+ * 
+ */
+
+body {
+	margin: 0;
+	padding: 0;
+ 	font-family: "Lucida Grande", Helvetica, Arial, sans-serif;	
+ 	background: #329FD7;
+	color: white;
+}
+
+img {
+	border: 0;
+}
+
+.hiddenStructure,
+#kss-spinner {
+	display: none;
+}
+
+h1 {
+    border-bottom: none;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.documentFirstHeading {
+    margin-top: 15px;
+}
+
+h1 {
+  font-size: 1.2em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: black;
+}
+
+h2, h3, h4, h5, h6 {
+    font-size: 1.1em;
+}
+
+h3 {
+}
+
+ul {
+}
+
+p {
+    margin-bottom: 0.5em;
+}
+
+/* Makes easier to hit link lists */
+li {
+  margin-bottom: 0.5em;
+}
+
+
+/* no link underlinings */
+a,
+a:active,
+a:visited,
+.documentContent li a,
+.documentContent li a:active,
+.documentContent li a:visited,
+.documentContent p a,
+.documentContent p a:visited,
+.documentContent p a:active {
+	border: 0;
+	text-decoration: none;
+	color: #205C90;
+}
+
+a:hover,
+.documentContent li a:hover,
+.documentContent p a:hover {
+  text-decoration: underline;
+}
+
+/* Content styles */
+.image-right, .image-left {
+  border: none;
+}
+
+/* Make text area text more visible than normal grey */
+input[type=text],input[type=password],textarea, select {
+	width: 80%;
+}
+
+/* TODO: Preview mode hack - make sure the actual viewlet is removed */
+#portal-siteactions { display: none; }
+
+#portal-columns {
+	padding: 1em;
+	background: white;
+	color: black;
+}
+
+#portal-header {
+	background: #329FD7;
+	color: white;
+	text-align: left;
+}
+
+#portal-logo img {
+	display: inline;
+}
+
+#portal-breadcrumbs {
+	margin-bottom: 1em;
+}
+
+.documentDescription, .discreet, .documentByLine {
+	color: #999;
+	font-size: 85%;
+}
+
+/* Forms */
+
+.field {
+	padding-bottom: 1em;
+}	
+
+.formHelp {
+	color: #666;	
+}
+
+.fieldRequired {
+    background: white url(++resource++gomobile.mobile/required.gif) center left no-repeat;
+    padding: 0 0 0 8px;
+    color: white;
+}
+
+.error .fieldRequired {
+   color: #d00;
+}
+
+.legend,
+label {
+	font-weight: bold;
+}
+
+div.error {
+    /* Class for error indication in forms */
+    background-color: #fdc; 
+    border: 1px solid #d00;
+    padding: 0.5em;
+    margin: 0 0 1em 0;
+    width: 95%;
+}
+
+/* Search */
+
+.searchResults dt {
+	padding-bottom: 1em;
+}
+
+.searchResults dt a {
+	font-size: 120%;
+	font-weight: bold;
+}	
+
+/* Status messages */
+
+dl.portalMessage {
+    background-color: #ffffe3; 
+    border: 1px solid #996;    
+}
+dl.portalMessage a {
+    color: black;
+    border: none;
+    text-decoration: underline;
+}
+dl.portalMessage dt {
+    background-color: #996; 
+    font-weight: bold;
+    float: left;
+    margin: 0 0.5em 0 0;
+    padding: 0.5em 0.75em;
+    color: White;
+    line-height: 1.25em;
+}
+dl.portalMessage dd {
+    padding: 0.5em 0.5em; 
+    margin: 0;
+    line-height: 1.25em;
+}
+dl.warning {
+    border-color: #d80;
+}
+dl.warning dt {
+    background-color: #d80;
+}
+dl.error {
+    border-color: #d00;    
+}
+dl.error dt {
+    background-color: #d00; 
+}
+dl.warning {
+    border-color: #d80;    
+}
+dl.warning dd {
+    background-color: #fd7; 
+}
+dl.error {
+    border-color: #d80;    
+}
+dl.error dd {
+    background-color: #fd7; 
+}
+
+/* Footer and batching controls */
+
+#portal-footer,
+.listingBar {
+	background: #329FD7;
+	color: white;
+	padding: 1em;
+	padding-top: 10px;
+	font-size: 80%;
+}
+
+.listingBar {
+	margin-top: 1em;
+}
+
+#portal-footer a,
+#portal-footer a:visited,
+#portal-footer a:active,
+.listingBar a,
+.listingBar a:visited,
+.listingBar a:active  {
+	color: white;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+#portal-footer a:hover,
+.listingBar a:hover {
+	background-color:White;
+	color:#329FD7;	
+	text-decoration: none;	
+	font-weight: bold;	
+}
+
+#portal-globalnav { list-style: none; text-align:center; padding: 0; }
+#portal-globalnav li { display: inline; margin-bottom: 1.5px; }
+#portal-globalnav li a { padding: 0.5em; }
+
+#footer-links, #portal-breadcrumbs { text-align: center; }
+
+#copyright { text-align: center; }
+
+/* Front page special */
+
+.hot-now .news-item {
+	padding: 0.3em;
+}
+
+.hot-now .byline {
+	color: #888;
+}
+
+.hot-now .news-0 {
+	background: #ffff88;
+}	
+
+.hot-now .news-1 {
+	background: #ffffaa;
+}	
+
+.hot-now .news-2 {
+	background: #ffffdd;
+}	

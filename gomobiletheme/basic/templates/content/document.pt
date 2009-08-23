@@ -1,0 +1,18 @@
+<div xmlns="http://www.w3.org/1999/xhtml" 
+     xmlns:tal="http://xml.zope.org/namespaces/tal">
+
+  <h1 tal:content="context/Title">
+    The page's title
+  </h1>
+
+  <div class="description"
+       tal:content="context/Description">
+    The page's description
+  </div>
+
+  <div class="body"
+       tal:content="structure context/getText">
+    The page's body text
+  </div>
+
+</div>

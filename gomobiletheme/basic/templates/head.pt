@@ -1,0 +1,17 @@
+<head xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:tal="http://xml.zope.org/namespaces/tal">
+
+  <title tal:content="context/title">Context title goes here</title>
+
+  <base tal:attributes="href here/renderBase" />
+
+  <link rel="shortcut icon"
+        href="favicon.ico"
+        tal:attributes="href string:${view/portal_url}/++resource++skinny/favicon.ico"/>
+
+  <link type="text/css" rel="stylesheet" media="screen"
+        href="styles.css"
+        tal:attributes="href string:${view/portal_url}/++resource++skinny/styles.css"
+        />
+
+</head>
