@@ -24,6 +24,7 @@ setup(name='gomobiletheme.basic',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'gomobile.skinny',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

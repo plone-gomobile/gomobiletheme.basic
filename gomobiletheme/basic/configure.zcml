@@ -1,0 +1,26 @@
+<configure 
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"    
+    i18n_domain="gomobiletheme.basic">
+  
+  <include package="gomobile.skinny" />
+  
+  <!-- A resource directory to put CSS and images -->
+  <browser:resourceDirectory
+      name="gomobiletheme.basic"
+      directory="resources"
+      permission="zope2.Public"
+      />
+
+  <genericsetup:registerProfile
+      name="default"
+      title="Plone Blue Mobile Theme"
+      directory="profiles/default"
+      description='plone.org like theme for Plone Go Mobile sites'
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+      
+  <include file="theme.zcml" />
+
+</configure>

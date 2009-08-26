@@ -1,0 +1,37 @@
+<configure 
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="gomobiletheme.basic">
+    
+  <!-- Default views point to index.html -->
+  <browser:defaultView 
+      for="Products.CMFCore.interfaces.IContentish"
+      layer=".interfaces.IThemeLayer" 
+      name="index.html"
+      />
+  <browser:defaultView 
+      for="Products.CMFCore.interfaces.IFolderish"
+      layer=".interfaces.IThemeLayer" 
+      name="index.html"
+      />
+
+  <!-- And our main view defines index.html -->
+  <browser:page 
+      for="Products.CMFCore.interfaces.IContentish"
+      layer=".interfaces.IThemeLayer"
+      class=".main.Main" 
+      name="index.html"
+      permission="zope2.View"
+      allowed_interface="collective.skinny.interfaces.IMain" 
+      />
+      
+  <browser:page 
+      for="Products.CMFCore.interfaces.IFolderish"
+      layer=".interfaces.IThemeLayer"
+      class=".main.Main" 
+      name="index.html"
+      permission="zope2.View"
+      allowed_interface="collective.skinny.interfaces.IMain" 
+      />
+
+</configure>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<object name="portal_properties" meta_type="Plone Properties Tool">
+ <object name="mobile_properties" meta_type="Plone Property Sheet" title="Mobile site specific settings">
+ 	
+	<!--
+  
+  	collective.skinny based theme interface name
+  
+    -->
+  <property name="theme_interface" type="string" purge="False">gomobiletheme.basic.interfaces.IThemeLayer</property>  
+  
+ </object>
+</object>
