@@ -15,7 +15,7 @@
 
   <genericsetup:registerProfile
       name="default"
-      title="Plone Blue Mobile Theme"
+      title="Plone Default Mobile Theme"
       directory="profiles/default"
       description='plone.org like theme for Plone Go Mobile sites'
       provides="Products.GenericSetup.interfaces.EXTENSION"
