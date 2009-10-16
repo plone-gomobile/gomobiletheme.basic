@@ -1,0 +1,5 @@
+<div id="logo">
+  <a tal:attributes="href string:${view/portal_url}" alt="Home">
+    <img tal:attributes="src string:${view/portal_url}/++resource++gomobiletheme.basic/logo.gif; alt string:context/@@plone_portal_state/portal_title" />
+  </a>
+</div>

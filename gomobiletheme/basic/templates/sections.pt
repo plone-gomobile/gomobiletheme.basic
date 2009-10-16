@@ -1,0 +1,28 @@
+<ul id="portal-globalnav" tal:condition="python:len(view.portal_tabs) > 0" i18n:domain="gomobiletheme.basic">
+
+    <tal:tabs tal:repeat="tab view/portal_tabs">
+        <li tal:attributes="id string:portaltab-${tab/id};">
+            <a href=""
+               tal:content="tab/name"
+               tal:attributes="href tab/url;
+                           title tab/description|nothing">
+                Tab Name
+            </a>
+            |
+        </li>
+    </tal:tabs>
+
+    <li>
+        <a tal:attributes="href string:${view/portal_url}/search">
+            Search
+        </a>
+        |
+    </li>
+
+    <li>
+        <a tal:attributes="href string:${view/portal_url}/contact-info">
+            Feedback
+        </a>
+    </li>
+
+</ul>

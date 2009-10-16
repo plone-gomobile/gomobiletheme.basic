@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metal:page define-macro="master">
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.1//EN"
+  "http://www.openmobilealliance.org/tech/DTD/xhtml-mobile11.dtd">
+
+<metal:block tal:condition="here/@@hasglobaldefines" use-macro="here/global_defines/macros/defines" />
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal" tal:attributes="xml:lang view/language">
+
+  <head tal:replace="structure view/render_head">
+    'head' part goes here
+  </head>
+
+  <body>
+
+    <div tal:replace="structure view/render_navigation">
+      Some navigation will go here
+    </div>
+
+   <metal:block define-slot="content">
+        <div metal:define-macro="content">
+
+            <div tal:replace="structure context/@@viewlets/messages">
+              Portal status message
+            </div>
+
+            <metal:slot metal:define-slot="body">
+                <tal:comment replace="nothing">
+                    The div with ID #content will only show up if we're actually on a content
+                    view, never on edit forms, control panels etc. It's meant to only wrap the
+                    actual content that gets rendered on a page, not the other UI elements.
+                </tal:comment>
+
+                <div id="content"
+                     tal:omit-tag="not:context/@@plone_context_state/is_view_template">
+
+                  <metal:header metal:define-slot="header" tal:content="nothing">
+                    Visual Header
+                  </metal:header>
+
+                  <metal:bodytext metal:define-slot="main" tal:content="nothing">
+                    Page body text
+                  </metal:bodytext>
+                </div>
+
+            </metal:slot>
+
+            <metal:sub metal:define-slot="sub">
+            </metal:sub>
+
+          </div>
+
+        </div>
+
+      </metal:block>
+
+    <div id="footer">
+      (c) 2009 ACME Corporation
+    </div>
+
+  </body>
+
+</html>
+</metal:page>
