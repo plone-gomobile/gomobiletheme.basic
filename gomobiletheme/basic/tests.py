@@ -7,6 +7,7 @@ from Products.Five import zcml
 from Products.Five import fiveconfigure
 
 from Testing import ZopeTestCase as ztc
+from zope.component import getUtility
 
 from Products.PloneTestCase import PloneTestCase as ptc
 from Products.PloneTestCase.layer import onsetup
@@ -15,7 +16,7 @@ from Products.PloneTestCase.layer import PloneSite
 
 from gomobile.mobile.tests import utils as test_utils
 
-from gomobile.mobile.interfaces import MobileRequestType
+from gomobile.mobile.interfaces import MobileRequestType, IMobileRequestDiscriminator
 from gomobile.mobile.tests.utils import TestMobileRequestDiscriminator
 
 
@@ -30,7 +31,7 @@ ZCML_FIXES="""
 """
 
 
-MOBILE_HTML_MARKER = "//WAPFORUM//DTD XHTML Mobile 1.1//EN"
+MOBILE_HTML_MARKER = "apple-touch-icon"
 
 
 @onsetup
@@ -80,11 +81,6 @@ class BaseTestCase(ptc.FunctionalTestCase):
         self.browser.handleErrors = False
 
 
-
-
-
-
-
 class ThemeTestCase(BaseTestCase):
     """
     Test gomobiletheme.basic functionality.
@@ -99,7 +95,7 @@ class ThemeTestCase(BaseTestCase):
 
         @param: "mobile", "web" or other MobileRequestType pseudo-constant
         """
-        TestMobileRequestDiscriminator.modes = [mode]
+        TestMobileRequestDiscriminator.setModes([mode])
 
     def prepare_render(self, object):
         """
@@ -125,7 +121,7 @@ class ThemeTestCase(BaseTestCase):
         skins = self.portal.portal_skins
         self.assertTrue("gomobiletheme_basic" in skins.objectIds(), "Had skin layers " + str(skins.objectIds()))
 
-    def xxx_test_load_resource(self):
+    def test_load_resource(self):
         """
         See that our static resources are loaded correctly.
         """
@@ -136,28 +132,29 @@ class ThemeTestCase(BaseTestCase):
         self.assertEqual(self.browser.headers["content-type"], "image/gif")
 
 
-    def xxx_test_render_main_template(self):
+    def test_render_main_template(self):
         """
         Render main template in mobile mode
         """
         self.setDiscriminateMode(MobileRequestType.MOBILE)
 
-
         html = self.prepare_render(self.portal)
 
         self.assertTrue(MOBILE_HTML_MARKER in html, "Got page:" + html)
 
-    def xxx_test_render_main_template_web(self):
+    def test_render_web_mode(self):
         """
         Check that Plone renders page normally if not in mobile mode
         """
         self.setDiscriminateMode(MobileRequestType.WEB)
-
+        self._refreshSkinData()
+        utility = getUtility(IMobileRequestDiscriminator)
+        #import pdb ; pdb.set_trace()
         html = self.prepare_render(self.portal)
 
         self.assertFalse(MOBILE_HTML_MARKER in html, "Got page:" + html)
 
-    def xxx_test_render_page(self):
+    def test_render_page(self):
         """ Assert no exceptions risen """
 
         self.setDiscriminateMode(MobileRequestType.MOBILE)
@@ -171,10 +168,9 @@ class ThemeTestCase(BaseTestCase):
 
         self.setDiscriminateMode(MobileRequestType.MOBILE)
 
-
         html = self.prepare_render(self.portal.page)
 
-    def xxx_test_render_folder(self):
+    def test_render_folder(self):
         """ Assert no exceptions risen """
 
         self.setDiscriminateMode(MobileRequestType.MOBILE)
@@ -199,7 +195,6 @@ class ThemeTestCase(BaseTestCase):
         browser.open(self.portal.absolute_url() + "/login_form")
 
         html = browser.contents
-        import pdb ; pdb.set_trace()
         self.assertNotDefaultPloneTheme(html)
         self.assertTrue(MOBILE_HTML_MARKER in html, "Got page:" + html)
 

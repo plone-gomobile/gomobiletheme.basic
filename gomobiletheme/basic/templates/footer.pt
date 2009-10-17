@@ -1,5 +1,5 @@
 <div id="footer">
     <div tal:replace="structure context/@@viewlets/pathbar" />
     <div tal:replace="structure context/@@viewlets/sections" />
-    <div tal:replace="structure context/@@viewlets/copyright" />
+    <div tal:replace="structure context/@@viewlets/footertext" />
 </div>

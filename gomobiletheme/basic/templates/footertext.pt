@@ -1,4 +1,4 @@
-<div id="copyright">
-    <div tal:replace="structure view/text" />
+<div id="footer-text">
+    <div tal:replace="structure viewlet/text" />
 </div>
 

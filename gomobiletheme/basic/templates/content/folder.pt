@@ -1,9 +1,16 @@
-<h1 tal:content="context/Title" class="documentFirstHeading">
-The page's title
-</h1>
+<metal:master use-macro="here/main_template/macros/master">
 
-<div class="description"
-   tal:content="context/Description">
-The page's description
-</div>
+    <metal:slot fill-slot="main">
+        <h1 tal:content="context/Title" class="documentFirstHeading">
+        The page's title
+        </h1>
 
+        <div class="description"
+           tal:content="context/Description">
+        The page's description
+        </div>
+
+        <div tal:replace="structure context/@@viewlets/mobilefolderlisting" />
+    </metal:slot>
+
+</metal:master>

@@ -1,5 +1,5 @@
 <tal:statusmsg i18n:domain="plone"
-           tal:repeat="message view/messages">
+           tal:repeat="message viewlet/messages">
 
     <dl class="portalMessage info"
         tal:define="mtype message/type | nothing;"

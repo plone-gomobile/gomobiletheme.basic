@@ -7,19 +7,19 @@
 /* TODO: convert to CSS sprites */
 
 .documentContent ul {
-    list-style-image: url(++resource++plonecommunity.app/arrow-blue.png);
+    list-style-image: url(++resource++gomobiletheme.basic/arrow-blue.png);
 }
 
 #header {
-    background: #329FD7 url(++resource++plonecommunity.app/header.gif) repeat-x bottom left;
+    background: #329FD7 url(++resource++gomobiletheme.basic/header.gif) repeat-x bottom left;
     padding-bottom: 20px;
 }
 
 #footer {
     padding-top: 20px;
-    background: #329FD7 url(++resource++plonecommunity.app/footer.gif) repeat-x top left;
+    background: #329FD7 url(++resource++gomobiletheme.basic/footer.gif) repeat-x top left;
 }
 
 #visual-margin {
-    background: white url(++resource++plonecommunity.app/gradient.gif) repeat-x top left;
+    background: white url(++resource++gomobiletheme.basic/gradient.gif) repeat-x top left;
 }

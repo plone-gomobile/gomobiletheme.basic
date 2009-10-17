@@ -139,11 +139,14 @@ class PathBar(grok.Viewlet):
     def update(self):
         super(grok.Viewlet, self).update()
 
+        self.portal_state = getView(self.context, self.request, "plone_portal_state")
         self.is_rtl = self.portal_state.is_rtl()
 
-        breadcrumbs_view = getMultiAdapter((self.context, self.request),
-                                           name='breadcrumbs_view')
+        breadcrumbs_view = getView(self.context, self.request, 'breadcrumbs_view')
         self.breadcrumbs = breadcrumbs_view.breadcrumbs()
+
+        self.site_url = self.portal_state.portal_url()
+        self.navigation_root_url = self.portal_state.navigation_root_url()
 
 class Sections(grok.Viewlet):
     """ List top level folders.
@@ -158,15 +161,13 @@ class Sections(grok.Viewlet):
         grok.Viewlet.update(self)
 
         # Get tabs (top level navigation links)
-        context_state = getMultiAdapter((self.context, self.request),
-                                    name=u'plone_context_state')
+        context_state = getView(self.context, self.request, u'plone_context_state')
         actions = context_state.actions()
 
+        portal_state = getView(self.context, self.request, "plone_portal_state")
+        self.portal_url = portal_state.portal_url()
 
-        portal_tabs_view = getMultiAdapter((self.context, self.request),
-                                       name='portal_tabs_view')
-
-
+        portal_tabs_view = getView(self.context, self.request, u'portal_tabs_view')
         self.portal_tabs = portal_tabs_view.topLevelTabs(actions=actions)
 
 class FooterText(grok.Viewlet):
@@ -179,7 +180,7 @@ class FooterText(grok.Viewlet):
         properties = getCachedMobileProperties(self.context, self.request)
 
         self.text = getattr(properties, "footer_text", None)
-        if not text:
+        if not self.text:
             self.text = u"Please set footer text in mobile_properties"
 
 class MobileFolderListing(grok.Viewlet):
@@ -194,10 +195,12 @@ class MobileFolderListing(grok.Viewlet):
     def update(self):
         """ """
 
+        grok.Viewlet.update(self)
+
         # Check from mobile behavior should we do the listing
         behavior = IMobileBehavior(self.context)
         if behavior.mobileFolderListing:
-            self.items = self.context.getFolderContents(contentFilter, batch=False)
+            self.items = self.context.getFolderContents({}, batch=False)
         else:
             self.items = []
 

@@ -6,8 +6,8 @@
 body {
     margin: 0;
     padding: 0;
-     font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
-     background: #329FD7;
+    font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+    background: #329FD7;
     color: white;
 }
 
@@ -223,9 +223,9 @@ dl.error dd {
     margin-top: 1em;
 }
 
-#portal-footer a,
-#portal-footer a:visited,
-#portal-footer a:active,
+#footer a,
+#footer a:visited,
+#footer a:active,
 .listingBar a,
 .listingBar a:visited,
 .listingBar a:active  {
@@ -234,7 +234,7 @@ dl.error dd {
     font-weight: bold;
 }
 
-#portal-footer a:hover,
+#footer a:hover,
 .listingBar a:hover {
     background-color:White;
     color:#329FD7;
@@ -248,26 +248,4 @@ dl.error dd {
 
 #footer-links, #portal-breadcrumbs { text-align: center; }
 
-#copyright { text-align: center; }
-
-/* Front page special */
-
-.hot-now .news-item {
-    padding: 0.3em;
-}
-
-.hot-now .byline {
-    color: #888;
-}
-
-.hot-now .news-0 {
-    background: #ffff88;
-}
-
-.hot-now .news-1 {
-    background: #ffffaa;
-}
-
-.hot-now .news-2 {
-    background: #ffffdd;
-}
+#footer-text { text-align: center; }
