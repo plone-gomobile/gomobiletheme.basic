@@ -17,38 +17,35 @@
 
             <div tal:replace="structure context/@@viewlets/header" />
 
-            <metal:block define-slot="content">
-                <div metal:define-macro="content">
+            <div id="content">
+                <metal:block define-slot="content">
+                    <div metal:define-macro="content">
 
-                    <div tal:replace="structure context/@@viewlets/messages">
-                      Portal status message
-                    </div>
-
-                    <metal:slot metal:define-slot="body">
-
-                        <div id="content"
-                             tal:omit-tag="not:context/@@plone_context_state/is_view_template">
-
-                          <metal:header metal:define-slot="header" tal:content="nothing">
-                            Visual Header
-                          </metal:header>
-
-                          <metal:bodytext metal:define-slot="main" tal:content="nothing">
-                            Page body text
-                          </metal:bodytext>
+                        <div tal:replace="structure context/@@viewlets/messages">
+                          Portal status message
                         </div>
 
-                    </metal:slot>
+                        <metal:slot metal:define-slot="body">
 
-                    <metal:sub metal:define-slot="sub">
-                    </metal:sub>
+                              <metal:header metal:define-slot="header" tal:content="nothing">
+                                Visual Header
+                              </metal:header>
 
-                </div>
-            </metal:block>
+                              <metal:bodytext metal:define-slot="main" tal:content="nothing">
+                                Page body text
+                              </metal:bodytext>
 
-              <div tal:replace="structure context/@@viewlets/footer" />
+                        </metal:slot>
+
+                        <metal:sub metal:define-slot="sub">
+                        </metal:sub>
+
+                    </div>
+                </metal:block>
+            </div>
+
+          <div tal:replace="structure context/@@viewlets/footer" />
           </div>
-      </body>
-
+    </body>
 </html>
 </metal:page>

@@ -88,13 +88,22 @@ input[type=text],input[type=password],textarea, select {
     width: 80%;
 }
 
-#portal-columns {
+#margins {
+    -webkit-box-shadow: 0 0 4px black;
+    -moz-box-shadow: 0 0 4px black;
+    box-shadow: 0 0 4px black;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#content {
     padding: 1em;
     background: white;
     color: black;
 }
 
-#portal-header {
+#header {
     background: #329FD7;
     color: white;
     text-align: left;
@@ -210,7 +219,7 @@ dl.error dd {
 
 /* Footer and batching controls */
 
-#portal-footer,
+#footer,
 .listingBar {
     background: #329FD7;
     color: white;
@@ -229,14 +238,14 @@ dl.error dd {
 .listingBar a,
 .listingBar a:visited,
 .listingBar a:active  {
-    color: white;
+    color: #ee7;
     text-decoration: none;
     font-weight: bold;
 }
 
 #footer a:hover,
 .listingBar a:hover {
-    background-color:White;
+    background-color: #ee7;
     color:#329FD7;
     text-decoration: none;
     font-weight: bold;

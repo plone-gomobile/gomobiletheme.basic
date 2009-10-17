@@ -85,7 +85,7 @@ class Logo(grok.Viewlet):
 
     def getLogoPath(self):
         """ Subclass can override """
-        return "++resource++gomobiletheme.basic/logo.gif"
+        return "++resource++gomobiletheme.basic/logo.png"
 
     def update(self):
 
