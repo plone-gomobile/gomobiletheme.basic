@@ -1,6 +1,5 @@
 from five import grok
 from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
-from plone.app.layout.viewlets.interfaces import IPortalHeader
 from zope.interface import Interface
 
 from interfaces import IThemeLayer
@@ -12,12 +11,27 @@ grok.templatedir('templates')
 # Viewlets are active only when gomobiletheme.basic theme layer is activated
 grok.layer(IThemeLayer)
 
-class Document(grok.View):
+from Products.ATContentTypes.interface import IATDocument
+class MobileDocumentDefault(grok.CodeView):
     """ A page renderer.
 
     Render Page content for anonymous visitors.
     """
+    grok.context(IATDocument)
+    grok.require('zope2.View')
 
     # Render template in collective.fastview global define free mode
-    template = PageTemplate("templates/content/document.pt")
+    render = PageTemplate("templates/content/document.pt")
+
+from Products.ATContentTypes.interface import IATFolder
+class MobileFolderDefault(grok.CodeView):
+    """ A page renderer.
+
+    Render Page content for anonymous visitors.
+    """
+    grok.context(IATFolder)
+    grok.require('zope2.View')
+
+    # Render template in collective.fastview global define free mode
+    render = PageTemplate("templates/content/folder.pt")
 

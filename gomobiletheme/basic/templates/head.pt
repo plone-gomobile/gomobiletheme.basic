@@ -1,37 +1,31 @@
 <head>
 
-  <title tal:content="context/Title">Context title goes here</title>
+  <title tal:content="context/@@plone_context_state/object_title">Context title goes here</title>
 
-  <base tal:attributes="href here/renderBase" />
+  <base tal:attributes="href viewlet/base" />
 
   <tal:comment replace="nothing">
-  	<!-- iPhone viewport size support - no horizontal scroll bar -->
+      <!-- iPhone viewport size support - no horizontal scroll bar -->
   </tal:comment>
-  
+
   <meta name ="viewport" content ="initial-scale = 1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable = yes" />
 
   <tal:comment replace="nothing">
-  	<!-- Special iPhone bookmark icon -->
+      <!-- Special iPhone bookmark icon -->
   </tal:comment>
-  <link rel="apple-touch-icon" tal:attributes="href string:${portal_url}/++resource++gomobile.mobile/plone-mobile-icon.png" />	 
+  <link rel="apple-touch-icon" tal:attributes="href string:${viewlet/portal_url}/++resource++gomobiletheme.basic/plone-mobile-icon.png" />
 
   <link rel="shortcut icon"
         href="favicon.ico"
-        tal:attributes="href string:${view/portal_url}/++resource++skinny/favicon.ico"/>
+        tal:attributes="href string:${viewlet/portal_url}/++resource++gomobiletheme.basic/favicon.ico"/>
 
-  <link type="text/css" rel="stylesheet" media="screen"
-        href="styles.css"
-        tal:attributes="href string:${view/portal_url}/++resource++skinny/styles.css"
-        />
-        
-	<link rel="stylesheet" type="text/css" tal:attributes="href string:${portal_url}/++resource++plonecommunity.app/common.css" />	
-	<link rel="stylesheet" type="text/css" tal:condition="context/@@mobile_tool/isLowEndPhone" tal:attributes="href string:${portal_url}/++resource++plonecommunity.app/lowend.css" />
-	<link rel="stylesheet" type="text/css" tal:condition="not:context/@@mobile_tool/isLowEndPhone" tal:attributes="href string:${portal_url}/++resource++plonecommunity.app/webkit.css" />
 
-	<link rel="stylesheet" type="text/css" tal:condition="context/mobile_tool/isAdminRequest" tal:attributes="href string:${portal_url}/shared.css" />
+    <link rel="stylesheet" type="text/css" tal:attributes="href string:${viewlet/portal_url}/++resource++gomobiletheme.basic/common.css" />
+    <link rel="stylesheet" type="text/css" tal:condition="context/@@mobile_tool/isLowEndPhone" tal:attributes="href string:${viewlet/portal_url}/++resource++gomobiletheme.basic/lowend.css" />
+    <link rel="stylesheet" type="text/css" tal:condition="not:context/@@mobile_tool/isLowEndPhone" tal:attributes="href string:${viewlet/portal_url}/++resource++gomobiletheme.basic/webkit.css" />
 
-	<tal:simulator condition="context/@@mobile_tool/isPreviewRequest">
-		<link rel="stylesheet" type="text/css" tal:attributes="href string:${portal_url}/phone-mode.css" />
-	</tal:simulator>	
-        
+    <tal:simulator condition="context/@@mobile_tool/isPreviewRequest">
+        <link rel="stylesheet" type="text/css" tal:attributes="href string:${viewlet/portal_url}/++resource++gomobile.mobile/phone-mode.css" />
+    </tal:simulator>
+
 </head>

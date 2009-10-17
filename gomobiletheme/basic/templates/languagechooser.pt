@@ -1,5 +1,3 @@
-<tal:languages define="languages view/langauges">
-    <tal:chooser condition="python len(languages) >= 2">
+<tal:chooser condition="viewlet/needs_language">
 
-    </tal:chooser>
-</tal:languages>
+</tal:chooser>

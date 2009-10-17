@@ -9,7 +9,7 @@
     set up in portal_skins.
 
     -->
-  <property name="mobile_skin" type="string" purge="False">Plone Go Mobile Default </property>
+  <property name="mobile_skin" type="string" purge="False">Plone Go Mobile Default Theme</property>
 
  </object>
 </object>

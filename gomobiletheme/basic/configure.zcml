@@ -1,11 +1,19 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:cmf="http://namespaces.zope.org/cmf"
+    xmlns:grok="http://namespaces.zope.org/grok"
     i18n_domain="gomobiletheme.basic">
 
 
   <grok:grok package="." />
+
+  <include package="gomobile.mobile" />
+
+  <five:registerPackage package="." initialize=".initialize" />
+
 
   <genericsetup:registerProfile
       name="default"
@@ -15,6 +23,9 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
-  <include file="theme.zcml" />
+   <cmf:registerDirectory name="skins" directory="skins" recursive="True" />
+
+
+  <include file="content.zcml" />
 
 </configure>

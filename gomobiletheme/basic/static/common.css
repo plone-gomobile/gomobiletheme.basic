@@ -1,23 +1,23 @@
 /**
  * Styles used by all mobile browsers.
- * 
+ *
  */
 
 body {
-	margin: 0;
-	padding: 0;
- 	font-family: "Lucida Grande", Helvetica, Arial, sans-serif;	
- 	background: #329FD7;
-	color: white;
+    margin: 0;
+    padding: 0;
+     font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+     background: #329FD7;
+    color: white;
 }
 
 img {
-	border: 0;
+    border: 0;
 }
 
 .hiddenStructure,
 #kss-spinner {
-	display: none;
+    display: none;
 }
 
 h1 {
@@ -67,9 +67,9 @@ a:visited,
 .documentContent p a,
 .documentContent p a:visited,
 .documentContent p a:active {
-	border: 0;
-	text-decoration: none;
-	color: #205C90;
+    border: 0;
+    text-decoration: none;
+    color: #205C90;
 }
 
 a:hover,
@@ -85,45 +85,42 @@ a:hover,
 
 /* Make text area text more visible than normal grey */
 input[type=text],input[type=password],textarea, select {
-	width: 80%;
+    width: 80%;
 }
 
-/* TODO: Preview mode hack - make sure the actual viewlet is removed */
-#portal-siteactions { display: none; }
-
 #portal-columns {
-	padding: 1em;
-	background: white;
-	color: black;
+    padding: 1em;
+    background: white;
+    color: black;
 }
 
 #portal-header {
-	background: #329FD7;
-	color: white;
-	text-align: left;
+    background: #329FD7;
+    color: white;
+    text-align: left;
 }
 
-#portal-logo img {
-	display: inline;
+#logo img {
+    display: inline;
 }
 
 #portal-breadcrumbs {
-	margin-bottom: 1em;
+    margin-bottom: 1em;
 }
 
 .documentDescription, .discreet, .documentByLine {
-	color: #999;
-	font-size: 85%;
+    color: #999;
+    font-size: 85%;
 }
 
 /* Forms */
 
 .field {
-	padding-bottom: 1em;
-}	
+    padding-bottom: 1em;
+}
 
 .formHelp {
-	color: #666;	
+    color: #666;
 }
 
 .fieldRequired {
@@ -138,12 +135,12 @@ input[type=text],input[type=password],textarea, select {
 
 .legend,
 label {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 div.error {
     /* Class for error indication in forms */
-    background-color: #fdc; 
+    background-color: #fdc;
     border: 1px solid #d00;
     padding: 0.5em;
     margin: 0 0 1em 0;
@@ -153,19 +150,19 @@ div.error {
 /* Search */
 
 .searchResults dt {
-	padding-bottom: 1em;
+    padding-bottom: 1em;
 }
 
 .searchResults dt a {
-	font-size: 120%;
-	font-weight: bold;
-}	
+    font-size: 120%;
+    font-weight: bold;
+}
 
 /* Status messages */
 
 dl.portalMessage {
-    background-color: #ffffe3; 
-    border: 1px solid #996;    
+    background-color: #ffffe3;
+    border: 1px solid #996;
 }
 dl.portalMessage a {
     color: black;
@@ -173,7 +170,7 @@ dl.portalMessage a {
     text-decoration: underline;
 }
 dl.portalMessage dt {
-    background-color: #996; 
+    background-color: #996;
     font-weight: bold;
     float: left;
     margin: 0 0.5em 0 0;
@@ -182,7 +179,7 @@ dl.portalMessage dt {
     line-height: 1.25em;
 }
 dl.portalMessage dd {
-    padding: 0.5em 0.5em; 
+    padding: 0.5em 0.5em;
     margin: 0;
     line-height: 1.25em;
 }
@@ -193,37 +190,37 @@ dl.warning dt {
     background-color: #d80;
 }
 dl.error {
-    border-color: #d00;    
+    border-color: #d00;
 }
 dl.error dt {
-    background-color: #d00; 
+    background-color: #d00;
 }
 dl.warning {
-    border-color: #d80;    
+    border-color: #d80;
 }
 dl.warning dd {
-    background-color: #fd7; 
+    background-color: #fd7;
 }
 dl.error {
-    border-color: #d80;    
+    border-color: #d80;
 }
 dl.error dd {
-    background-color: #fd7; 
+    background-color: #fd7;
 }
 
 /* Footer and batching controls */
 
 #portal-footer,
 .listingBar {
-	background: #329FD7;
-	color: white;
-	padding: 1em;
-	padding-top: 10px;
-	font-size: 80%;
+    background: #329FD7;
+    color: white;
+    padding: 1em;
+    padding-top: 10px;
+    font-size: 80%;
 }
 
 .listingBar {
-	margin-top: 1em;
+    margin-top: 1em;
 }
 
 #portal-footer a,
@@ -232,17 +229,17 @@ dl.error dd {
 .listingBar a,
 .listingBar a:visited,
 .listingBar a:active  {
-	color: white;
-	text-decoration: none;
-	font-weight: bold;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 #portal-footer a:hover,
 .listingBar a:hover {
-	background-color:White;
-	color:#329FD7;	
-	text-decoration: none;	
-	font-weight: bold;	
+    background-color:White;
+    color:#329FD7;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 #portal-globalnav { list-style: none; text-align:center; padding: 0; }
@@ -256,21 +253,21 @@ dl.error dd {
 /* Front page special */
 
 .hot-now .news-item {
-	padding: 0.3em;
+    padding: 0.3em;
 }
 
 .hot-now .byline {
-	color: #888;
+    color: #888;
 }
 
 .hot-now .news-0 {
-	background: #ffff88;
-}	
+    background: #ffff88;
+}
 
 .hot-now .news-1 {
-	background: #ffffaa;
-}	
+    background: #ffffaa;
+}
 
 .hot-now .news-2 {
-	background: #ffffdd;
-}	
+    background: #ffffdd;
+}

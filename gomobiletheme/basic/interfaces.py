@@ -1,6 +1,6 @@
-from gomobile.skinny.interfaces import IMobileThemeLayer
+from gomobile.mobile.interfaces import IMobileLayer
 
-class IThemeLayer(IMobileThemeLayer):
+class IThemeLayer(IMobileLayer):
     """ Register all default views and viewlets against this layer
     """
     pass

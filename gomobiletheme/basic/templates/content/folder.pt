@@ -1,0 +1,9 @@
+<h1 tal:content="context/Title" class="documentFirstHeading">
+The page's title
+</h1>
+
+<div class="description"
+   tal:content="context/Description">
+The page's description
+</div>
+

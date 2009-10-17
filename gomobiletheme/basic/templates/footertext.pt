@@ -1,0 +1,4 @@
+<div id="copyright">
+    <div tal:replace="structure view/text" />
+</div>
+
