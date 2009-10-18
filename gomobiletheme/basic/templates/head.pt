@@ -13,16 +13,15 @@
   <tal:comment replace="nothing">
       <!-- Special iPhone bookmark icon -->
   </tal:comment>
-  <link rel="apple-touch-icon" tal:attributes="href string:${viewlet/portal_url}/++resource++gomobiletheme.basic/plone-mobile-icon.png" />
+  <link rel="apple-touch-icon" tal:attributes="href string:string:${viewlet/resource_url}/apple-touch-icon.png" />
 
   <link rel="shortcut icon"
         href="favicon.ico"
-        tal:attributes="href string:${viewlet/portal_url}/++resource++gomobiletheme.basic/favicon.ico"/>
+        tal:attributes="href string:${viewlet/resource_url}/favicon.ico"/>
 
-
-    <link rel="stylesheet" type="text/css" tal:attributes="href string:${viewlet/portal_url}/++resource++gomobiletheme.basic/common.css" />
-    <link rel="stylesheet" type="text/css" tal:condition="context/@@mobile_tool/isLowEndPhone" tal:attributes="href string:${viewlet/portal_url}/++resource++gomobiletheme.basic/lowend.css" />
-    <link rel="stylesheet" type="text/css" tal:condition="not:context/@@mobile_tool/isLowEndPhone" tal:attributes="href string:${viewlet/portal_url}/++resource++gomobiletheme.basic/webkit.css" />
+    <link rel="stylesheet" type="text/css" tal:attributes="href string:${viewlet/resource_url}/++resource++gomobiletheme.basic/common.css" />
+    <link rel="stylesheet" type="text/css" tal:condition="context/@@mobile_tool/isLowEndPhone" tal:attributes="href string:${viewlet/resource_url}/lowend.css" />
+    <link rel="stylesheet" type="text/css" tal:condition="not:context/@@mobile_tool/isLowEndPhone" tal:attributes="href string:${viewlet/resource_url}/webkit.css" />
 
     <tal:simulator condition="context/@@mobile_tool/isPreviewRequest">
         <link rel="stylesheet" type="text/css" tal:attributes="href string:${viewlet/portal_url}/++resource++gomobile.mobile/phone-mode.css" />

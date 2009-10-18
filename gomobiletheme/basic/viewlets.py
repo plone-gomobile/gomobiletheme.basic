@@ -4,10 +4,13 @@
 
 """
 
+import sys, os
+
 from Acquisition import aq_inner
 from zope.component import getMultiAdapter
 
 from zope.interface import Interface
+from zope.component import queryMultiAdapter
 
 from five import grok
 from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
@@ -21,12 +24,17 @@ from gomobile.mobile.browser.resizer import getUserAgentBasedResizedImageURL
 
 from interfaces import IThemeLayer
 
+# Resolve templatedir and export it as an variable so that other
+# packages can use our templates as well
+module = sys.modules[__name__]
+dirname = os.path.dirname(module.__file__)
+gomobiletheme_basic_templatedir = os.path.join(dirname, "templates")
 
 # Viewlets are on all content by default.
 grok.context(Interface)
 
 # Use templates directory to search for templates.
-grok.templatedir('templates')
+grok.templatedir("templates")
 
 # Viewlets are active only when gomobiletheme.basic theme layer is activated
 grok.layer(IThemeLayer)
@@ -51,7 +59,32 @@ class MainViewletManager(grok.ViewletManager):
 grok.viewletmanager(MainViewletManager)
 
 class Head(grok.Viewlet):
-    """ Render <head> section for every page. """
+    """ Render <head> section for every page.
+
+    Render the default mobile <head> section with CSS and icons.
+
+    Render necessary bits for mobile preview feature (needs cross-site javascript).
+    """
+
+    grok.template("head")
+
+    def resource_url(self):
+        """  Tell templates which URL use for theme loading.
+
+        This URL will be effective for
+
+        - common.css
+
+        - webkit.css
+
+        - lowend.css
+
+        - logo.png
+
+        - apple-touch-icon.png
+
+        """
+        return self.portal_url + "/" + "++resource++gomobiletheme.basic"
 
     def update(self):
         portal_state = getView(self.context, self.request, "plone_portal_state")
@@ -209,3 +242,15 @@ class MobileFolderListing(grok.Viewlet):
         Check whether mobile folder listing is enabled for a particular content type.
         """
         return len(self.items) > 0
+
+
+class MobileTracker(grok.Viewlet):
+    """ Site visitors tracking code for mobile analytics """
+
+    def update(self):
+        context = aq_inner(self.context)
+
+        # provided in gomobile.mobile.tracking.view
+        tracker_renderer = getMultiAdapter((context, self.request), name="mobiletracker")
+
+        self.tracking_code = tracker_renderer()
