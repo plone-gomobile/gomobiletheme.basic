@@ -237,6 +237,7 @@ class MobileFolderListing(grok.Viewlet):
         else:
             self.items = []
 
+
     def hasListing(self):
         """
         Check whether mobile folder listing is enabled for a particular content type.

@@ -13,13 +13,13 @@
   <tal:comment replace="nothing">
       <!-- Special iPhone bookmark icon -->
   </tal:comment>
-  <link rel="apple-touch-icon" tal:attributes="href string:string:${viewlet/resource_url}/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" tal:attributes="href string:${viewlet/resource_url}/apple-touch-icon.png" />
 
   <link rel="shortcut icon"
         href="favicon.ico"
         tal:attributes="href string:${viewlet/resource_url}/favicon.ico"/>
 
-    <link rel="stylesheet" type="text/css" tal:attributes="href string:${viewlet/resource_url}/++resource++gomobiletheme.basic/common.css" />
+    <link rel="stylesheet" type="text/css" tal:attributes="href string:${viewlet/resource_url}/common.css" />
     <link rel="stylesheet" type="text/css" tal:condition="context/@@mobile_tool/isLowEndPhone" tal:attributes="href string:${viewlet/resource_url}/lowend.css" />
     <link rel="stylesheet" type="text/css" tal:condition="not:context/@@mobile_tool/isLowEndPhone" tal:attributes="href string:${viewlet/resource_url}/webkit.css" />
 
