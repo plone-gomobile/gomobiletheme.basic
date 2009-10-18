@@ -33,10 +33,10 @@ class MobileFolderDefault(grok.CodeView):
     grok.require('zope2.View')
 
     # Render template in collective.fastview global define free mode
-    #render = PageTemplate("templates/content/folder.pt")
+    render = PageTemplate("templates/content/folder.pt")
 
-    def render(self):
-        """
-        """
+    #def render(self):
+    #    """
+    #    """
 
         # Check if we have a default page

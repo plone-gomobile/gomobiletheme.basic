@@ -95,6 +95,7 @@ input[type=text],input[type=password],textarea, select {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+	background: white;
 }
 
 #content {
@@ -108,6 +109,8 @@ input[type=text],input[type=password],textarea, select {
     color: white;
     text-align: left;
 }
+
+
 
 #logo img {
     display: inline;

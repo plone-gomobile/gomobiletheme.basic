@@ -22,6 +22,8 @@ from gomobile.mobile.behaviors import IMobileBehavior
 from gomobile.mobile.utilities import getCachedMobileProperties
 from gomobile.mobile.browser.resizer import getUserAgentBasedResizedImageURL
 
+
+
 from interfaces import IThemeLayer
 
 # Resolve templatedir and export it as an variable so that other
@@ -84,11 +86,13 @@ class Head(grok.Viewlet):
         - apple-touch-icon.png
 
         """
+        import pdb ; pdb.set_trace()
         return self.portal_url + "/" + "++resource++gomobiletheme.basic"
 
     def update(self):
         portal_state = getView(self.context, self.request, "plone_portal_state")
         self.portal_url = portal_state.portal_url()
+
 
         # Create <base href=""> directive of <head>
         if IFolderish.providedBy(self.context):

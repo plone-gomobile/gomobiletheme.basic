@@ -20,7 +20,7 @@ are here:</span>
             </a>
             <span class="breadcrumbSeparator" tal:condition="not: is_last">
                 <tal:ltr condition="not: viewlet/is_rtl">&rarr;</tal:ltr>
-                <tal:rtl condition="viewviewletis_rtl">&raquo;</tal:rtl>
+                <tal:rtl condition="viewlet/is_rtl">&raquo;</tal:rtl>
             </span>
             <span tal:condition="is_last"
                   tal:content="crumb/Title">crumb</span>
