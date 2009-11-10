@@ -19,7 +19,7 @@ from Products.CMFCore.interfaces._content import IFolderish
 from Products.statusmessages.interfaces import IStatusMessage
 
 from gomobile.mobile.behaviors import IMobileBehavior
-from gomobile.mobile.utilities import getCachedMobileProperties
+from gomobile.mobile.utilities import getCachedMobileProperties, debug_layers
 from gomobile.mobile.browser.resizer import getUserAgentBasedResizedImageURL
 
 
@@ -91,7 +91,6 @@ class Head(grok.Viewlet):
     def update(self):
         portal_state = getView(self.context, self.request, "plone_portal_state")
         self.portal_url = portal_state.portal_url()
-
 
         # Create <base href=""> directive of <head>
         if IFolderish.providedBy(self.context):
