@@ -1,12 +1,12 @@
 <metal:master use-macro="here/main_template/macros/master">
 
     <metal:slot fill-slot="main">
-        <h1 tal:content="context/Title" class="documentFirstHeading">
+        <h1 tal:content="view/title" class="documentFirstHeading">
         The page's title
         </h1>
 
         <div class="description"
-           tal:content="context/Description">
+           tal:content="view/description">
         The page's description
         </div>
 
