@@ -86,7 +86,6 @@ class Head(grok.Viewlet):
         - apple-touch-icon.png
 
         """
-        import pdb ; pdb.set_trace()
         return self.portal_url + "/" + "++resource++gomobiletheme.basic"
 
     def update(self):

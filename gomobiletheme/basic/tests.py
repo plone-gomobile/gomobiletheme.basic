@@ -47,13 +47,14 @@ def setup_zcml():
     # should be available. This can't happen until after we have loaded
     # the ZCML.
     ztc.installPackage('gomobile.mobile')
+    ztc.installPackage('gomobile.convergence')
     ztc.installPackage('gomobiletheme.basic')
 
 
 
 # The order here is important.
 setup_zcml()
-ptc.setupPloneSite(products=['gomobile.mobile', "gomobiletheme.basic"])
+ptc.setupPloneSite(products=['gomobile.mobile', 'gomobile.convergence', "gomobiletheme.basic"])
 
 class BaseTestCase(ptc.FunctionalTestCase):
     """We use this base class for all the tests in this package. If necessary,
@@ -80,6 +81,16 @@ class BaseTestCase(ptc.FunctionalTestCase):
         self.browser = Browser()
         self.browser.handleErrors = False
 
+    def setDiscriminateMode(self, mode):
+        """
+        Spoof the following HTTP request media.
+
+        @param: "mobile", "web" or other MobileRequestType pseudo-constant
+        """
+        TestMobileRequestDiscriminator.setModes([mode])
+
+        # skin manager must update active skin for the request
+        self._refreshSkinData()
 
 class ThemeTestCase(BaseTestCase):
     """
@@ -88,14 +99,6 @@ class ThemeTestCase(BaseTestCase):
 
     def afterSetUp(self):
         self._refreshSkinData()
-
-    def setDiscriminateMode(self, mode):
-        """
-        Spoof the following HTTP request media.
-
-        @param: "mobile", "web" or other MobileRequestType pseudo-constant
-        """
-        TestMobileRequestDiscriminator.setModes([mode])
 
     def prepare_render(self, object):
         """
@@ -147,7 +150,6 @@ class ThemeTestCase(BaseTestCase):
         Check that Plone renders page normally if not in mobile mode
         """
         self.setDiscriminateMode(MobileRequestType.WEB)
-        self._refreshSkinData()
         utility = getUtility(IMobileRequestDiscriminator)
         #import pdb ; pdb.set_trace()
         html = self.prepare_render(self.portal)
@@ -204,3 +206,92 @@ class ThemeTestCase(BaseTestCase):
 
         html = browser.contents
         self.assertTrue(MOBILE_HTML_MARKER in html, "Got page:" + html)
+
+
+from zope.component import getMultiAdapter, getUtility
+
+from gomobile.convergence.interfaces import IOverrider
+from gomobile.convergence.overrider.base import IOverrideStorage
+
+class TestMobileOverrides(BaseTestCase):
+    """ Check that field level overrides are rendered correctly in mobile mode.
+    """
+
+    def afterSetUp(self):
+        self._refreshSkinData()
+
+    def create_doc(self):
+        self.loginAsPortalOwner()
+        self.portal.invokeFactory("Document", "doc")
+
+    def test_helper_view_mobile(self):
+        """
+        See that we get proper proxy object through helper view.
+        """
+        self.setDiscriminateMode(MobileRequestType.MOBILE)
+        self.create_doc()
+        doc = self.portal.doc
+        doc.setTitle("Not reached")
+        overrider = IOverrider(doc)
+        storage = IOverrideStorage(doc)
+        storage.enabled_overrides = ["Title"]
+        storage.Title = u"Foobar"
+
+        helper = doc.restrictedTraverse("multichannel_overrider")
+        context = helper() # Return mobile proxy object with overriden values
+
+        # In mobile mode, you get override
+        self.assertEqual(context.Title(), u"Foobar")
+
+    def test_helper_view_web(self):
+        """
+        See that we get proper proxy object through helper view.
+        """
+        self.setDiscriminateMode(MobileRequestType.WEB)
+        self.create_doc()
+        doc = self.portal.doc
+        doc.setTitle("Not reached")
+        overrider = IOverrider(doc)
+        storage = IOverrideStorage(doc)
+        storage.enabled_overrides = ["Title"]
+        storage.Title = u"Foobar"
+
+        helper = doc.restrictedTraverse("multichannel_overrider")
+        context = helper() # Return mobile proxy object with overriden values
+
+        # In web mode, you dont get override
+        self.assertEqual(context.Title(), "Not reached")
+
+    def test_render_mobile_override(self):
+        """ Render a document with mobile overrides enabled.
+
+        """
+
+        self.setDiscriminateMode("mobile")
+
+
+        self.create_doc()
+        doc = self.portal.doc
+        doc.setTitle("Not reached") # This title should not be visible in mobile mode
+        overrider = IOverrider(doc)
+        storage = IOverrideStorage(doc)
+        storage.enabled_overrides = ["Title"]
+        storage.Title = u"Foobar"
+
+        self.portal.portal_workflow.doActionFor(doc, "submit")
+        self.portal.portal_workflow.doActionFor(doc, "publish")
+
+
+        browser = self.browser
+        browser.open(self.portal.doc.absolute_url())
+        html = browser.contents
+
+        self.assertTrue(MOBILE_HTML_MARKER in html, "Got page:" + html)
+        assert "Foobar" in html
+
+def test_suite():
+    import unittest
+    suite = unittest.TestSuite()
+    suite.addTest(unittest.makeSuite(ThemeTestCase))
+    suite.addTest(unittest.makeSuite(TestMobileOverrides))
+    return suite

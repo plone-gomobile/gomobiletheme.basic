@@ -9,8 +9,9 @@
 
 	<metal:main fill-slot="main">
 	    <tal:main-macro metal:define-macro="main"
-	           tal:define="templateId template/getId;
-	                       text here/getText;">
+	           tal:define="context context/@@multichannel_overrider|nocall:context; here nocall:context;
+	           			   templateId template/getId;
+	                       text here/getText">
 
 
 	        <h1 class="documentFirstHeading" tal:content="context/Title" />
