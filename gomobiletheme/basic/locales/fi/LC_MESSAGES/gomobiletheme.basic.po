@@ -16,10 +16,10 @@ msgstr ""
 
 #: ./templates/logo.pt:2
 msgid "Home"
-msgstr "Pääsivu"
+msgstr "P√§√§sivu"
 
 #. Default: "Here also:"
 #: ./templates/mobilefolderlisting.pt:3
 msgid "mobile_folder_listing_heading"
-msgstr "Tältä sivulta löydät:"
+msgstr "T√§lt√§ sivulta l√∂yd√§t:"
 
