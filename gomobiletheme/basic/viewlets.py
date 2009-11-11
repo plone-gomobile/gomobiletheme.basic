@@ -227,6 +227,32 @@ class MobileFolderListing(grok.Viewlet):
     This viewlet is only
     """
 
+    def doListing(self):
+        """
+        """
+
+    def getListingContainer(self):
+        """
+        """
+        context = self.context.aq_inner
+        if IFolderish.providedBy(context):
+            return context
+        else:
+            return context.aq_parent
+
+    def getActiveTemplate(self):
+        state = getMultiAdapter((self.context, self.request), name=u'plone_context_state')
+        return state.view_template_id()
+
+    def getActiveView(self):
+        """
+        """
+
+    def getTemplateIdsNoListing(self):
+        """ Subclass may override.
+        """
+        return ["folderlisting"]
+
     def update(self):
         """ """
 
@@ -234,10 +260,23 @@ class MobileFolderListing(grok.Viewlet):
 
         # Check from mobile behavior should we do the listing
         behavior = IMobileBehavior(self.context)
-        if behavior.mobileFolderListing:
-            self.items = self.context.getFolderContents({}, batch=False)
-        else:
-            self.items = []
+
+        self.items = []
+
+        # Do listing by default, must be explictly disabledc
+        if not behavior.mobileFolderListing:
+            return
+
+        # Do not list if already doing folder listing
+        template = self.getActiveTemplate()
+        print "Active template id:" + template
+        if template in self.getTemplateIdsNoListing():
+            return
+
+        container = self.getListingContainer()
+
+        self.items = container.getFolderContents({}, batch=False)
+
 
 
     def hasListing(self):

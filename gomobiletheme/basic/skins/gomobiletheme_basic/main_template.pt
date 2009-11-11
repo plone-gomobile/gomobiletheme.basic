@@ -37,8 +37,11 @@
 
                         </metal:slot>
 
+                         <div tal:replace="structure context/@@viewlets/mobilefolderlisting" />
+
                         <metal:sub metal:define-slot="sub">
                         </metal:sub>
+
 
                     </div>
                 </metal:block>
