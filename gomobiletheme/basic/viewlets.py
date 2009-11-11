@@ -258,10 +258,15 @@ class MobileFolderListing(grok.Viewlet):
 
         grok.Viewlet.update(self)
 
-        # Check from mobile behavior should we do the listing
-        behavior = IMobileBehavior(self.context)
-
         self.items = []
+
+
+        # Check from mobile behavior should we do the listing
+        try:
+            behavior = IMobileBehavior(self.context)
+        except TypeError:
+            # Site root or some weird object, give up
+            return
 
         # Do listing by default, must be explictly disabledc
         if not behavior.mobileFolderListing:
