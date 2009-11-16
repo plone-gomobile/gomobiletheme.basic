@@ -1,3 +1,5 @@
-<tal:chooser condition="viewlet/needs_language">
+<div id="language-chooser">
+    <tal:chooser condition="viewlet/needs_language">
 
-</tal:chooser>
+    </tal:chooser>
+</div>

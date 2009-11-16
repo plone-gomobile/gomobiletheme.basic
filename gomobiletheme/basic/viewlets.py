@@ -16,7 +16,9 @@ from five import grok
 from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
 from plone.app.layout.viewlets.interfaces import IPortalHeader
 from Products.CMFCore.interfaces._content import IFolderish
+from Products.CMFCore.utils import getToolByName
 from Products.statusmessages.interfaces import IStatusMessage
+from plone.app.layout.viewlets import common as plone_common_viewlets
 
 from gomobile.mobile.behaviors import IMobileBehavior
 from gomobile.mobile.utilities import getCachedMobileProperties, debug_layers
@@ -144,9 +146,37 @@ class LanguageChooser(grok.Viewlet):
         return False
 
     def languages(self):
-        """
-        """
+        """Returns list of languages."""
+        if self.tool is None:
+            return []
 
+        bound = self.tool.getLanguageBindings()
+        current = bound[0]
+
+        def merge(lang, info):
+            info["code"]=lang
+            if lang == current:
+                info['selected'] = True
+            else:
+                info['selected'] = False
+            return info
+
+        languages = [merge(lang, info) for (lang,info) in
+                        self.tool.getAvailableLanguageInformation().items()
+                        if info["selected"]]
+
+        # sort supported languages by index in portal_languages tool
+        supported_langs = self.tool.getSupportedLanguages()
+        def index(info):
+            try:
+                return supported_langs.index(info["code"])
+            except ValueError:
+                return len(supported_langs)
+
+        return sorted(languages, key=index)
+
+    def update(self):
+        self.tool = getToolByName(self.context, 'portal_languages', None)
 
 class Footer(grok.Viewlet):
     """ Render langauge chooser at the top right corner if more than one site language available.
@@ -253,6 +283,32 @@ class MobileFolderListing(grok.Viewlet):
         """
         return ["folderlisting"]
 
+    def filterItems(self, container, items):
+        """
+
+        @param items: List of context brains
+        """
+
+        # Filter out default content
+        default_page_helper = getMultiAdapter((container, self.request), name='default_page')
+
+        # Return  the default page id or None if not set
+        default_page = default_page_helper.getDefaultPage(container)
+
+        def show(item):
+            """
+            @param item: Brain
+
+            @return: True if item should be visible in the listing
+            """
+            if item["getId"] == default_page:
+                return False
+
+            return True
+
+        return [ i for i in items if show(i) == True ]
+
+
     def update(self):
         """ """
 
@@ -280,9 +336,9 @@ class MobileFolderListing(grok.Viewlet):
 
         container = self.getListingContainer()
 
-        self.items = container.getFolderContents({}, batch=False)
+        items = container.getFolderContents({}, batch=False)
 
-
+        self.items = self.filterItems(container, items)
 
     def hasListing(self):
         """
@@ -301,3 +357,19 @@ class MobileTracker(grok.Viewlet):
         tracker_renderer = getMultiAdapter((context, self.request), name="mobiletracker")
 
         self.tracking_code = tracker_renderer()
+
+
+class DocumentActions(plone_common_viewlets.ViewletBase):
+    """
+    Override document actions. Document actions (like) print is directly
+    called from many templates. Thus, it is likely this viewlet leaks
+    to mobile code. We don't want print in mobile.
+
+    This viewlet is registered in configure.zcml.
+    """
+
+    def update(self):
+        pass
+
+    def render(self):
+        return u""

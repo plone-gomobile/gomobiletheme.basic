@@ -5,6 +5,16 @@
 
   <!-- Default views on mobile publishing as defined in views.py -->
 
+
+    <!-- Override print etc. viewlet for mobile -->
+      <browser:viewlet
+        name="plone.abovecontenttitle.documentactions"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+        class=".viewlets.DocumentActions"
+        permission="zope2.View"
+        layer=".interfaces.IThemeLayer"
+        />
+
   <!-- TODO: Looks like layer attribute here is not effective, but
        default view will be enforced even if the
        mobile theme is not activated.
