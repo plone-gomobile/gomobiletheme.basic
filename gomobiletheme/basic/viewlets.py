@@ -280,8 +280,18 @@ class MobileFolderListing(grok.Viewlet):
 
     def getTemplateIdsNoListing(self):
         """ Subclass may override.
+        
+        @@return: List of ids found from portal_properties where not to show folder listing
         """
-        return ["folderlisting"]
+        
+        try:
+            from gomobile.mobile.utilities import getCachedMobileProperties
+            context = aq_inner(self.context)
+            mobile_properties = getCachedMobileProperties(context, self.request)
+        except:
+            mobile_properties = None
+        
+        return getattr(mobile_properties, "no_folder_listing_view_ids", [])
 
     def filterItems(self, container, items):
         """
