@@ -212,15 +212,9 @@ class ThemeTestCase(BaseTestCase):
         from gomobiletheme.basic.viewlets import MobileFolderListing
         from gomobile.mobile.browser.views import FolderListingView
 
-        def spoofActiveTemplate():
-            """
-            """
-            # Monkey-patch for tests
-            def dummy(self):
-                return "some_not_listing_view"
-
-            old = FolderListingView.getActiveTemplate
-            FolderListingView.getActiveTemplate = dummy
+        # Soiif default template check
+        from gomobile.mobile.tests.utils import spoofMobileFolderListingActiveTemplate
+        spoofMobileFolderListingActiveTemplate()
 
 
 
@@ -232,7 +226,7 @@ class ThemeTestCase(BaseTestCase):
         self.portal.folder.invokeFactory("Document", "page1")
         self.portal.folder.invokeFactory("Document", "page2")
 
-        spoofActiveTemplate()
+        spoofMobileFolderListingActiveTemplate()
 
         # Get the viewlet
         viewlet = MobileFolderListing(self.portal.folder, self.portal.folder.REQUEST, None, None)
