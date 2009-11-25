@@ -7,7 +7,7 @@
     <ul id="mobile-folder-listing" class="button-links">
         <tal:repeat tal:repeat="item viewlet/items">
             <li>
-                <a tal:attributes="href item/getURL">
+                <a tal:attributes="href item/absolute_url">
                     <span class="button-body">
                         <span class="button-inner" tal:content="item/Title" />
                     </span>

@@ -249,112 +249,32 @@ class FooterText(grok.Viewlet):
             self.text = u"Please set footer text in mobile_properties"
 
 class MobileFolderListing(grok.Viewlet):
-    """ List content of the folder.
+    """ List content of the folder or the parent folder on every page.
 
     Because mobile sites don't have navigation portlet
     we need to have a way to show what's inside the folder.
-
-    This viewlet is only
     """
-
-    def doListing(self):
-        """
-        """
-
-    def getListingContainer(self):
-        """
-        """
-        context = self.context.aq_inner
-        if IFolderish.providedBy(context):
-            return context
-        else:
-            return context.aq_parent
-
-    def getActiveTemplate(self):
-        state = getMultiAdapter((self.context, self.request), name=u'plone_context_state')
-        return state.view_template_id()
-
-    def getActiveView(self):
-        """
-        """
-
-    def getTemplateIdsNoListing(self):
-        """ Subclass may override.
-        
-        @@return: List of ids found from portal_properties where not to show folder listing
-        """
-        
-        try:
-            from gomobile.mobile.utilities import getCachedMobileProperties
-            context = aq_inner(self.context)
-            mobile_properties = getCachedMobileProperties(context, self.request)
-        except:
-            mobile_properties = None
-        
-        return getattr(mobile_properties, "no_folder_listing_view_ids", [])
-
-    def filterItems(self, container, items):
-        """
-
-        @param items: List of context brains
-        """
-
-        # Filter out default content
-        default_page_helper = getMultiAdapter((container, self.request), name='default_page')
-
-        # Return  the default page id or None if not set
-        default_page = default_page_helper.getDefaultPage(container)
-
-        def show(item):
-            """
-            @param item: Brain
-
-            @return: True if item should be visible in the listing
-            """
-            if item["getId"] == default_page:
-                return False
-
-            return True
-
-        return [ i for i in items if show(i) == True ]
-
 
     def update(self):
         """ """
 
         grok.Viewlet.update(self)
 
-        self.items = []
+        # Get listing helper from gomobile.mobile
+        helper = getMultiAdapter((self.context, self.request), name='mobile_folder_listing')
 
+        # None or iterable of content item objects
+        self.items = helper.constructListing()
 
-        # Check from mobile behavior should we do the listing
-        try:
-            behavior = IMobileBehavior(self.context)
-        except TypeError:
-            # Site root or some weird object, give up
-            return
-
-        # Do listing by default, must be explictly disabledc
-        if not behavior.mobileFolderListing:
-            return
-
-        # Do not list if already doing folder listing
-        template = self.getActiveTemplate()
-        print "Active template id:" + template
-        if template in self.getTemplateIdsNoListing():
-            return
-
-        container = self.getListingContainer()
-
-        items = container.getFolderContents({}, batch=False)
-
-        self.items = self.filterItems(container, items)
 
     def hasListing(self):
         """
         Check whether mobile folder listing is enabled for a particular content type.
         """
-        return len(self.items) > 0
+
+        # Note: Can't use len() since iterable don't have length
+
+        return self.items != None
 
 
 class MobileTracker(grok.Viewlet):

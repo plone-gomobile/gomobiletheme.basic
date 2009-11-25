@@ -210,6 +210,20 @@ class ThemeTestCase(BaseTestCase):
     def test_mobile_folder_listing(self):
         """ """
         from gomobiletheme.basic.viewlets import MobileFolderListing
+        from gomobile.mobile.browser.views import FolderListingView
+
+        def spoofActiveTemplate():
+            """
+            """
+            # Monkey-patch for tests
+            def dummy(self):
+                return "some_not_listing_view"
+
+            old = FolderListingView.getActiveTemplate
+            FolderListingView.getActiveTemplate = dummy
+
+
+
         self.setDiscriminateMode(MobileRequestType.MOBILE)
 
         # Create a sample folder
@@ -218,11 +232,13 @@ class ThemeTestCase(BaseTestCase):
         self.portal.folder.invokeFactory("Document", "page1")
         self.portal.folder.invokeFactory("Document", "page2")
 
+        spoofActiveTemplate()
+
         # Get the viewlet
         viewlet = MobileFolderListing(self.portal.folder, self.portal.folder.REQUEST, None, None)
         self.assertNotEqual(viewlet, None, "Could not find mobilefolderlisting viewlet")
-        viewlet.update()
 
+        viewlet.update()
         self.assertEqual(len(viewlet.items), 2)
 
         # Now set one of the pages as default
@@ -338,9 +354,34 @@ class TestMobileOverrides(BaseTestCase):
         self.assertTrue(MOBILE_HTML_MARKER in html, "Got page:" + html)
         assert "Foobar" in html
 
+class TestPostPublication(BaseTestCase):
+    """
+    """
+
+    def afterSetUp(self):
+        self._refreshSkinData()
+
+    def create_doc(self):
+        self.loginAsPortalOwner()
+        self.portal.invokeFactory("Document", "doc")
+
+    def xxx_test_content_type(self):
+        """
+        Mobile profile not supported.
+
+        See that we get proper proxy object through helper view.
+        """
+        self.setDiscriminateMode(MobileRequestType.MOBILE)
+        browser = self.browser
+        browser.open(self.portal.absolute_url())
+
+        CONTENT_TYPE = "application/vnd.wap.xhtml+xml"
+        self.assertEqual(browser.headers["content-type"], CONTENT_TYPE)
+
 def test_suite():
     import unittest
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(ThemeTestCase))
     suite.addTest(unittest.makeSuite(TestMobileOverrides))
+    suite.addTest(unittest.makeSuite(TestPostPublication))
     return suite
