@@ -1,7 +1,7 @@
 <tal:has-listing condition="viewlet/hasListing" i18n:domain="gomobiletheme.basic">
 
     <h2 class="mobile-folder-listing-heading" i18n:translate="mobile_folder_listing_heading">
-        Here also:
+        Here you can find:
     </h2>
 
     <ul id="mobile-folder-listing" class="button-links">
