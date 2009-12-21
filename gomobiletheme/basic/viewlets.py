@@ -10,7 +10,7 @@ from Acquisition import aq_inner
 from zope.component import getMultiAdapter
 
 from zope.interface import Interface
-from zope.component import queryMultiAdapter
+from zope.component import queryMultiAdapter, getMultiAdapter
 
 from five import grok
 from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
@@ -20,6 +20,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.statusmessages.interfaces import IStatusMessage
 from plone.app.layout.viewlets import common as plone_common_viewlets
 
+from gomobile.mobile.interfaces import IMobileSiteLocationManager, MobileRequestType
 from gomobile.mobile.behaviors import IMobileBehavior
 from gomobile.mobile.utilities import getCachedMobileProperties, debug_layers
 from gomobile.mobile.browser.resizer import getUserAgentBasedResizedImageURL
@@ -179,7 +180,7 @@ class LanguageChooser(grok.Viewlet):
         self.tool = getToolByName(self.context, 'portal_languages', None)
 
 class Footer(grok.Viewlet):
-    """ Render langauge chooser at the top right corner if more than one site language available.
+    """ Sections + footer text
     """
 
 class Messages(grok.Viewlet):
@@ -234,6 +235,26 @@ class Sections(grok.Viewlet):
 
         portal_tabs_view = getView(self.context, self.request, u'portal_tabs_view')
         self.portal_tabs = portal_tabs_view.topLevelTabs(actions=actions)
+
+
+    def get_web_site_url(self):
+        """
+        @return: string url, web version of the same page
+        """
+        context = self.context.aq_inner
+        url = self.request["ACTUAL_URL"]
+        location_manager = getMultiAdapter((context, self.request), IMobileSiteLocationManager)
+        new_url = location_manager.rewriteURL(url, MobileRequestType.WEB)
+
+        # Add redirecor preventing GET parameter
+        if "?" in new_url:
+            new_url += "&force_web"
+        else:
+            new_url += "?force_web"
+
+        return new_url
+
+
 
 class FooterText(grok.Viewlet):
     """ Free-form HTML text at the end of the page """
