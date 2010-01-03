@@ -22,7 +22,7 @@ from plone.app.layout.viewlets import common as plone_common_viewlets
 
 from gomobile.mobile.interfaces import IMobileSiteLocationManager, MobileRequestType
 from gomobile.mobile.behaviors import IMobileBehavior
-from gomobile.mobile.utilities import getCachedMobileProperties, debug_layers
+from gomobile.mobile.utilities import getCachedMobileProperties
 from gomobile.mobile.browser.resizer import getUserAgentBasedResizedImageURL
 
 
