@@ -1,6 +1,4 @@
-<metal:page define-macro="master">
-<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.1//EN"
-  "http://www.openmobilealliance.org/tech/DTD/xhtml-mobile11.dtd">
+<metal:page define-macro="master"><tal:doctype tal:replace="structure context/@@viewlets/doctype" />
 
 <tal:defines tal:condition="context/@@hasglobaldefines">
     <metal:freaking-slow-call use-macro="here/global_defines/macros/defines" />

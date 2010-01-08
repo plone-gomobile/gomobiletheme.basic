@@ -25,7 +25,7 @@ from gomobile.mobile.behaviors import IMobileBehavior
 from gomobile.mobile.utilities import getCachedMobileProperties
 from gomobile.mobile.browser.resizer import getUserAgentBasedResizedImageURL
 
-
+from mobile.heurestics.contenttype import get_content_type_and_doctype
 
 from interfaces import IThemeLayer
 
@@ -101,6 +101,17 @@ class Head(grok.Viewlet):
             self.base = self.context.absolute_url()+'/'
         else:
             self.base = self.context.absolute_url()
+            
+class Doctype(grok.Viewlet):
+    """ Spit out document type according to what the HTTP user agent expects.
+    
+    NOTE: Hardcoded for XHTML basic now
+    """
+    grok.name("doctype")
+            
+    def render(self):
+        content_type, doctype = get_content_type_and_doctype(self.request) 
+        return doctype 
 
 class Header(grok.Viewlet):
     """ Render items at the top of the page.
