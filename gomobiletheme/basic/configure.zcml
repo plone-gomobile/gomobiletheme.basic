@@ -28,6 +28,12 @@
    <cmf:registerDirectory name="skins" directory="skins" recursive="True" />
 
 
+  <interface
+    interface=".interfaces.IThemeLayer"
+    type="zope.publisher.interfaces.browser.IBrowserSkinType"
+    name="Plone Go Mobile Default Theme"
+    />
+    
   <include file="content.zcml" />
 
 </configure>
