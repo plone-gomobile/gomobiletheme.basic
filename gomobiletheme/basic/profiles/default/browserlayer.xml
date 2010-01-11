@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
 <layers>
+
+<!--
     <layer name="Plone Go Mobile Default Theme"
            interface="gomobiletheme.basic.interfaces.IThemeLayer" />
+-->
 </layers>
