@@ -372,10 +372,79 @@ class TestPostPublication(BaseTestCase):
         CONTENT_TYPE = "application/vnd.wap.xhtml+xml"
         self.assertEqual(browser.headers["content-type"], CONTENT_TYPE)
 
+class TestGAFunctional(BaseTestCase):
+    """
+    """
+
+    def afterSetUp(self):
+        
+        BaseTestCase.afterSetUp(self)
+        
+        self.portal.portal_properties.mobile_properties.tracker_name = "google"
+        
+        # This id is updated in GA, manually check whether it gets hits or no
+        self.portal.portal_properties.mobile_properties.tracking_id = "MO-8819100-7" #"UA-8819100-7"
+        
+        self.portal.portal_properties.mobile_properties.tracker_debug = True
+        
+        self.MARKER = "<!-- GA -->"
+
+    def test_homepage_has_marker(self):
+        
+        self.setDiscriminateMode("mobile")
+        self.browser.open(self.portal.absolute_url())        
+        self.assertTrue(self.MARKER in self.browser.contents)
+
+    def test_subfolder(self):
+        """
+        """
+
+        self.loginAsPortalOwner()
+        self.portal.invokeFactory("Folder", "folder")        
+        
+        self.portal.portal_workflow.doActionFor(self.portal.folder, "submit")
+        self.portal.portal_workflow.doActionFor(self.portal.folder, "publish")
+        
+        self.setDiscriminateMode("mobile")
+        self.browser.open(self.portal.folder.absolute_url())
+        self.assertTrue(self.MARKER in self.browser.contents)        
+
+    def test_has_persistent_cookie(self):        
+        """ Check that tracking by cookie works """ 
+        
+        self.setDiscriminateMode("mobile")
+        self.browser.open(self.portal.absolute_url())        
+        cookie = self.browser.headers["set-cookie"]
+        # '__utmmobile="0xcef4dcf8945a222a"; Path=/; Expires=Thu, 12-Jan-2012 16:37:06 EET'
+        cooky = cookie.split(";")[0]
+        cooky = cooky.split('"')[1]
+        #print "Got cooky:" + cooky
+
+        # Now go there again        
+        self.browser.open(self.portal.absolute_url())
+        
+        cooky2 = cookie.split(";")[0]
+        cooky2 = cooky2.split('"')[1]
+        #print "Got cooky 2:" + cooky
+        
+        self.assertEqual(cooky, cooky2)
+        
+    def test_query_string(self):
+        """
+        Test query string in tracked URL.
+        """
+        self.setDiscriminateMode("mobile")
+        self.browser.open(self.portal.absolute_url() + "?set_lang=en")
+        
+
+                
+
 def test_suite():
     import unittest
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(ThemeTestCase))
     suite.addTest(unittest.makeSuite(TestMobileOverrides))
     suite.addTest(unittest.makeSuite(TestPostPublication))
+    suite.addTest(unittest.makeSuite(TestGAFunctional))
     return suite
+
