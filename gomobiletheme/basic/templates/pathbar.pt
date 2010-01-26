@@ -5,7 +5,7 @@
 are here:</span>
     <a i18n:translate="tabs_home" tal:attributes="href viewlet/navigation_root_url">Home</a>
     <span tal:condition="viewlet/breadcrumbs" class="breadcrumbSeparator">
-        <tal:ltr condition="not: viewlet/is_rtl">&rarr;</tal:ltr>
+        <tal:ltr condition="not: viewlet/is_rtl">&#8594;</tal:ltr>
         <tal:rtl condition="viewlet/is_rtl">&raquo;</tal:rtl>
     </span>
     <span tal:repeat="crumb viewlet/breadcrumbs"
@@ -19,7 +19,7 @@ are here:</span>
                 crumb
             </a>
             <span class="breadcrumbSeparator" tal:condition="not: is_last">
-                <tal:ltr condition="not: viewlet/is_rtl">&rarr;</tal:ltr>
+                <tal:ltr condition="not: viewlet/is_rtl">&#8594;</tal:ltr>
                 <tal:rtl condition="viewlet/is_rtl">&raquo;</tal:rtl>
             </span>
             <span tal:condition="is_last"
