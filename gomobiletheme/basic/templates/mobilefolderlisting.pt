@@ -1,6 +1,6 @@
 <tal:has-listing condition="viewlet/hasListing" i18n:domain="gomobiletheme.basic">
 
-    <h2 class="mobile-folder-listing-heading" i18n:translate="mobile_folder_listing_heading">
+    <h2 class="mobile-folder-listing-heading" i18n:translate="mobile_folder_listing_heading" tal:condition="python:len(viewlet.items) > 0">
         Here you can find:
     </h2>
 
