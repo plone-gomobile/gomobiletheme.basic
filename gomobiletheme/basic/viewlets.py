@@ -233,6 +233,21 @@ class Sections(grok.Viewlet):
     This is placed at the bottom of the page.
     This is equivalent of portal_tabs in normal Plone.
     """
+    
+    def fixSectionText(self, text):
+        """ Use non-breaking spacebar to make sure that text will stay on one line.
+        """
+        return text.replace(" ", "&nbsp")
+        
+    
+    def fixSections(self, tabs):
+        """ Make sure that the text of sections is not broken across two lines in narrow mobile screen.
+        
+        @param tabs: Sequence of tabs to be fixed in-place
+        """
+        for tab in tabs:
+            tab.name = self.fixSectionText(text)
+    
     def update(self):
 
         grok.Viewlet.update(self)
@@ -251,19 +266,8 @@ class Sections(grok.Viewlet):
     def get_web_site_url(self):
         """
         @return: string url, web version of the same page
-        """
-        context = self.context.aq_inner
-        url = self.request["ACTUAL_URL"]
-        location_manager = getMultiAdapter((context, self.request), IMobileSiteLocationManager)
-        new_url = location_manager.rewriteURL(url, MobileRequestType.WEB)
-
-        # Add redirecor preventing GET parameter
-        if "?" in new_url:
-            new_url += "&force_web"
-        else:
-            new_url += "?force_web"
-
-        return new_url
+        """        
+        return self.context.absolute_url() + "/@@go_to_web_site"
 
 
 
@@ -311,6 +315,14 @@ class MobileFolderListing(grok.Viewlet):
 
 class MobileTracker(grok.Viewlet):
     """ Site visitors tracking code for mobile analytics """
+    
+    def getMobileTrackerId(self):
+        """ Subclasses may override to return different tracker e.g. by language settings.
+        
+        The default behavior is that tracker_renderer view gets one from mobile_properties
+        if None is given.
+        """
+        return None
 
     def update(self):
         context = aq_inner(self.context)
@@ -318,7 +330,8 @@ class MobileTracker(grok.Viewlet):
         # provided in gomobile.mobile.tracking.view
         tracker_renderer = getMultiAdapter((context, self.request), name="mobiletracker")
 
-        self.tracking_code = tracker_renderer()
+        trackerId = self.getMobileTrackerId()
+        self.tracking_code = tracker_renderer(trackerId)
 
 
 class DocumentActions(plone_common_viewlets.ViewletBase):

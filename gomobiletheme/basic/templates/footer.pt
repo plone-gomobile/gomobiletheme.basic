@@ -2,9 +2,9 @@
     <div tal:replace="structure context/@@viewlets/pathbar" />
     <div tal:replace="structure context/@@viewlets/sections" />
     <div tal:replace="structure context/@@viewlets/footertext" />
+    <div tal:replace="structure context/@@viewlets/mobiletracker" />
 </div>
 
 <tal:comment replace="nothing">
     <!-- The following should be always invisible -->
 </tal:comment>
-<div tal:replace="structure context/@@viewlets/mobiletracker" />
