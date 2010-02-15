@@ -1,6 +1,6 @@
 <head>
 
-  <title tal:content="context/@@plone_context_state/object_title">Context title goes here</title>
+  <title tal:content="string:${context/@@plone_context_state/object_title}">Context title goes here</title>
 
   <base tal:attributes="href viewlet/base" />
 

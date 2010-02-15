@@ -124,7 +124,7 @@ class ThemeTestCase(BaseTestCase):
         return self.browser.contents
 
     def assertNotDefaultPloneTheme(self, html):
-        self.assertFalse("http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" in html, "The rendered page used default Plone theme")
+        self.assertFalse("Accessibility" in html, "The rendered page used default Plone theme")
 
     def test_installed(self):
         """ Check that we are installed
@@ -398,7 +398,8 @@ class TestGAFunctional(BaseTestCase):
         
         self.portal.portal_properties.mobile_properties.tracker_debug = True
         
-        self.MARKER = "<!-- GA -->"
+        # Mobile tracking id string
+        self.MARKER = "http://www.google-analytics.com/__utm.gif"
 
     def test_homepage_has_marker(self):
         

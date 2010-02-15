@@ -18,7 +18,7 @@
 
 	        <p class="documentDescription" tal:content="context/Description" />
 
-                <tal:rewriteimg define="helper context/@@mobile_image_html_rewriter; text python: helper.processHTML(context.getText())">
+                <tal:rewriteimg define="helper nocall:context/@@mobile_image_html_rewriter; text python:helper.processHTML(text)">
 	               <div tal:replace="structure text" />
 	        </tal:rewriteimg>
 
