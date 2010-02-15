@@ -16,9 +16,10 @@ from Products.PloneTestCase.layer import PloneSite
 
 from gomobile.mobile.tests import utils as test_utils
 
-from gomobile.mobile.interfaces import MobileRequestType, IMobileRequestDiscriminator
+from gomobile.mobile.interfaces import MobileRequestType, IMobileRequestDiscriminator, IMobileImageProcessor
 from gomobile.mobile.tests.utils import TestMobileRequestDiscriminator
-
+from gomobile.mobile.tests.utils import MOBILE_USER_AGENT
+from gomobile.mobile.tests.utils import UABrowser
 
 # ZCML to override media discriminator with test stub
 ZCML_FIXES="""
@@ -91,6 +92,16 @@ class BaseTestCase(ptc.FunctionalTestCase):
 
         # skin manager must update active skin for the request
         self._refreshSkinData()
+        
+    def setUA(self, user_agent):
+        """
+        Create zope.testbrowser Browser with a specific user agent.
+        """
+
+        # Be sure to use Products.Five.testbrowser here
+        self.browser = UABrowser(user_agent)
+        self.browser.handleErrors = False # Don't get HTTP 500 pages
+        
 
 class ThemeTestCase(BaseTestCase):
     """
@@ -436,8 +447,45 @@ class TestGAFunctional(BaseTestCase):
         self.setDiscriminateMode("mobile")
         self.browser.open(self.portal.absolute_url() + "?set_lang=en")
         
-
-                
+TEST_HTML_1="""
+<p>
+<img src="foologo.jpg" />
+</p>
+"""
+        
+class TestDocWithImage(BaseTestCase):
+    """ Check that we transform document body text properly for mobile.
+    """
+ 
+    def afterSetUp(self):
+        BaseTestCase.afterSetUp(self)
+        
+        self.image_processor = getMultiAdapter((self.portal, self.portal.REQUEST), IMobileImageProcessor) 
+        self.image_processor.init()
+        
+        self.portal.invokeFactory("Document", "doc")
+        self.doc = self.portal.doc
+        
+        self.loginAsAdmin()
+        
+    def test_no_transform(self):
+        """
+        Check there is no transform if not mobile.
+        """
+        self.browser.open(self.doc.absolute_url())
+        self.assertTrue('src="logo.jpg"' in self.browser.contents)
+   
+    def test_relative(self):
+        """
+        Test relative image rewrite
+        """ 
+   
+        self.setUA(MOBILE_USER_AGENT)
+        self.doc.setText(TEST_HTML_1)   
+   
+        self.browser.open(self.doc.absolute_url())
+        self.assertFalse('src="foologo.jpg"' in self.browser.contents)
+        import pdb ; pdb.set_trace()
 
 def test_suite():
     import unittest

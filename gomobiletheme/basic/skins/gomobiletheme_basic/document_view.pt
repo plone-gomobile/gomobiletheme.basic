@@ -18,7 +18,9 @@
 
 	        <p class="documentDescription" tal:content="context/Description" />
 
-	        <div tal:replace="structure text" />
+                <tal:rewriteimg define="helper context/@@mobile_image_html_rewriter; text python: helper.processHTML(context.getText())">
+	               <div tal:replace="structure text" />
+	        </tal:rewriteimg>
 
 	        <div metal:use-macro="here/document_relateditems/macros/relatedItems">
 	            show related items if they exist
