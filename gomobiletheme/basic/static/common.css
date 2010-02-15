@@ -72,6 +72,12 @@ a:visited,
     color: #205C90;
 }
 
+/* Resized mobile images */
+
+.documentContext img.mobile-resized {
+	display: block;
+}
+
 a:hover,
 .documentContent li a:hover,
 .documentContent p a:hover {
@@ -158,6 +164,7 @@ div.error {
     margin: 0 0 1em 0;
     width: 95%;
 }
+
 
 /* Search */
 

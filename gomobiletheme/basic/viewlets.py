@@ -20,7 +20,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.statusmessages.interfaces import IStatusMessage
 from plone.app.layout.viewlets import common as plone_common_viewlets
 
-from gomobile.mobile.interfaces import IMobileSiteLocationManager, MobileRequestType
+from gomobile.mobile.interfaces import IMobileSiteLocationManager, MobileRequestType, IMobileImageProcessor
 from gomobile.mobile.behaviors import IMobileBehavior
 from gomobile.mobile.utilities import getCachedMobileProperties
 from gomobile.mobile.browser.resizer import getUserAgentBasedResizedImageURL
@@ -134,21 +134,28 @@ class Logo(grok.Viewlet):
 
     def getLogoPath(self):
         """ Subclass can override """
-        return "++resource++gomobiletheme.basic/logo.png"
+        return "++resource++gomobiletheme.basic/logo.png"        
 
     def update(self):
 
+        path = self.getLogoPath()
+        
         portal_state = getView(self.context, self.request, "plone_portal_state")
         self.portal_url = portal_state.portal_url()
 
-        path = self.getLogoPath()
+        url = self.getLogoPath()
+                        
+        processor = getMultiAdapter((self.context, self.request), IMobileImageProcessor)
+                
+        parameters = {
+                         "width" : "auto",
+                         "height" : "85", # Maximum logo height
+                         "padding_width" : 10,
+                         "conserve_aspect_ration" : True,
+                    }
 
-        self.logo_url = getUserAgentBasedResizedImageURL(self.context, self.request,
-                                                         path=path,
-                                                         width="auto",
-                                                         height="85", # Maximum logo height
-                                                         padding_width=10)
-
+        self.logo_url = processor.getImageDownloadURL(url, parameters)
+                    
 
 class LanguageChooser(grok.Viewlet):
     """ Render langauge chooser at the top right corner if more than one site language available.
