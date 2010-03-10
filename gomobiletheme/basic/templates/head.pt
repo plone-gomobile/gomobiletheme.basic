@@ -2,6 +2,8 @@
 
   <title tal:content="string:${context/@@plone_context_state/object_title}">Context title goes here</title>
 
+  <meta tal:replace="structure context/@@viewlets/description" />
+
   <base tal:attributes="href viewlet/base" />
 
   <tal:comment replace="nothing">

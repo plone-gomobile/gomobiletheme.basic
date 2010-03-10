@@ -244,7 +244,10 @@ class Sections(grok.Viewlet):
     def fixSectionText(self, text):
         """ Use non-breaking spacebar to make sure that text will stay on one line.
         """
-        return text.replace(" ", "&nbsp")
+        
+        # &#160; == &nbsp;
+        # but we must remain XML compatible
+        return text.replace(" ", "&#160;")
         
     
     def fixSections(self, tabs):
@@ -340,6 +343,27 @@ class MobileTracker(grok.Viewlet):
         trackerId = self.getMobileTrackerId()
         self.tracking_code = tracker_renderer(trackerId)
 
+class Description(grok.Viewlet):
+    """
+    Render <meta description>
+    """
+    
+    def hasDescription(self):
+        """
+        """
+        return self.getDescription() != None
+    
+    def getDescription(self):
+        """
+        Dublin core metadata should provide Description() function on context.
+        """
+        description_cb = getattr(self.context, "Description", None)
+        if description_cb:
+            return description_cb()
+        else:
+            return None
+    
+    
 
 class DocumentActions(plone_common_viewlets.ViewletBase):
     """
@@ -355,3 +379,4 @@ class DocumentActions(plone_common_viewlets.ViewletBase):
 
     def render(self):
         return u""
+
