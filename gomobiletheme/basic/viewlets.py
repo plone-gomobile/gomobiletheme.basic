@@ -74,20 +74,24 @@ class Head(grok.Viewlet):
     grok.template("head")
 
     def resource_url(self):
-        """  Tell templates which URL use for theme loading.
-
-        This URL will be effective for
-
-        - common.css
-
-        - webkit.css
-
-        - lowend.css
-
-        - logo.png
-
-        - apple-touch-icon.png
-
+        """ Get static resource URL.
+        
+        This will point to Zope 3 resource directory from where to load 
+        resources for the head.
+        
+        * common.css
+        
+        * highend.css
+        
+        * lowend.css
+        
+        * logo.png
+        
+        * apple-touch-icon.png
+        
+        The actual registration of static media is performed 
+        by five.grok, by picking up *static* folder in your add-on
+        product.        
         """
         return self.portal_url + "/" + "++resource++gomobiletheme.basic"
 

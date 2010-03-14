@@ -23,7 +23,7 @@
 
     <link rel="stylesheet" type="text/css" tal:attributes="href string:${viewlet/resource_url}/common.css" />
     <link rel="stylesheet" type="text/css" tal:condition="context/@@mobile_tool/isLowEndPhone" tal:attributes="href string:${viewlet/resource_url}/lowend.css" />
-    <link rel="stylesheet" type="text/css" tal:condition="not:context/@@mobile_tool/isLowEndPhone" tal:attributes="href string:${viewlet/resource_url}/webkit.css" />
+    <link rel="stylesheet" type="text/css" tal:condition="not:context/@@mobile_tool/isLowEndPhone" tal:attributes="href string:${viewlet/resource_url}/highend.css" />
 
     <tal:simulator condition="context/@@mobile_tool/isPreviewRequest">
         <link rel="stylesheet" type="text/css" tal:attributes="href string:${viewlet/portal_url}/++resource++gomobile.mobile/phone-mode.css" />
