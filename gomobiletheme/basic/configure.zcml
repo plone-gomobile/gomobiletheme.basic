@@ -19,7 +19,7 @@
 
   <genericsetup:registerProfile
       name="default"
-      title="Plone Go Mobile Default Theme"
+      title="Go Mobile Default Theme"
       directory="profiles/default"
       description='plone.org like theme for mobile sites'
       provides="Products.GenericSetup.interfaces.EXTENSION"
@@ -31,7 +31,7 @@
   <interface
     interface=".interfaces.IThemeLayer"
     type="zope.publisher.interfaces.browser.IBrowserSkinType"
-    name="Plone Go Mobile Default Theme"
+    name="Go Mobile Default Theme"
     />
     
   <include file="content.zcml" />

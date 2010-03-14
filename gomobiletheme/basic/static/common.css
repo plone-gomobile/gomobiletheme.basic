@@ -95,14 +95,26 @@ input[type=text],input[type=password],textarea, select {
 }
 
 #margins {
-    -webkit-box-shadow: 0 0 4px black;
-    -moz-box-shadow: 0 0 4px black;
-    box-shadow: 0 0 4px black;
-    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-	background: white;
+    background: white;
 }
+
+
+/* 
+ * Do not look stupid on desktop browsers.
+ *
+ * If screen width is too wide, clip displayable area to 800 px.
+ */
+@media screen and (min-device-width: 850px) {
+        #margins {
+           -webkit-box-shadow: 0 0 4px black;
+            -moz-box-shadow: 0 0 4px black;
+            box-shadow: 0 0 4px black;
+            max-width: 800px;
+        }
+}
+
 
 #content {
     padding: 1em;

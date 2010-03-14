@@ -106,6 +106,16 @@ class Head(grok.Viewlet):
         else:
             self.base = self.context.absolute_url()
             
+        
+class AdditionalHead(Head):
+    """
+    Extra tags included in <head> which do not conflict with gomobiletheme.basic resources.
+    
+    See plonecommunity.app for usage example.
+    """
+    
+    grok.template("additionalhead")
+            
 class Doctype(grok.Viewlet):
     """ Spit out document type according to what the HTTP user agent expects.
     
@@ -246,7 +256,7 @@ class Sections(grok.Viewlet):
     """
     
     def fixSectionText(self, text):
-        """ Use non-breaking spacebar to make sure that text will stay on one line.
+        """ Use non-breaking spacebar to make sure that section name will stay on one line.
         """
         
         # &#160; == &nbsp;
@@ -291,12 +301,6 @@ class FooterText(grok.Viewlet):
     def update(self):
         super(grok.Viewlet, self).update()
 
-        # Load footer text from the site settings if available
-        properties = getCachedMobileProperties(self.context, self.request)
-
-        self.text = getattr(properties, "footer_text", None)
-        if not self.text:
-            self.text = u"Please set footer text in mobile_properties"
 
 class MobileFolderListing(grok.Viewlet):
     """ List content of the folder or the parent folder on every page.

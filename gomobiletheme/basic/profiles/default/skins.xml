@@ -19,7 +19,7 @@
     meta_type="Filesystem Directory View"
     directory="gomobiletheme.basic:skins/gomobiletheme_basic"/>
 
- <skin-path name="Plone Go Mobile Default Theme" based-on="Plone Default">
+ <skin-path name="Go Mobile Default Theme" based-on="Plone Default">
   <layer name="gomobiletheme_basic" insert-after="custom"/>
  </skin-path>
 
