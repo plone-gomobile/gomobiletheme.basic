@@ -52,8 +52,6 @@ def setup_zcml():
     ztc.installPackage('gomobile.convergence')
     ztc.installPackage('gomobiletheme.basic')
 
-
-
 # The order here is important.
 setup_zcml()
 ptc.setupPloneSite(products=['gomobile.mobile', 'gomobile.convergence', "gomobiletheme.basic"])
@@ -66,8 +64,22 @@ class BaseTestCase(ptc.FunctionalTestCase):
     def setUp(self):
         ptc.FunctionalTestCase.setUp(self)
 
-        # Enable unit test friendly errors
+        # This will force Go Mobile Default Theme to be active
+        # as it seems that if other theme packages are present
+        # when running tests over many packages,
+        # the functional test state is not reset between
+        # packages and we have crap as mobile_properties.mobile_skin name
+        # instead of Go Mobile Default Theme
+        # TODO: This could be fixed using test layers?
+        qi = self.portal.portal_quickinstaller
+        
+        try:
+            qi.uninstallProducts(["gomobiletheme.basic"])
+        except:
+            pass
+        qi.installProduct("gomobiletheme.basic")
 
+        # Enable unit test friendly errors
         self.portal.error_log._ignored_exceptions = ()
 
         def raising(self, info):
@@ -130,7 +142,7 @@ class ThemeTestCase(BaseTestCase):
     def test_installed(self):
         """ Check that we are installed
         """
-        
+                
         # Check theme is selected in mobile settings
         mobile_properties = self.portal.portal_properties.mobile_properties
 
