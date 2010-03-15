@@ -1,5 +1,13 @@
-__license__ = "GPL 2"
-__copyright__ = "2009 Twinapex Research"
+"""
+
+    Functional and unit tests for Go Mobile Default theme.
+
+"""
+
+__author__  = 'Mikko Ohtamaa <mikko.ohtamaa@mfabrik.com>'
+__docformat__ = 'epytext'
+__copyright__ = "2010 mFabrik Research"
+__license__ = "GPL v2"
 
 from AccessControl import Unauthorized
 
@@ -20,20 +28,13 @@ from gomobile.mobile.interfaces import MobileRequestType, IMobileRequestDiscrimi
 from gomobile.mobile.tests.utils import TestMobileRequestDiscriminator
 from gomobile.mobile.tests.utils import MOBILE_USER_AGENT
 from gomobile.mobile.tests.utils import UABrowser
+from gomobile.mobile.tests.utils import ZCML_INSTALL_TEST_DISCRIMINATOR
 
-# ZCML to override media discriminator with test stub
-ZCML_FIXES="""
-<configure
-    xmlns="http://namespaces.zope.org/zope">
- <utility
-     provides="gomobile.mobile.interfaces.IMobileRequestDiscriminator"
-     factory="gomobile.mobile.tests.utils.TestMobileRequestDiscriminator" />
-</configure>
-"""
-
-
+# Which string marks output HTML pages that we are correctly rendered as mobile site
 MOBILE_HTML_MARKER = "apple-touch-icon"
 
+# Which string marks output HTML pages that we are still on default Plone theme
+PLONE_DEFAULT_HTML_MARKER = "Plone Foundation"
 
 @onsetup
 def setup_zcml():
@@ -41,7 +42,7 @@ def setup_zcml():
     fiveconfigure.debug_mode = True
     import gomobiletheme.basic
     zcml.load_config('configure.zcml', gomobiletheme.basic)
-    zcml.load_string(ZCML_FIXES)
+    zcml.load_string(ZCML_INSTALL_TEST_DISCRIMINATOR)
     fiveconfigure.debug_mode = False
 
     # We need to tell the testing framework that these products
@@ -124,14 +125,19 @@ class ThemeTestCase(BaseTestCase):
         return self.browser.contents
 
     def assertNotDefaultPloneTheme(self, html):
-        self.assertFalse("Accessibility" in html, "The rendered page used default Plone theme")
+        self.assertFalse(PLONE_DEFAULT_HTML_MARKER in html, "The rendered page used default Plone theme")
 
     def test_installed(self):
         """ Check that we are installed
         """
+        
+        # Check theme is selected in mobile settings
         mobile_properties = self.portal.portal_properties.mobile_properties
-        self.assertEqual(mobile_properties.mobile_skin, "Plone Go Mobile Default Theme")
 
+        self.assertEqual(mobile_properties.mobile_skin, "Go Mobile Default Theme")
+
+
+        # Check that our main_template layer is available
         skins = self.portal.portal_skins
         self.assertTrue("gomobiletheme_basic" in skins.objectIds(), "Had skin layers " + str(skins.objectIds()))
 
