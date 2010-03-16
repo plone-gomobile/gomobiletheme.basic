@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.1'
+version = '0.9'
 
 setup(name='gomobiletheme.basic',
       version=version,
-      description="Default theme for Plone Go Mobile sites",
+      description="Default theme for Go Mobile sites",
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
@@ -14,9 +14,9 @@ setup(name='gomobiletheme.basic',
         "Topic :: Software Development :: Libraries :: Python Modules",
         ],
       keywords='',
-      author='Twinapex Research',
-      author_email='info@twinapex.com',
-      url='http://www.twinapex.com',
+      author='mFabrik Research Oy',
+      author_email='info@mfabrik.com',
+      url='http://mfabrik.com',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['gomobiletheme'],

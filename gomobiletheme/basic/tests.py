@@ -402,8 +402,10 @@ class TestPostPublication(BaseTestCase):
         self.assertEqual(browser.headers["content-type"], CONTENT_TYPE)
 
 class TestGAFunctional(BaseTestCase):
-    """
-    """
+    """ Test Google Analytics tracking.
+    
+    TODO: Move this under gomobile.mobile tests.
+    """ 
 
     def afterSetUp(self):
         
@@ -420,19 +422,21 @@ class TestGAFunctional(BaseTestCase):
         self.MARKER = "http://www.google-analytics.com/__utm.gif"
 
     def test_homepage_has_marker(self):
-        
+        """
+        Test that we have tracker on home page.
+        """
         self.setDiscriminateMode("mobile")
         self.browser.open(self.portal.absolute_url())        
         self.assertTrue(self.MARKER in self.browser.contents)
 
     def test_subfolder(self):
-        """
+        """ Test that we have a tracker on other pages than home.
         """
 
         self.loginAsPortalOwner()
         self.portal.invokeFactory("Folder", "folder")        
         
-        self.portal.portal_workflow.doActionFor(self.portal.folder, "submit")
+        # self.portal.portal_workflow.doActionFor(self.portal.folder, "submit")
         self.portal.portal_workflow.doActionFor(self.portal.folder, "publish")
         
         self.setDiscriminateMode("mobile")
@@ -465,6 +469,9 @@ class TestGAFunctional(BaseTestCase):
         """
         self.setDiscriminateMode("mobile")
         self.browser.open(self.portal.absolute_url() + "?set_lang=en")
+        
+        # TODO: Some smarter checks here, not
+        # we check only that no exceptions are risen
         
 TEST_HTML_1="""
 <p>
