@@ -1,6 +1,15 @@
 Changelog
 =========
 
+0.9
+---
+
+* Added Spanish translation
+  [leonardocaballero]
+
+* Added full support for i18n
+  [leonardocaballero]
+
 0.1 - Unreleased
 ----------------
 

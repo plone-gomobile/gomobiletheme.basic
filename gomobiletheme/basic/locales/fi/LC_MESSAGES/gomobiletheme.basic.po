@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2009-11-11 00:29+0000\n"
+"POT-Creation-Date: 2010-05-28 04:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,12 +14,30 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
+#: ./templates/404.pt:8
+msgid "404 Page Not Found"
+msgstr ""
+
+#: ./templates/sections.pt:23
+msgid "Feedback"
+msgstr ""
+
 #: ./templates/logo.pt:2
 msgid "Home"
 msgstr "Pääsivu"
 
-#. Default: "Here also:"
+#: ./templates/sections.pt:16
+msgid "Search"
+msgstr ""
+
+#. Default: "Go Mobile mobile CMS &#xa9; 2010 <a href=\"http://mfabrik.com\">mFabrik Research Oy</a>. For more information about Plone <a href=\"http://plone.org\">plone.org</a>"
+#: ./templates/footertext.pt:1
+msgid "footertext"
+msgstr ""
+
+#. Default: "Here you can find:"
 #: ./templates/mobilefolderlisting.pt:3
+#, fuzzy
 msgid "mobile_folder_listing_heading"
 msgstr "Tältä sivulta löydät:"
 

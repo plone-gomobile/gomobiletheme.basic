@@ -1,5 +1,5 @@
-<div id="footer-text">
-    Go Mobile mobile CMS &#xa9; 2010 <a href="http://mfabrik.com">mFabrik Research Oy</a>.
-    For more information about Plone <a href="http://plone.org">plone.org</a>
+<div id="footer-text" i18n:domain="gomobiletheme.basic" i18n:translate="footertext">
+    Go Mobile mobile CMS &#xa9; 2010 <a href='http://mfabrik.com'>mFabrik Research Oy</a>.
+    For more information about Plone <a href='http://plone.org'>plone.org</a>
 </div>
 

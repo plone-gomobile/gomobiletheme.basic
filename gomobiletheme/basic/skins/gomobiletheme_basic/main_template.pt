@@ -20,17 +20,17 @@
                     <div metal:define-macro="content">
 
                         <div tal:replace="structure context/@@viewlets/messages">
-                          Portal status message
+                          <tal:comment replace="nothing">Portal status message</tal:comment>
                         </div>
 
                         <metal:slot metal:define-slot="body">
 
                               <metal:header metal:define-slot="header" tal:content="nothing">
-                                Visual Header
+                                <tal:comment replace="nothing">Visual Header</tal:comment>
                               </metal:header>
 
                               <metal:bodytext metal:define-slot="main" tal:content="nothing">
-                                Page body text
+                                <tal:comment replace="nothing">Page body text</tal:comment>
                               </metal:bodytext>
 
                         </metal:slot>

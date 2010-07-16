@@ -16,7 +16,7 @@ CURRENT_PATH=`pwd`
 PRODUCTNAME="gomobiletheme.basic"
 
 # List of languages
-LANGUAGES="en fi"
+LANGUAGES="en es fi"
 
 # Create locales folder structure for languages
 install -d locales

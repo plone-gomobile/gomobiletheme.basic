@@ -2,12 +2,12 @@
 
     <metal:slot fill-slot="main">
         <h1 tal:content="context/Title" class="documentFirstHeading">
-        The page's title
+        <tal:comment replace="nothing">The page's title</tal:comment>
         </h1>
 
         <div class="description"
            tal:content="context/Description">
-        The page's description
+        <tal:comment replace="nothing">The page's description</tal:comment>
         </div>
 
         <div tal:replace="structure context/@@viewlets/mobilefolderlisting" />

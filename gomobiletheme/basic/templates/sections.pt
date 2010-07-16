@@ -6,21 +6,21 @@
                tal:content="tab/name"
                tal:attributes="href tab/url;
                            title tab/description|nothing">
-                Tab Name
+                <tal:comment replace="nothing">Tab Name</tal:comment>
             </a>
             |
         </li>
     </tal:tabs>
 
     <li>
-        <a tal:attributes="href string:${viewlet/portal_url}/search">
+        <a tal:attributes="href string:${viewlet/portal_url}/search" i18n:translate="">
             Search
         </a>
         |
     </li>
 
     <li>
-        <a tal:attributes="href string:${viewlet/portal_url}/contact-info">
+        <a tal:attributes="href string:${viewlet/portal_url}/contact-info" i18n:translate="">
             Feedback
         </a>
     </li>

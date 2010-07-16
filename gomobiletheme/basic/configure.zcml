@@ -23,6 +23,8 @@
       directory="profiles/default"
       description='plone.org like theme for mobile sites'
       provides="Products.GenericSetup.interfaces.EXTENSION"
+      i18n:attributes="title gs_profiles_default_title;
+                       description gs_profiles_default_description;"
       />
 
    <cmf:registerDirectory name="skins" directory="skins" recursive="True" />
