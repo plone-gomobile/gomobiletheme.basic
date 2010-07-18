@@ -13,6 +13,25 @@
   <meta name ="viewport" content ="initial-scale = 1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable = yes" />
 
   <tal:comment replace="nothing">
+      <!-- mobile IE viewport size support 
+        
+	   http://tech.groups.yahoo.com/group/wmlprogramming/message/32667
+	
+        -->
+  </tal:comment>
+  <meta name="MobileOptimized" content="width" />
+
+  <tal:comment replace="nothing">
+      <!-- Blackberry viewport size support 
+        
+           http://tech.groups.yahoo.com/group/wmlprogramming/message/32667
+        
+        -->
+  </tal:comment>  
+  <meta name="HandheldFriendly" content="true" />
+      
+
+  <tal:comment replace="nothing">
       <!-- Special iPhone bookmark icon -->
   </tal:comment>
   <link rel="apple-touch-icon" tal:attributes="href string:${viewlet/resource_url}/apple-touch-icon.png" />
