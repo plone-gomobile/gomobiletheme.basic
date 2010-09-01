@@ -317,6 +317,10 @@ class MobileFolderListing(grok.Viewlet):
         # Get listing helper from gomobile.mobile
         helper = getMultiAdapter((self.context, self.request), name='mobile_folder_listing')
 
+
+        context = self.context.aq_inner
+        helper = helper.__of__(context)
+
         # None or iterable of content item objects
         self.items = helper.constructListing()
 
