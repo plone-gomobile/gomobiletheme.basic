@@ -5,8 +5,8 @@
 are here:</span>
     <a i18n:translate="tabs_home" tal:attributes="href viewlet/navigation_root_url">Home</a>
     <span tal:condition="viewlet/breadcrumbs" class="breadcrumbSeparator">
-        <tal:ltr condition="not: viewlet/is_rtl">-</tal:ltr>
-        <tal:rtl condition="viewlet/is_rtl">-</tal:rtl>
+        <tal:ltr condition="not: viewlet/is_rtl">::</tal:ltr>
+        <tal:rtl condition="viewlet/is_rtl">::</tal:rtl>
     </span>
     <span tal:repeat="crumb viewlet/breadcrumbs"
           tal:attributes="dir python:viewlet.is_rtl and 'rtl' or 'ltr'">
