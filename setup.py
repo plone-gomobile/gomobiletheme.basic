@@ -24,6 +24,7 @@ setup(name='gomobiletheme.basic',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'five.grok',
           'collective.fastview',
           'gomobile.mobile'
           # -*- Extra requirements: -*-
