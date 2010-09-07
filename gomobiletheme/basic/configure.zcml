@@ -9,6 +9,8 @@
     i18n_domain="gomobiletheme.basic">
 
 
+  <include package="five.grok" />
+
   <grok:grok package="." />
 
   <include package="gomobile.mobile" />
