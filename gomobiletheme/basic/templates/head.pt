@@ -1,5 +1,7 @@
 <head>
 
+  <meta name="generator" content="Plone - http://plone.org" />
+
   <title tal:content="string:${context/@@plone_context_state/object_title}"><tal:comment replace="nothing">Context title goes here</tal:comment></title>
 
   <meta tal:replace="structure context/@@viewlets/description" />
