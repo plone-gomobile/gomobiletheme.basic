@@ -6,6 +6,8 @@
 
   <meta tal:replace="structure context/@@viewlets/description" />
 
+  <meta tal:replace="context/@@viewlets/plone.htmlhead.dublincore" /> 
+
   <base tal:attributes="href viewlet/base" />
 
   <tal:comment replace="nothing">

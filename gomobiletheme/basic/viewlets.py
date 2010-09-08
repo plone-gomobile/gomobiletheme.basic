@@ -29,6 +29,13 @@ from mobile.heurestics.contenttype import get_content_type_and_doctype
 
 from interfaces import IThemeLayer
 
+try: 
+    # Plone 4 and higher 
+    import plone.app.upgrade 
+    PLONE_VERSION = 4 
+except ImportError: 
+    PLONE_VERSION = 3 
+
 # Resolve templatedir and export it as an variable so that other
 # packages can use our templates as well
 module = sys.modules[__name__]
@@ -278,8 +285,15 @@ class Sections(grok.Viewlet):
 
         # Get tabs (top level navigation links)
         context_state = getView(self.context, self.request, u'plone_context_state')
-        actions = context_state.actions()
-
+        
+        
+        # This is for Plone 4 compatibility - topLevelTabs() call signature is different
+        
+        if PLONE_VERSION >= 4:
+            actions = context_state.actions("portal_tabs")
+        else:
+            actions = context_state.actions()
+            
         portal_state = getView(self.context, self.request, "plone_portal_state")
         self.portal_url = portal_state.portal_url()
 

@@ -12,7 +12,7 @@
                   portal_url portal_state/portal_url;
                   checkPermission nocall: context/portal_membership/checkPermission;
                   site_properties context/portal_properties/site_properties;
-                  ajax_load request/ajax_load | nothing" 
+                  ajax_load request/ajax_load | nothing"> 
       	
     <metal:cache use-macro="context/global_cache_settings/macros/cacheheaders">
         Get the global cache headers located in global_cache_settings.

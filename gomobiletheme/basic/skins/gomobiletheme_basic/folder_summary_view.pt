@@ -24,11 +24,14 @@
                             over_limit python: limit_display and len(folderContents) > limit_display;
                             folderContents python: (over_limit and folderContents[:limit_display]) or folderContents;
                             batch folderContents">
-        <tal:listing condition="folderContents">
+        <tal:listing condition="folderContents"
+	       tal:define="isAnon context/@@plone_portal_state/anonymous;
+	                   normalizeString nocall:context/@@plone/normalizeString">
 
             <tal:block tal:repeat="item folderContents">
                 <div class="tileItem visualIEFloatFix vevent"
                      tal:define="item_url item/getURL|item/absolute_url;
+		                       
                                        item_id item/getId|item/id;
                                        item_title_or_id item/pretty_title_or_id;
                                        item_description item/Description;
