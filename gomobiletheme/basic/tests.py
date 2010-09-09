@@ -411,7 +411,7 @@ class TestGAFunctional(BaseTestCase):
         
         BaseTestCase.afterSetUp(self)
         
-        self.portal.portal_properties.mobile_properties.tracker_name = "google"
+        self.portal.portal_properties.mobile_properties.tracker_name = "google-mobile"
         
         # This id is updated in GA, manually check whether it gets hits or no
         self.portal.portal_properties.mobile_properties.tracking_id = "MO-8819100-7" #"UA-8819100-7"
