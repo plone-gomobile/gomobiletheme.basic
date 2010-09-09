@@ -31,7 +31,7 @@ from gomobile.mobile.tests.utils import UABrowser
 from gomobile.mobile.tests.utils import ZCML_INSTALL_TEST_DISCRIMINATOR
 
 # Which string marks output HTML pages that we are correctly rendered as mobile site
-MOBILE_HTML_MARKER = "apple-touch-icon"
+MOBILE_HTML_MARKER = 'HandheldFriendly'
 
 # Which string marks output HTML pages that we are still on default Plone theme
 PLONE_DEFAULT_HTML_MARKER = "Plone Foundation"
