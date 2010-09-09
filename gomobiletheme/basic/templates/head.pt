@@ -14,7 +14,7 @@
       <!-- iPhone viewport size support - no horizontal scroll bar -->
   </tal:comment>
 
-  <meta name ="viewport" content ="initial-scale = 1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable = yes" />
+  <meta name="viewport" content ="initial-scale = 1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable = yes" />
 
   <tal:comment replace="nothing">
       <!-- mobile IE viewport size support 
@@ -38,7 +38,7 @@
   <tal:comment replace="nothing">
       <!-- Special iPhone bookmark icon -->
   </tal:comment>
-  <link rel="apple-touch-icon" tal:attributes="href string:${viewlet/resource_url}/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" tal:attributes="href string:${viewlet/portal_url}/touch_icon.png" />
 
   <link rel="shortcut icon"
         href="favicon.ico"
