@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<!-- Register Plone 3 compatible main_template.pt -->
+<object name="portal_skins" allow_any="False" cookie_persistence="False">
+
+
+ <object name="gomobiletheme_plone3"
+    meta_type="Filesystem Directory View"
+    directory="gomobiletheme.basic:skins/gomobiletheme_plone3"/>
+
+ <skin-path name="*">
+  <layer name="gomobiletheme_plone3" insert-after="custom"/>
+ </skin-path>
+
+
+</object>
