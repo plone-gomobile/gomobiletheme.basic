@@ -280,3 +280,13 @@ dl.error dd {
 #footer-links, #portal-breadcrumbs { text-align: center; }
 
 #footer-text { text-align: center; }
+
+/* Individual template styling  */
+
+/* Add padding to default Plone folder listing view */
+
+.folder-listing .description {
+        margin-top: 0.5em;
+        margin-bottom: 1em;
+        display: block;
+}

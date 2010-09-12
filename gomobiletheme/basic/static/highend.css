@@ -23,3 +23,44 @@
 #visual-margin {
     background: white url(++resource++gomobiletheme.basic/gradient.gif) repeat-x top left;
 }
+
+/* Automatic mobile folder listings at the end of the page - do iPhone style rounded corner navigation menu */
+
+#content ul#mobile-folder-listing {
+        border: 1px solid #aaa;
+        list-style: none;
+        
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -o-border-radius: 10px;
+        -border-radius: 10px;
+        
+        padding: 0;
+}
+
+#mobile-folder-listing li {     
+        background: transparent url(++resource++gomobiletheme.basic/navigation_arrow_grey.png) no-repeat center right;
+        padding: 5px 15px 5px 0;
+        margin: 0;
+        border-bottom: 1px solid #aaa;
+}
+
+#mobile-folder-listing li:last-child {
+        border: 0;
+}
+
+#mobile-folder-listing li a {
+        margin: 5px 0 5px 0;
+        display: block;
+        width: 100%;    
+        padding-left: 5px;
+}
+
+#mobile-folder-listing li a:hover {
+        text-decoration: none;
+}     
+
+#mobile-folder-listing li:hover {
+        background: #aaa;
+        color: white;
+}
