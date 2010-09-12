@@ -290,3 +290,11 @@ dl.error dd {
         margin-bottom: 1em;
         display: block;
 }
+
+/* Separate automatic folder listing from content */
+
+.mobile-folder-listing-heading {
+        border-top: 1px dotted #aaa;
+        padding-top: 0.5em;
+        color: #666;
+}
