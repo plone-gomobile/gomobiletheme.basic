@@ -18,6 +18,10 @@
  <object name="gomobiletheme_basic"
     meta_type="Filesystem Directory View"
     directory="gomobiletheme.basic:skins/gomobiletheme_basic"/>
+    
+ <object name="gomobiletheme_plone3"
+    meta_type="Filesystem Directory View"
+    directory="gomobiletheme.basic:skins/gomobiletheme_plone3"/>    
 
  <skin-path name="Go Mobile Default Theme" based-on="Plone Default">
   <layer name="gomobiletheme_basic" insert-after="custom"/>

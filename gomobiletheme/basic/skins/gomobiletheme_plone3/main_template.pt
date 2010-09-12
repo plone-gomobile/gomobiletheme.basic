@@ -1,11 +1,5 @@
 <metal:page define-macro="master"><tal:doctype tal:replace="structure context/@@viewlets/doctype" />
 
-<!-- This is main_template we used with Plone 3 - if anyone happens to need it anymore -->
-
-<tal:defines tal:condition="context/@@hasglobaldefines">
-    <metal:freaking-slow-call use-macro="here/global_defines/macros/defines" />
-</tal:defines>
-
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:tal="http://xml.zope.org/namespaces/tal" tal:attributes="xml:lang context/@@plone_portal_state/language">
 
