@@ -20,6 +20,14 @@ from Products.CMFCore.utils import getToolByName
 from Products.statusmessages.interfaces import IStatusMessage
 from plone.app.layout.viewlets import common as plone_common_viewlets
 
+
+try: 
+    # Plone 4 and higher 
+    import plone.app.upgrade 
+    PLONE_VERSION = 4 
+except ImportError: 
+    PLONE_VERSION = 3
+
 from gomobile.mobile.interfaces import IMobileSiteLocationManager, MobileRequestType, IMobileImageProcessor
 from gomobile.mobile.behaviors import IMobileBehavior
 from gomobile.mobile.utilities import getCachedMobileProperties
@@ -101,6 +109,17 @@ class Head(grok.Viewlet):
         product.        
         """
         return self.portal_url + "/" + "++resource++gomobiletheme.basic"
+
+    def is_plone4(self):
+        """ Allow major viewlet change compatiblity between Plone versions from tempalte """
+        return PLONE_VERSION > 3
+    
+    
+    def generator(self):
+        """
+        @return: Exposed generator name 
+        """
+        return "Plone - http://plone.org"
 
     def update(self):
         portal_state = getView(self.context, self.request, "plone_portal_state")

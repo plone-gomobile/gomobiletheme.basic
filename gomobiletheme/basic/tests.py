@@ -22,6 +22,7 @@ from Products.PloneTestCase.layer import onsetup
 
 from Products.PloneTestCase.layer import PloneSite
 
+
 from gomobile.mobile.tests import utils as test_utils
 
 from gomobile.mobile.interfaces import MobileRequestType, IMobileRequestDiscriminator, IMobileImageProcessor
@@ -78,7 +79,7 @@ class BaseTestCase(ptc.FunctionalTestCase):
         except:
             pass
         qi.installProduct("gomobiletheme.basic")
-
+        
         # Enable unit test friendly errors
         self.portal.error_log._ignored_exceptions = ()
 
@@ -94,6 +95,7 @@ class BaseTestCase(ptc.FunctionalTestCase):
 
         self.browser = Browser()
         self.browser.handleErrors = False
+        
 
     def setDiscriminateMode(self, mode):
         """
@@ -180,7 +182,6 @@ class ThemeTestCase(BaseTestCase):
         """
         self.setDiscriminateMode(MobileRequestType.WEB)
         utility = getUtility(IMobileRequestDiscriminator)
-        #import pdb ; pdb.set_trace()
         html = self.prepare_render(self.portal)
 
         self.assertFalse(MOBILE_HTML_MARKER in html, "Got page:" + html)
@@ -440,6 +441,7 @@ class TestGAFunctional(BaseTestCase):
         self.portal.portal_workflow.doActionFor(self.portal.folder, "publish")
         
         self.setDiscriminateMode("mobile")
+                
         self.browser.open(self.portal.folder.absolute_url())
         self.assertTrue(self.MARKER in self.browser.contents)        
 

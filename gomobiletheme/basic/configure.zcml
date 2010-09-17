@@ -29,16 +29,13 @@
                        description gs_profiles_default_description;"
       />
 
-  <genericsetup:registerProfile
-      name="plone3"
-      title="Go Mobile Default Theme - Plone 3 compatibility layer"
-      directory="profiles/plone3"
-      description='You need to use Plone 3 main_template.pt based skin'
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      i18n:attributes="title gs_profiles_default_title;
-                       description gs_profiles_default_description;"
+  <!-- Register the import step -->
+  <genericsetup:importStep
+      name="gomobiletheme.basic"
+      title="gomobieltheme.basic special import handlers"
+      description=""
+      handler="gomobiletheme.basic.setuphandlers.setupVarious" />
       />
-
 
    <cmf:registerDirectory name="skins" directory="skins" recursive="True" />
 

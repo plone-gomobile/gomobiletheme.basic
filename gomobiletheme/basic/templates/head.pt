@@ -1,13 +1,15 @@
 <head>
 
-  <meta name="generator" content="Plone - http://plone.org" />
+  <meta name="generator" tal:attributes="content viewlet/generator" />
 
   <title tal:content="string:${context/@@plone_context_state/object_title}"><tal:comment replace="nothing">Context title goes here</tal:comment></title>
 
   <meta tal:replace="structure context/@@viewlets/description" />
 
-  <meta tal:replace="context/@@viewlets/plone.htmlhead.dublincore" /> 
-
+  <tal:plone4 condition="viewlet/is_plone4">
+          <meta tal:replace="context/@@viewlets/plone.htmlhead.dublincore" /> 
+  </tal:plone4>
+  
   <base tal:attributes="href viewlet/base" />
 
   <tal:comment replace="nothing">
@@ -44,12 +46,12 @@
         href="favicon.ico"
         tal:attributes="href string:${viewlet/resource_url}/favicon.ico"/>
 
-    <link rel="stylesheet" type="text/css" tal:attributes="href string:${viewlet/resource_url}/common.css" />
-    <link rel="stylesheet" type="text/css" tal:condition="context/@@mobile_tool/isLowEndPhone" tal:attributes="href string:${viewlet/resource_url}/lowend.css" />
-    <link rel="stylesheet" type="text/css" tal:condition="not:context/@@mobile_tool/isLowEndPhone" tal:attributes="href string:${viewlet/resource_url}/highend.css" />
+  <link rel="stylesheet" type="text/css" tal:attributes="href string:${viewlet/resource_url}/common.css" />
+  <link rel="stylesheet" type="text/css" tal:condition="context/@@mobile_tool/isLowEndPhone" tal:attributes="href string:${viewlet/resource_url}/lowend.css" />
+  <link rel="stylesheet" type="text/css" tal:condition="not:context/@@mobile_tool/isLowEndPhone" tal:attributes="href string:${viewlet/resource_url}/highend.css" />
 
-    <tal:simulator condition="context/@@mobile_tool/isPreviewRequest">
+  <tal:simulator condition="context/@@mobile_tool/isPreviewRequest">
         <link rel="stylesheet" type="text/css" tal:attributes="href string:${viewlet/portal_url}/++resource++gomobile.mobile/phone-mode.css" />
-    </tal:simulator>
+  </tal:simulator>
 
 </head>
