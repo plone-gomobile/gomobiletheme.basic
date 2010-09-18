@@ -4,10 +4,12 @@
 
   <title tal:content="string:${context/@@plone_context_state/object_title}"><tal:comment replace="nothing">Context title goes here</tal:comment></title>
 
-  <meta tal:replace="structure context/@@viewlets/description" />
-
+  <tal:plone3 condition="not:viewlet/is_plone4">
+        <meta tal:replace="structure context/@@viewlets/description" />
+  </tal_plone3>
+  
   <tal:plone4 condition="viewlet/is_plone4">
-          <meta tal:replace="context/@@viewlets/plone.htmlhead.dublincore" /> 
+          <meta tal:replace="structure context/@@viewlets/plone.htmlhead.dublincore" /> 
   </tal:plone4>
   
   <base tal:attributes="href viewlet/base" />
