@@ -56,4 +56,6 @@
         <link rel="stylesheet" type="text/css" tal:attributes="href string:${viewlet/portal_url}/++resource++gomobile.mobile/phone-mode.css" />
   </tal:simulator>
 
+  <tal:custom-head replace="structure context/@@viewlets/additionalhead" />
+   
 </head>

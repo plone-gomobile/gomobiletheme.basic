@@ -349,6 +349,16 @@ dl.error dd {
     font-weight: bold;
 }
 
+.listingBar a,
+.listingBar .current {
+        margin-left: 1em;
+	padding: 0.5em;
+}
+
+
+
+/* Site sections in footer */
+
 #portal-globalnav { list-style: none; text-align:center; padding: 0; margin-bottom: 1em; }
 #portal-globalnav li { display: inline-block; margin-bottom: 1.5px; }
 #portal-globalnav li a { padding: 0.5em; padding-right: 0.7em; }

@@ -17,23 +17,28 @@
 }
 
 #header {
-	background-image: -moz-linear-gradient(top, #ddd, #eee 60%, #aaa);
-	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#DDDDDD), to(#AAAAAA), color-stop(0.6, #eeeeee));
+	background-image: -moz-linear-gradient(top, #ddd, #eee 40%, #bbb);
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#DDDDDD), to(#AAAAAA), color-stop(0.4, #eeeeee));
 }
 
 /* FF 3.6 could not properly assign shadow to #header - this must have color and height */
 #header-shadow { 
-    background: #aaa;
-    height: 3px;
-    margin-bottom: 5px;
-    -moz-box-shadow: 0px 3px 3px #333;
-    -webkit-box-shadow: 0px 3px 3px #333;
-    -o-box-shadow: 0px 3px 3px #333;
-    box-shadow: 0px 3px 3px #333;
+
+    background: #333;
+    height: 1px;
+    margin-bottom: 7px;
+    -moz-box-shadow: 0 2px 4px #333;
+    -webkit-box-shadow: 0px 2px 4px #333;
+    -o-box-shadow: 0px 2x 4px #333;
+    box-shadow: 0px 2px 4px #333;
+
 }
 
+
 #footer {
-    -moz-box-shadow: 0px -5px 5px #aaa;
+	border-top: 1px solid #666;
+        background-image: -moz-linear-gradient(top, #bbb, #ddd 30px);
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#bbb), to(#ddd), color-stop(0.3, #ddd));
 }
 
 #visual-margin {
@@ -43,7 +48,7 @@
 /* Automatic mobile folder listings at the end of the page - do iPhone style rounded corner navigation menu */
 
 #content ul#mobile-folder-listing {
-        border: 1px solid #aaa;
+        border: 2px solid #aaa;
         list-style: none;
         
         -moz-border-radius: 10px;
@@ -66,7 +71,7 @@
         background: transparent url(++resource++gomobiletheme.basic/navigation_arrow_grey.png) no-repeat center right;
         padding: 5px 15px 5px 0;
         margin: 0;
-        border-bottom: 1px solid #aaa;
+        border-bottom: 2px solid #aaa;
 	display: block;
 }
 
