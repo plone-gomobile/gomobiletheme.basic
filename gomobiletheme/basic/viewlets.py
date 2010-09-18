@@ -67,6 +67,14 @@ def getView(context, request, name):
     view = view.__of__(context)
     return view
 
+def fixActionText(text):
+    """ Use non-breaking spacebar to make sure that section name will stay on one line.
+    """
+    
+    # &#160; == &nbsp;
+    # but we must remain XML compatible
+    return text.replace(" ", "&#160;")
+
 class MainViewletManager(grok.ViewletManager):
     """ This viewlet manager is responsible for all gomobiletheme.basic viewlet registrations.
 
@@ -78,7 +86,21 @@ class MainViewletManager(grok.ViewletManager):
 # Set viewlet manager default to all following viewlets
 grok.viewletmanager(MainViewletManager)
 
-class Head(grok.Viewlet):
+class MobileViewletBase(grok.Viewlet):
+    """
+    Superclass for all mobile viewlets. Provides some helper methods.
+    
+    It is not strictly necessary to inherit other viewlets from this.
+    """
+
+    grok.baseclass()
+
+    def is_plone4(self):
+        """ Allow major viewlet change compatiblity between Plone versions from tempalte """
+        return PLONE_VERSION > 3
+    
+
+class Head(MobileViewletBase):
     """ Render <head> section for every page.
 
     Render the default mobile <head> section with CSS and icons.
@@ -109,11 +131,6 @@ class Head(grok.Viewlet):
         product.        
         """
         return self.portal_url + "/" + "++resource++gomobiletheme.basic"
-
-    def is_plone4(self):
-        """ Allow major viewlet change compatiblity between Plone versions from tempalte """
-        return PLONE_VERSION > 3
-    
     
     def generator(self):
         """
@@ -280,14 +297,6 @@ class Sections(grok.Viewlet):
     This is placed at the bottom of the page.
     This is equivalent of portal_tabs in normal Plone.
     """
-    
-    def fixSectionText(self, text):
-        """ Use non-breaking spacebar to make sure that section name will stay on one line.
-        """
-        
-        # &#160; == &nbsp;
-        # but we must remain XML compatible
-        return text.replace(" ", "&#160;")
         
     
     def fixSections(self, tabs):
@@ -296,7 +305,7 @@ class Sections(grok.Viewlet):
         @param tabs: Sequence of tabs to be fixed in-place
         """
         for tab in tabs:
-            tab.name = self.fixSectionText(text)
+            tab.name = fixActionText(tab.name)
     
     def update(self):
 
@@ -325,6 +334,29 @@ class Sections(grok.Viewlet):
         @return: string url, web version of the same page
         """        
         return self.context.absolute_url() + "/@@go_to_web_site"
+
+
+class TopActions(grok.Viewlet):
+    """ Render button like actions for mobile.
+
+    """
+    
+    def update(self):
+
+        if PLONE_VERSION <= 3:
+            # Not supported
+            self.actions = []
+            return
+
+        grok.Viewlet.update(self)
+
+        # Get tabs (top level navigation links)
+        context_state = getView(self.context, self.request, u'plone_context_state')
+                
+        self.actions = context_state.actions("portal_tabs")
+        for a in self.actions:
+            a["title"] = fixActionText(a["title"])
+
 
 
 

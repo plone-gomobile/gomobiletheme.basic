@@ -10,14 +10,12 @@
     list-style-image: url(++resource++gomobiletheme.basic/arrow-blue.png);
 }
 
-#header {
-    background: #329FD7 url(++resource++gomobiletheme.basic/header.gif) repeat-x bottom left;
-    padding-bottom: 20px;
+#header { 
+    margin-bottom: 5px;
+    -moz-box-shadow: 0px 3px 3px #333;
 }
 
 #footer {
-    padding-top: 20px;
-    background: #329FD7 url(++resource++gomobiletheme.basic/footer.gif) repeat-x top left;
 }
 
 #visual-margin {

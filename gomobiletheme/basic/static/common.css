@@ -7,8 +7,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
-    background: #329FD7;
-    color: white;
+    background: #eee;
+    color: black;
 }
 
 img {
@@ -90,8 +90,16 @@ a:hover,
 }
 
 /* Make text area text more visible than normal grey */
-input[type=text],input[type=password],textarea, select {
+input[type=text],
+input[type=password],
+textarea, select {
     width: 80%;
+}
+
+/* Make user inputed text more readable */
+input[type=text],
+textarea {
+	font-family: "Courier New" Courier monospace;
 }
 
 #margins {
@@ -123,7 +131,7 @@ input[type=text],input[type=password],textarea, select {
 }
 
 #header {
-    background: #329FD7;
+    background: #ddd;
     color: white;
     text-align: left;
 }
@@ -243,8 +251,8 @@ dl.error dd {
 
 #footer,
 .listingBar {
-    background: #329FD7;
-    color: white;
+    background: #ddd;
+    color: black;
     padding: 1em;
     padding-top: 10px;
     font-size: 80%;
@@ -260,15 +268,15 @@ dl.error dd {
 .listingBar a,
 .listingBar a:visited,
 .listingBar a:active  {
-    color: #ee7;
+    color: #205C90;
     text-decoration: none;
     font-weight: bold;
 }
 
 #footer a:hover,
 .listingBar a:hover {
-    background-color: #ee7;
-    color:#329FD7;
+    background-color: #205C90;
+    color: white;
     text-decoration: none;
     font-weight: bold;
 }
