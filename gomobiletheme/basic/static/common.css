@@ -31,15 +31,12 @@ img {
 
 h1 {
     border-bottom: none;
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-.documentFirstHeading {
-    margin-top: 15px;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
 }
 
 h1 {
-  font-size: 1.2em;
+  font-size: 150%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -181,6 +178,10 @@ textarea {
   float: right;
 }
 
+#mobile-site-actions li {
+  margin-left: 16px;
+}
+
 #portal-breadcrumbs {
    margin-bottom: 1em;
 }
@@ -190,6 +191,10 @@ textarea {
 
 #content h2 {
         margin-bottom: 0.5em;        
+}
+
+.documentFirstHeading {
+	margin-top: 0;
 }
 
 .documentDescription, .discreet, .documentByLine {
@@ -313,17 +318,16 @@ dl.error dd {
 
 /* Footer and batching controls */
 
-#footer,
 .listingBar {
-    background: #ddd;
-    color: black;
-    padding: 1em;
-    padding-top: 10px;
-    font-size: 80%;
+   background: #ddd;
+   margin: 0.5em 0 0.5em 0;
+   padding: 0.5em;
 }
 
-.listingBar {
-    margin-top: 1em;
+#footer {
+    background: #ddd;
+    padding: 1em;
+    font-size: 80%;
 }
 
 #footer a,
@@ -345,7 +349,7 @@ dl.error dd {
     font-weight: bold;
 }
 
-#portal-globalnav { list-style: none; text-align:center; padding: 0; }
+#portal-globalnav { list-style: none; text-align:center; padding: 0; margin-bottom: 1em; }
 #portal-globalnav li { display: inline-block; margin-bottom: 1.5px; }
 #portal-globalnav li a { padding: 0.5em; padding-right: 0.7em; }
 
@@ -368,5 +372,6 @@ dl.error dd {
 .mobile-folder-listing-heading {
         border-top: 1px dotted #aaa;
         padding-top: 0.5em;
+	margin-top: 0.5em;
         color: #666;
 }

@@ -190,8 +190,8 @@ class Logo(grok.Viewlet):
     """
 
     def getLogoPath(self):
-        """ Subclass can override """
-        return "++resource++gomobiletheme.basic/logo.png"        
+        """ Subclass to get link to a logo image which will be automatically resized """
+        return "++resource++gomobiletheme.basic/48/logo.png"        
 
     def update(self):
 
@@ -206,8 +206,8 @@ class Logo(grok.Viewlet):
                 
         parameters = {
                          "width" : "auto",
-                         "height" : "85", # Maximum logo height
-                         "padding_width" : 10,
+                         "height" : "49", # Maximum logo height
+                         "padding_width" : 0,
                          "conserve_aspect_ration" : True,
                     }
 
@@ -387,22 +387,17 @@ class MobileFolderListing(grok.Viewlet):
         # Get listing helper from gomobile.mobile
         helper = getMultiAdapter((self.context, self.request), name='mobile_folder_listing')
 
-
         context = self.context.aq_inner
         helper = helper.__of__(context)
 
         # None or iterable of content item objects
-        self.items = helper.constructListing()
-
+        self.items = helper.getItems()
 
     def hasListing(self):
         """
         Check whether mobile folder listing is enabled for a particular content type.
-        """
-
-        # Note: Can't use len() since iterable don't have length
-
-        return self.items != None
+        """        
+        return len(self.items) > 0
 
 
 class MobileTracker(grok.Viewlet):

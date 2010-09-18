@@ -16,7 +16,7 @@
    version="1.1"
    inkscape:version="0.48.0 r9654"
    sodipodi:docname="button-base-4.svg"
-   inkscape:export-filename="/Users/moo/plonecommunity/src/gomobiletheme.basic/gomobiletheme/basic/static/actions/48/search.png"
+   inkscape:export-filename="/Users/moo/plonecommunity/src/gomobiletheme.basic/gomobiletheme/basic/static/actions/48/contact.png"
    inkscape:export-xdpi="8.4375"
    inkscape:export-ydpi="8.4375">
   <defs
@@ -309,7 +309,7 @@
      pagecolor="#dddddd"
      bordercolor="#666666"
      borderopacity="1.0"
-     inkscape:pageopacity="1"
+     inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.54414077"
      inkscape:cx="207.66221"

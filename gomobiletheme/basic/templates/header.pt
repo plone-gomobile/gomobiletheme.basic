@@ -8,3 +8,7 @@
 
     <div style="clear: both"><!-- --></div>
 </div>
+
+<div id="header-shadow">
+        <!-- FF 3.6 margin bug - could not assign shadow to header without adding top margin to header -->
+</div>
