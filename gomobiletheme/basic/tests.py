@@ -293,7 +293,26 @@ class ThemeTestCase(BaseTestCase):
         viewlet = MobileTracker(self.portal, self.portal.REQUEST, None, None)
         viewlet.update()
         viewlet.render()
+        
+    def test_render_search(self):
+        """ Assert no exceptions risen """
 
+        self.setDiscriminateMode(MobileRequestType.MOBILE)
+      
+        self.browser.open(self.portal.absolute_url() + "/search")
+        
+        # Input some values to the search that we see we get
+        # zero hits and at least one hit        
+        for search_terms in [u"Plone", u"youcantfindthis"]:
+            form = self.browser.getForm("searchform")
+            
+            # Fill in the search field
+            input = form.getControl(name="SearchableText")
+            input.value = search_terms 
+            
+            # Submit the search form
+            form.submit(u"Search")
+            
 
 from zope.component import getMultiAdapter, getUtility
 
