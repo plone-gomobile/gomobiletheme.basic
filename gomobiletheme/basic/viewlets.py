@@ -353,9 +353,14 @@ class TopActions(grok.Viewlet):
         # Get tabs (top level navigation links)
         context_state = getView(self.context, self.request, u'plone_context_state')
                 
-        self.actions = context_state.actions("portal_tabs")
+        try:
+            self.actions = context_state.actions("mobile_site_actions")
+        except:
+            self.actions = []
+        
         for a in self.actions:
             a["title"] = fixActionText(a["title"])
+
 
 
 

@@ -3,9 +3,18 @@
  *
  */
 
+/* CSS reset a la Limi */
+* { margin: 0; padding: 0; }
+* :link,:visited { text-decoration:none }
+* ul,ol { list-style:none; }
+* li { display: inline; }
+* h1,h2,h3,h4,h5,h6,pre,code { font-size:1em; }
+* a img,:link img,:visited img { border:none } 
+a { outline: none; }
+table { border-spacing: 0; }
+img { vertical-align: middle; }
+
 body {
-    margin: 0;
-    padding: 0;
     font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
     background: #eee;
     color: black;
@@ -137,19 +146,74 @@ textarea {
 }
 
 
+#header a.text-only,
+#header a:text-only,
+#header a:text-only, {
+    color: #205C90;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5em;
+}
+
+#header a.text-only:hover  {
+    background-color: #205C90;
+    color: white;
+    text-decoration: none;
+}
+
+
+#logo {
+    padding: 0.5em;
+    float: left;
+}
 
 #logo img {
     display: inline;
 }
 
+#language-chooser {
+  float: right;
+}
+
+#mobile-site-actions {
+  padding: 0.5em;
+  list-style: none;
+  float: right;
+}
+
 #portal-breadcrumbs {
-    margin-bottom: 1em;
+   margin-bottom: 1em;
+}
+
+
+/* Content */
+
+#content h2 {
+        margin-bottom: 0.5em;        
 }
 
 .documentDescription, .discreet, .documentByLine {
     color: #999;
     font-size: 85%;
 }
+
+.documentDescription,
+#content p,
+#content .description {
+    margin-bottom: 1em;
+}
+
+#content ul {
+	list-style: disc;
+	margin-left: 1.5em;
+}
+
+#content ul li {
+	display: list-item;
+	padding-bottom: 0.5em;
+}
+
+
 
 /* Forms */
 

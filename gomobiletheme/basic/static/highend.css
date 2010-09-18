@@ -11,8 +11,11 @@
 }
 
 #header { 
+/*
+    margin: 0;
     margin-bottom: 5px;
     -moz-box-shadow: 0px 3px 3px #333;
+*/
 }
 
 #footer {
@@ -36,18 +39,24 @@
         padding: 0;
 }
 
-#mobile-folder-listing li {     
+#content #mobile-folder-listing li {
+	margin: 0;
+	padding: 0;
+}
+
+#mobile-folder-listing li a {     
         background: transparent url(++resource++gomobiletheme.basic/navigation_arrow_grey.png) no-repeat center right;
         padding: 5px 15px 5px 0;
         margin: 0;
         border-bottom: 1px solid #aaa;
+	display: block;
 }
 
-#mobile-folder-listing li:last-child {
+#mobile-folder-listing li:last-child a {
         border: 0;
 }
 
-#mobile-folder-listing li a {
+#mobile-folder-listing li a span {
         margin: 5px 0 5px 0;
         display: block;
         width: 100%;    

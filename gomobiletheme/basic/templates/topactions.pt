@@ -1,18 +1,19 @@
-<ul id="mobile-top-actions" tal:condition="python:len(viewlet.actions) > 0" i18n:domain="gomobiletheme.basic">
+<ul id="mobile-site-actions" tal:condition="python:len(viewlet.actions) > 0" i18n:domain="gomobiletheme.basic">
 
     <tal:action tal:repeat="action viewlet/actions">
 
-        <li tal:attributes="id string:mobile-top-action-${tab/id};">
+        <li tal:attributes="class string:action-${action/id}">
 
 
-            <a tal:content="action/title"
-	       tal:condition="python:action.icon == ''"
+            <a class="text-only"
+	       tal:content="action/title"
+	       tal:condition="python:action['icon'] == ''"
                tal:attributes="href action/url;
                                title action/description|nothing">
             </a>
 
-            <a 
-               tal:condition="python:action.icon != ''"
+            <a class="image-only"
+               tal:condition="python:action['icon'] != ''"
                tal:attributes="href action/url; title action/title">
 			       
                <img tal:attributes="src action/icon; alt action/description|nothing" />
@@ -21,6 +22,6 @@
 	    
 	    
         </li>
-    </tal:tabs>
+    </tal:action>
 
 </ul>
