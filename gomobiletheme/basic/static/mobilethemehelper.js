@@ -6,7 +6,7 @@
  * without orignal vector source yields to very bad results.
  * 
  */
-function fixActionImages() {
+function fixMobileImages() {
 	
 	var multiplier;
 	if(window.devicePixelRatio) {
@@ -49,5 +49,5 @@ function fixActionImages() {
 
 
 jQuery(document).ready(function() {
-        fixActionImages();
+        fixMobileImages();
 })
