@@ -16,17 +16,12 @@ img { vertical-align: middle; }
 
 body {
     font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
-    background: #eee;
+    background: #ddd;
     color: black;
 }
 
 img {
     border: 0;
-}
-
-.hiddenStructure,
-#kss-spinner {
-    display: none;
 }
 
 h1 {
@@ -53,60 +48,6 @@ h3 {
 ul {
 }
 
-p {
-    margin-bottom: 0.5em;
-}
-
-/* Makes easier to hit link lists */
-li {
-  margin-bottom: 0.5em;
-}
-
-
-/* no link underlinings */
-a,
-a:active,
-a:visited,
-.documentContent li a,
-.documentContent li a:active,
-.documentContent li a:visited,
-.documentContent p a,
-.documentContent p a:visited,
-.documentContent p a:active {
-    border: 0;
-    text-decoration: none;
-    color: #205C90;
-}
-
-/* Resized mobile images */
-
-.documentContext img.mobile-resized {
-	display: block;
-}
-
-a:hover,
-.documentContent li a:hover,
-.documentContent p a:hover {
-  text-decoration: underline;
-}
-
-/* Content styles */
-.image-right, .image-left {
-  border: none;
-}
-
-/* Make text area text more visible than normal grey */
-input[type=text],
-input[type=password],
-textarea, select {
-    width: 80%;
-}
-
-/* Make user inputed text more readable */
-input[type=text],
-textarea {
-	font-family: "Courier New" Courier monospace;
-}
 
 #margins {
     margin-left: auto;
@@ -131,15 +72,17 @@ textarea {
 
 
 #content {
-    padding: 1em;
+    padding: 0.5em;
     background: white;
     color: black;
 }
+
 
 #header {
     background: #ddd;
     color: white;
     text-align: left;
+    overflow: clip;
 }
 
 
@@ -218,6 +161,52 @@ textarea {
 	padding-bottom: 0.5em;
 }
 
+/* Force wrapping of very long words, like links */
+#content {
+        /*word-break: break-all;*/
+	word-wrap: break-word;
+}
+
+
+/* Makes easier to hit link lists */
+#content li {
+  margin-bottom: 0.5em;
+}
+
+
+/* no link underlinings */
+a,
+a:active,
+a:visited,
+.documentContent li a,
+.documentContent li a:active,
+.documentContent li a:visited,
+.documentContent p a,
+.documentContent p a:visited,
+.documentContent p a:active {
+    border: 0;
+    text-decoration: none;
+    color: #205C90;
+}
+
+a:hover,
+.documentContent li a:hover,
+.documentContent p a:hover {
+  text-decoration: underline;
+}
+
+/* Resized mobile images */
+
+.documentContext img.mobile-resized {
+        display: block;
+}
+
+
+/* Content styles */
+.image-right, .image-left {
+  border: none;
+}
+
 
 
 /* Forms */
@@ -254,8 +243,29 @@ div.error {
     width: 95%;
 }
 
+/* Make text area text more visible than normal grey */
+input[type=text],
+input[type=password],
+textarea, select {
+    width: 80%;
+    
+    /* CSS reset causes problems for iPhone */
+   padding: 0.5em;
+}
+
+/* Make user inputed text more readable */
+input[type=text],
+textarea {
+	font-weight: bold;
+        font-family: "Courier New" Courier monospace;
+}
+
 
 /* Search */
+
+input[name=SearchableText] {
+	width: 66%;
+}
 
 .searchResults dt {
     padding-bottom: 1em;
@@ -328,6 +338,8 @@ dl.error dd {
     background: #ddd;
     padding: 1em;
     font-size: 80%;
+    
+    line-height: 2.5em;
 }
 
 #footer a,
@@ -384,4 +396,11 @@ dl.error dd {
         padding-top: 0.5em;
 	margin-top: 0.5em;
         color: #666;
+}
+
+/* This will appear in the footer if the site has KSS enabled forms - since Javascript is missing we cant show it */
+ 
+.hiddenStructure,
+#kss-spinner {
+    display: none;
 }

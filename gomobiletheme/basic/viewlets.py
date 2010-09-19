@@ -191,9 +191,12 @@ class Logo(grok.Viewlet):
 
     def getLogoPath(self):
         """ Subclass to get link to a logo image which will be automatically resized """
-        return "++resource++gomobiletheme.basic/48/logo.png"        
+        return "++resource++gomobiletheme.basic/24/logo.png"        
 
-    def update(self):
+    def updateResizer(self):
+        """
+        TODO: As an example for automatic logo resizing - not used anymore
+        """
 
         path = self.getLogoPath()
         
@@ -212,7 +215,11 @@ class Logo(grok.Viewlet):
                     }
 
         self.logo_url = processor.getImageDownloadURL(url, parameters)
-                    
+    
+    def update(self):
+        portal_state = getView(self.context, self.request, "plone_portal_state")
+        self.portal_url = portal_state.portal_url()
+        self.logo_url = self.portal_url + "/" + self.getLogoPath()
 
 class LanguageChooser(grok.Viewlet):
     """ Render langauge chooser at the top right corner if more than one site language available.
