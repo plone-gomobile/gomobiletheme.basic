@@ -27,9 +27,25 @@ Icons
 All action icons are in ``artwork`` folder,  including
 Inkscape SVG orignals.  
 
+Social media icons
+==================
+
+Theme also includes some popular social media icons
+
+* Facebook
+
+* Twitter
+
+* mFabrik
+
+All social media icons have only one version 32 x 32.
+
+Buttons
+=======
 All buttons are in the same file as layers,
 so you can easily do semi-automatic batch exports
 for them with different sizes from Inkscape. 
+
 
 Plone 3 compatibility changes
 =============================
@@ -49,7 +65,6 @@ skin layer to maintain Plone 3 backwards compatibility.
 * Plone 3 compatible main_template.pt
 
 * Plone 3 compatible search.pt
-
 
 Author
 ------
