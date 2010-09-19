@@ -83,6 +83,7 @@ ul {
     color: white;
     text-align: left;
     overflow: clip;
+    
 }
 
 
@@ -256,8 +257,13 @@ textarea, select {
 /* Make user inputed text more readable */
 input[type=text],
 textarea {
+        font-size: 1.2em;
 	font-weight: bold;
         font-family: "Courier New" Courier monospace;
+}
+
+input[type=submit] {
+	font-size: 1.5em;
 }
 
 
@@ -337,9 +343,13 @@ dl.error dd {
 #footer {
     background: #ddd;
     padding: 1em;
-    font-size: 80%;
-    
     line-height: 2.5em;
+}
+
+#portal-breadcrumbs,
+#footer-text,
+#portal-globalnav {
+    font-size: 0.9em;
 }
 
 #footer a,
@@ -372,7 +382,7 @@ dl.error dd {
 /* Site sections in footer */
 
 #portal-globalnav { list-style: none; text-align:center; padding: 0; margin-bottom: 1em; }
-#portal-globalnav li { display: inline-block; margin-bottom: 1.5px; }
+#portal-globalnav li { display: inline; margin-bottom: 1.5px; }
 #portal-globalnav li a { padding: 0.5em; padding-right: 0.7em; }
 
 #footer-links, #portal-breadcrumbs { text-align: center; }

@@ -18,9 +18,15 @@
       <!-- iPhone viewport size support - no horizontal scroll bar -->
   </tal:comment>
 
-  <meta name="viewport" content ="initial-scale = 1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable = yes" />
+  <meta id="viewport" name="viewport" content ="initial-scale = 1.0, minimum-scale=0.5, maximum-scale=1.0, user-scalable = no" />
 
+  <tal:iphone4 condition="python:False">
+  	<!-- iPhone 4 does not honour device-width, special hack needed -->
+        <meta content="width=device-width; initial-scale=0.5; maximum-scale=0.5; user-scalable=no;" name="viewport" />
+  </tal:iphone4>
+  
   <tal:comment replace="nothing">
+   -->
       <!-- mobile IE viewport size support 
         
 	   http://tech.groups.yahoo.com/group/wmlprogramming/message/32667
