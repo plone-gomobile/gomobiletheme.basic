@@ -60,7 +60,7 @@
 
   <tal:helper-javascripts condition="context/@@mobile_tool/shouldRunJavascript">
   	<script tal:attributes="src string:http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
-        <script tal:attributes="src string:${viewlet/resource_url}/mobilethemehelper.js" type="text/javascript"></script>
+    <script tal:attributes="src string:${viewlet/resource_url}/mobilethemehelper.js" type="text/javascript"></script>
   </tal:helper-javascripts>
 
   <tal:simulator condition="context/@@mobile_tool/isPreviewRequest">

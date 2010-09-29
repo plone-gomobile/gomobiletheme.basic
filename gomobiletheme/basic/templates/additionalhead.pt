@@ -1,1 +1,9 @@
 <!-- Place your extra CSS / JS code here -->
+
+<tal:comment replace="nothing">
+    <!-- Action for the search button -->
+</tal:comment>
+
+<tal:helper-javascripts condition="context/@@mobile_tool/shouldRunJavascript">
+    <script tal:attributes="src string:${viewlet/resource_url}/searchbox.js" type="text/javascript"></script>
+</tal:helper-javascripts>

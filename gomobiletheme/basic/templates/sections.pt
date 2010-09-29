@@ -1,11 +1,11 @@
-<ul id="portal-globalnav" tal:condition="python:len(viewlet.portal_tabs) > 0" i18n:domain="gomobiletheme.basic">
+<ul id="portal-sections" tal:condition="python:len(viewlet.sections) > 0" i18n:domain="gomobiletheme.basic">
 
-    <tal:tabs tal:repeat="tab viewlet/portal_tabs">
-        <li tal:attributes="id string:portaltab-${tab/id};">
+    <tal:tabs tal:repeat="sec viewlet/sections">
+        <li tal:attributes="id string:portaltab-${sec/id};">
             <a href=""
-               tal:content="tab/name"
-               tal:attributes="href tab/url;
-                           title tab/description|nothing">
+               tal:content="sec/title"
+               tal:attributes="href sec/url;
+                           title sec/description|nothing">
                 <tal:comment replace="nothing">Tab Name</tal:comment>
             </a>
         </li>

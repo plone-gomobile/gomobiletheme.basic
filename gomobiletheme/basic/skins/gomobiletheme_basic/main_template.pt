@@ -28,6 +28,7 @@
         <div id="margins">
 
             <div tal:replace="structure context/@@viewlets/header" />
+            <div tal:replace="structure context/@@viewlets/actionsheader" />
 
             <div id="content">
                 <metal:block define-slot="content">
@@ -58,6 +59,10 @@
                     </div>
                 </metal:block>
             </div>
+
+          <div tal:replace="structure context/@@viewlets/searchboxbottom" />
+
+          <div tal:replace="structure context/@@viewlets/navigation" />
 
           <div tal:replace="structure context/@@viewlets/footer" />
           </div>

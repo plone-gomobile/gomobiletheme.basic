@@ -71,21 +71,15 @@ ul {
 }
 
 
-#content {
-    padding: 0.5em;
-    background: white;
-    color: black;
-}
-
+/* HEADER */
 
 #header {
-    background: #ddd;
+    background: #FFF;
     color: white;
     text-align: left;
     overflow: clip;
     
 }
-
 
 #header a.text-only,
 #header a:text-only,
@@ -102,7 +96,6 @@ ul {
     text-decoration: none;
 }
 
-
 #logo {
     padding: 0.5em;
     float: left;
@@ -116,22 +109,75 @@ ul {
   float: right;
 }
 
+
+/* ACTIONS HEADER */
+
+#actions-header {
+    background:#DDDDDD;
+}
+
 #mobile-site-actions {
-  padding: 0.5em;
   list-style: none;
   float: right;
+  border-left:1px solid #c6c6c6;
+  border-right:1px solid #e8e7e7;
 }
 
 #mobile-site-actions li {
-  margin-left: 16px;
+    float: left;
+    text-align:center;
+    border-left:1px solid #e8e7e7;
+    border-right:1px solid #c6c6c6;
 }
 
-#portal-breadcrumbs {
-   margin-bottom: 1em;
+#mobile-site-actions .action-search-selected {
+    background:#facc79;
 }
 
 
-/* Content */
+/* SEARCH BOX TOP */
+
+#search-box-top {
+    display:none;
+    background:#facc79;
+    padding:10px;
+}
+
+.searchform {
+    background:#FFF;
+    border:1px solid #D2D2D2;
+    display:inline-block;
+    width:100%;
+}
+.searchform input {
+    font-weight: normal!important;
+    color:#DDD;
+}
+.searchform .searchfield {
+    border:none;
+    background:transparent;
+    padding:7px 6px 6px 20px;
+    width:90%;
+}
+.searchform .searchbutton {
+    background:#c7c6c6;
+    border:none;
+    color:#FFFFFF;
+    font-size:12px;
+    height:27px;
+    width:27px;
+    float:right;
+    margin:5px;
+}
+
+
+/* CONTENT */
+
+#content {
+    padding: 0.5em;
+    background: white;
+    color: black;
+}
 
 #content h2 {
         margin-bottom: 0.5em;        
@@ -210,7 +256,7 @@ a:hover,
 
 
 
-/* Forms */
+/* FORMS */
 
 .field {
     padding-bottom: 1em;
@@ -257,9 +303,9 @@ textarea, select {
 /* Make user inputed text more readable */
 input[type=text],
 textarea {
-        font-size: 1.2em;
+    font-size: 1.2em;
 	font-weight: bold;
-        font-family: "Courier New" Courier monospace;
+    font-family: "Courier New" Courier monospace;
 }
 
 input[type=submit] {
@@ -267,7 +313,7 @@ input[type=submit] {
 }
 
 
-/* Search */
+/* SEARCH */
 
 input[name=SearchableText] {
 	width: 50%;
@@ -291,7 +337,7 @@ input[name=SearchableText] {
     font-weight: bold;
 }
 
-/* Folder listing */
+/* FOLDER LISTING */
 
 .folder-listing .entry {
     padding: 1em 0.5em 1em 0.5em;
@@ -299,7 +345,7 @@ input[name=SearchableText] {
 }
 
 
-/* Status messages */
+/* STATUS MESSAGES */
 
 dl.portalMessage {
     background-color: #ffffe3;
@@ -349,7 +395,116 @@ dl.error dd {
     background-color: #fd7;
 }
 
-/* Footer and batching controls */
+
+/* SEARCH BOX BOTTOM */
+
+#search-box-bottom {
+    background:#ebebeb;
+    padding:10px;
+    margin-top:30px;
+}
+
+#search-box-bottom h2 {
+    padding-bottom:5px;
+}
+
+.searchform-bottom {
+    margin-bottom:10px;
+    width:100%;
+}
+
+.searchform-bottom input {
+    font-weight: normal!important;
+    color:#DDD;
+}
+
+.searchform-bottom .searchfield {
+    border:1px solid #c7c6c6;
+    width:90%;
+}
+
+.searchform-bottom .searchbutton {
+    background:#c7c6c6;
+    border:none;
+    color:#FFFFFF;
+    font-size:18px;
+    height:43px;
+    width:6%;
+}
+
+
+/* NAVIGATION */
+
+#portal-globalnav {
+    margin:30px 0px;
+    border-top:1px solid #e5e2c7;
+    font-weight:bold;
+}
+
+#portal-globalnav li {
+    background:#f8f5d8;
+    display: block;
+    padding: 10px;
+    border-top:1px solid #fcfbf1;
+    border-bottom:1px solid #e5e2c7;
+}
+
+#portal-globalnav a {
+    color:#999999;
+}
+
+#portal-globalnav .button-body {
+    background:url("++resource++gomobiletheme.basic/navigation_arrow_grey.png") no-repeat scroll right center transparent;
+    display: block;
+    width:100%;
+}
+
+/* BREADCRUMBS */
+
+#portal-breadcrumbs {
+    background:#ddd;
+    min-height:27px;
+    border:1px solid #c7c6c6;
+    margin-bottom:20px;
+    float:left;
+    width:100%;
+}
+
+#portal-breadcrumbs a {
+    float:left;
+    padding:5px;
+    color:#8c8c8c!important;
+}
+
+#portal-breadcrumbs a:hover {
+    background-color:transparent!important;
+}
+
+#portal-breadcrumbs .last {
+    float:left;
+    padding:5px;
+    color:#8c8c8c;
+}
+
+#portal-breadcrumbs .home {
+   background:url("++resource++gomobiletheme.basic/actions/home.png") no-repeat scroll 10px 3px transparent;
+   overflow:hidden;
+   text-indent:-9999em;
+   width:25px;
+   
+}
+
+#portal-breadcrumbs .breadcrumbSeparator {
+/*    background:url(++resource++gomobiletheme.basic/actions/separator.png) no-repeat;
+    width:11px;
+    height:27px;*/
+    float: left;
+    margin-top:5px;
+    color:#8c8c8c;
+}
+
+
+/* FOOTER AND BATCHING CONTROLS */
 
 .listingBar {
    background: #ddd;
@@ -358,14 +513,20 @@ dl.error dd {
 }
 
 #footer {
-    background: #ddd;
-    padding: 1em;
-    line-height: 2.5em;
+    padding: 10px;
+}
+
+#footer-text {
+    color:#bbb;
+}
+
+#footer-text a {
+    color:#B6B5DF!important;
 }
 
 #portal-breadcrumbs,
 #footer-text,
-#portal-globalnav {
+#portal-sections {
     font-size: 0.9em;
 }
 
@@ -395,34 +556,34 @@ dl.error dd {
 }
 
 
+/* SITE SECTIONS IN FOOTER */
 
-/* Site sections in footer */
+#portal-sections { list-style: none; text-align:center; padding: 0; margin-bottom: 1em; }
+#portal-sections li { display: inline; margin-bottom: 1.5px; }
+#portal-sections li a { padding: 0.5em; padding-right: 0.7em; }
 
-#portal-globalnav { list-style: none; text-align:center; padding: 0; margin-bottom: 1em; }
-#portal-globalnav li { display: inline; margin-bottom: 1.5px; }
-#portal-globalnav li a { padding: 0.5em; padding-right: 0.7em; }
-
-#footer-links, #portal-breadcrumbs { text-align: center; }
+#footer-links { text-align: center; }
 
 #footer-text { text-align: center; }
 
-/* Individual template styling  */
+
+/* INDIVIDUAL TEMPLATE STYLING  */
 
 /* Add padding to default Plone folder listing view */
 
 .folder-listing .description {
-        margin-top: 0.5em;
-        margin-bottom: 1em;
-        display: block;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    display: block;
 }
 
 /* Separate automatic folder listing from content */
 
 .mobile-folder-listing-heading {
-        border-top: 1px dotted #aaa;
-        padding-top: 0.5em;
+    border-top: 1px dotted #aaa;
+    padding-top: 0.5em;
 	margin-top: 0.5em;
-        color: #666;
+    color: #666;
 }
 
 /* This will appear in the footer if the site has KSS enabled forms - since Javascript is missing we cant show it */

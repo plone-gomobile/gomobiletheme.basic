@@ -1,0 +1,13 @@
+<div id="search-box-bottom">
+	<h2>Search</h2>
+	<form class="searchform-bottom" action="search">
+		<input  id="searchboxbottom"
+				type="text" 
+				name="SearchableText" 
+				title="Search Site" 
+				i18n:attributes="title title_search_title;"
+				value="Search..." 
+				class="searchfield">
+		<input type="submit" value="Go" class="searchbutton">
+	</form>
+</div>

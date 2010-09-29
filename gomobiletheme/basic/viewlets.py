@@ -180,6 +180,17 @@ class Header(grok.Viewlet):
     * Language switcher
     """
 
+class ActionsHeader(grok.Viewlet):
+    """ Render items in the secondary header
+    
+    This includes
+    
+    * Back button
+    
+    * Site actions
+    
+    * Search box top
+    """
 
 
 class Logo(grok.Viewlet):
@@ -261,8 +272,20 @@ class LanguageChooser(grok.Viewlet):
     def update(self):
         self.tool = getToolByName(self.context, 'portal_languages', None)
 
+class Back(grok.Viewlet):
+    """ Back button
+    """
+    
+class SearchBoxTop(grok.Viewlet):
+    """ Search box top
+    """
+
+class SearchBoxBottom(grok.Viewlet):
+    """ Search box bottom
+    """
+
 class Footer(grok.Viewlet):
-    """ Sections + footer text
+    """ Breadcrumbs + Sections + Footer text
     """
 
 class Messages(grok.Viewlet):
@@ -296,6 +319,41 @@ class PathBar(grok.Viewlet):
         self.site_url = self.portal_state.portal_url()
         self.navigation_root_url = self.portal_state.navigation_root_url()
 
+
+class Navigation(grok.Viewlet):
+    """ Render the menu near the end of the page """
+
+    def fixSections(self, tabs):
+        """ Make sure that the text of sections is not broken across two lines in narrow mobile screen.
+        
+        @param tabs: Sequence of tabs to be fixed in-place
+        """
+        for tab in tabs:
+            tab.name = fixActionText(tab.name)
+    
+    def update(self):
+
+        if PLONE_VERSION <= 3:
+            # Not supported
+            self.navigation = []
+            return
+
+        grok.Viewlet.update(self)
+
+        # Get tabs (top level navigation links)
+        context_state = getView(self.context, self.request, u'plone_context_state')
+                
+        try:
+            self.navigation = context_state.actions("mobile_navigation")
+        except:
+            self.navigation = []
+        
+        for a in self.navigation:
+            a["title"] = fixActionText(a["title"])
+
+    
+    
+
 class Sections(grok.Viewlet):
     """ List top level folders.
 
@@ -316,24 +374,23 @@ class Sections(grok.Viewlet):
     
     def update(self):
 
+        if PLONE_VERSION <= 3:
+            # Not supported
+            self.sections = []
+            return
+
         grok.Viewlet.update(self)
 
         # Get tabs (top level navigation links)
         context_state = getView(self.context, self.request, u'plone_context_state')
-        
-        
-        # This is for Plone 4 compatibility - topLevelTabs() call signature is different
-        
-        if PLONE_VERSION >= 4:
-            actions = context_state.actions("portal_tabs")
-        else:
-            actions = context_state.actions()
-            
-        portal_state = getView(self.context, self.request, "plone_portal_state")
-        self.portal_url = portal_state.portal_url()
 
-        portal_tabs_view = getView(self.context, self.request, u'portal_tabs_view')
-        self.portal_tabs = portal_tabs_view.topLevelTabs(actions=actions)
+        try:
+            self.sections = context_state.actions("mobile_sections")
+        except:
+            self.sections = []
+
+        for a in self.sections:
+            a["title"] = fixActionText(a["title"])
 
 
     def get_web_site_url(self):
@@ -367,10 +424,6 @@ class TopActions(grok.Viewlet):
         
         for a in self.actions:
             a["title"] = fixActionText(a["title"])
-
-
-
-
 
 class FooterText(grok.Viewlet):
     """ Free-form HTML text at the end of the page """

@@ -2,7 +2,7 @@
 
     <tal:action tal:repeat="action viewlet/actions">
 
-        <li tal:attributes="class string:action-${action/id}">
+        <li tal:attributes="class string:action action-${action/id}">
 
 
             <a class="text-only"
