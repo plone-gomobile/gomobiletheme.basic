@@ -54,7 +54,7 @@
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fbebce), to(#f3ad2e));
 }
 
-.searchform {
+#search-box-top .searchform {
     -moz-border-radius:2em;
     -webkit-border-radius:2em;
     -moz-box-shadow: inset 0 1px 5px rgba(0,0,0,.2);
@@ -62,38 +62,70 @@
     box-shadow: inset 0 1px 5px rgba(0,0,0,.2);
 }
 
-.searchform .searchfield {
+/* iPhone fix: -webkit-appearance: none - http://mobiledrupal.com/content/styling-form-buttons-iphone-webkit-appearance*/
+#search-box-top .searchfield {
     -moz-border-radius:2em;
     -webkit-border-radius:2em;
+    -webkit-appearance: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
 
-.searchform .searchbutton {
+#search-box-top .button {
     -moz-border-radius:2em;
     -webkit-border-radius:2em;
-    background:-moz-linear-gradient(center top , #9E9E9E, #454545) repeat scroll 0 0 transparent;
-    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#9E9E9E), to(#454545));
+    background:-moz-linear-gradient(center top , #7A7A7A, #454545) repeat scroll 0 0 transparent;
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#7A7A7A), to(#454545));
     text-shadow:0 1px 1px rgba(0, 0, 0, 0.6);
+}
+
+#search-box-top .button:hover {
+    background:-moz-linear-gradient(center top , #8F8762, #5F5A41) repeat scroll 0 0 transparent;
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#8F8762), to(#5F5A41));
+}
+
+
+/* CONTENT */
+
+
+/* FORMS */
+
+input[type=text],
+input[type=password],
+textarea, select {
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    -moz-box-shadow: inset 0 1px 5px rgba(0,0,0,.2);
+    -webkit-box-shadow: inset 0 1px 5px rgba(0,0,0,.2);
+    box-shadow: inset 0 1px 5px rgba(0,0,0,.2);
+    -webkit-appearance: none;
 }
 
 
 /* SEARCH BOX BOTTOM */
 
-.searchform-bottom .searchfield {
+#search-box-bottom .searchfield {
     -moz-border-radius:10px;
     -webkit-border-radius:10px;
     -moz-box-shadow: inset 0 1px 5px rgba(0,0,0,.2);
     -webkit-box-shadow: inset 0 1px 5px rgba(0,0,0,.2);
     box-shadow: inset 0 1px 5px rgba(0,0,0,.2);
+    -webkit-appearance: none;
 }
 
-.searchform-bottom .searchbutton {
+#search-box-bottom .button {
     -moz-border-radius:10px;
     -webkit-border-radius:10px;
-    background:-moz-linear-gradient(center top , #9E9E9E, #454545) repeat scroll 0 0 transparent;
-    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#9E9E9E), to(#454545));
+    background:-moz-linear-gradient(center top , #7A7A7A, #454545) repeat scroll 0 0 transparent;
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#7A7A7A), to(#454545));
     text-shadow:0 1px 1px rgba(0, 0, 0, 0.6);
 }
 
+#search-box-bottom .button:hover {
+    background:-moz-linear-gradient(center top , #8F8762, #5F5A41) repeat scroll 0 0 transparent;
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#454545), to(#5F5A41));
+}
 
 /* NAVIGATION */
 
@@ -119,7 +151,7 @@
 /* Automatic mobile folder listings at the end of the page - do iPhone style rounded corner navigation menu */
 
 #content ul#mobile-folder-listing {
-    border: 2px solid #aaa;
+    border: 2px solid #ddd;
     list-style: none;
     
     -moz-border-radius: 10px;
@@ -142,7 +174,7 @@
     background: transparent url(++resource++gomobiletheme.basic/navigation_arrow_grey.png) no-repeat center right;
     padding: 5px 15px 5px 0;
     margin: 0;
-    border-bottom: 2px solid #aaa;
+    border-bottom: 2px solid #ddd;
 	display: block;
 }
 
@@ -162,7 +194,7 @@
 }     
 
 #mobile-folder-listing li:hover {
-    background: #aaa;
+    background: #ddd;
     color: white;
 }
 

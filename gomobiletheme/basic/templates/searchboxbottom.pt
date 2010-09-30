@@ -1,13 +1,23 @@
-<div id="search-box-bottom">
+<div id="search-box-bottom" class="clear">
 	<h2>Search</h2>
-	<form class="searchform-bottom" action="search">
-		<input  id="searchboxbottom"
-				type="text" 
-				name="SearchableText" 
-				title="Search Site" 
-				i18n:attributes="title title_search_title;"
-				value="Search..." 
-				class="searchfield">
-		<input type="submit" value="Go" class="searchbutton">
+	<form action="search">
+		<table width="100%" cellspacing="0" cellpadding="0">
+			<tbody>
+				<tr>
+					<td class="searchBar">
+						<input  id="searchboxbottom"
+								type="text" 
+								name="SearchableText" 
+								title="Search Site" 
+								i18n:attributes="title title_search_title;"
+								value="Search..."
+								class="searchfield" />
+					</td>
+					<td class="searchBtn">
+						<input type="submit" value="Go" class="button">
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</form>
 </div>

@@ -1,4 +1,4 @@
-<div id="portal-breadcrumbs" i18n:domain="plone">
+<div tal:condition="viewlet/breadcrumbs" id="portal-breadcrumbs" i18n:domain="plone">
 
     <a i18n:translate="tabs_home" tal:attributes="href viewlet/navigation_root_url" class="home">Home</a>
     <span tal:condition="viewlet/breadcrumbs" class="breadcrumbSeparator">

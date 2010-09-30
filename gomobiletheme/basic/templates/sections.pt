@@ -3,7 +3,7 @@
     <tal:tabs tal:repeat="sec viewlet/sections">
         <li tal:attributes="id string:portaltab-${sec/id};">
             <a href=""
-               tal:content="sec/title"
+               tal:content="structure sec/title"
                tal:attributes="href sec/url;
                            title sec/description|nothing">
                 <tal:comment replace="nothing">Tab Name</tal:comment>

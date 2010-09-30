@@ -6,22 +6,26 @@ $(document).ready(function () {
     });
     
     $('#searchboxtop').blur(function(){
+        $('#searchboxtop').toggleClass("blackText");
         if (this.value == '') {
             this.value = 'Search...';
         }
         })
         .focus(function(){
+            $('#searchboxtop').toggleClass("blackText");
             if (this.value == 'Search...') {
                 this.value = '';
             }
         });
     
     $('#searchboxbottom').blur(function(){
+        $('#searchboxbottom').toggleClass("blackText");
         if (this.value == '') {
             this.value = 'Search...';
         }
         })
         .focus(function(){
+            $('#searchboxbottom').toggleClass("blackText");
             if (this.value == 'Search...') {
                 this.value = '';
             }
