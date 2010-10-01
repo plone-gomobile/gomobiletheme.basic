@@ -276,19 +276,20 @@ class Back(grok.Viewlet):
     """ Back button
     """
 
-    def isHome(self):
+    def update(self):
         context= aq_inner(self.context)
-        self.parent = aq_parent(context)
+        parent = aq_parent(context)
         
         breadcrumbs_view = getView(self.context, self.request, 'breadcrumbs_view')
         breadcrumbs = breadcrumbs_view.breadcrumbs()
         
-        # if (len(breadcrumbs)==1):
-        #     self.title = "Home"
-        # else:
-        #     self.title = self.parent.title()
+        if (len(breadcrumbs)==1):
+            self.backTitle = "Home"
+        else:
+            self.backTitle = parent.Title()
         
-        return len(breadcrumbs)==0
+        self.backUrl = parent.absolute_url()
+        self.isHome = len(breadcrumbs)==0
 
 class SearchBoxTop(grok.Viewlet):
     """ Search box top
