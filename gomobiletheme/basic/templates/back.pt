@@ -1,3 +1,11 @@
-<div id="back">
-
+<div class="back" tal:condition="not:viewlet/isHome">
+	<a tal:attributes="href viewlet/parent/absolute_url;
+					   title viewlet/parent/title">
+	<div class="back-arrow">
+		<div class="back-arrow-inner"></div>
+	</div>
+	<div class="back-text">
+		<nobr><span tal:replace="viewlet/parent/title"/></nobr>
+	</div>
+	</a>
 </div>

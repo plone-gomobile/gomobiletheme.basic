@@ -6,7 +6,7 @@
 
 import sys, os
 
-from Acquisition import aq_inner
+from Acquisition import aq_inner, aq_parent
 from zope.component import getMultiAdapter
 
 from zope.interface import Interface
@@ -19,7 +19,7 @@ from Products.CMFCore.interfaces._content import IFolderish
 from Products.CMFCore.utils import getToolByName
 from Products.statusmessages.interfaces import IStatusMessage
 from plone.app.layout.viewlets import common as plone_common_viewlets
-
+from plone.app.layout.navigation.interfaces import INavigationRoot
 
 try: 
     # Plone 4 and higher 
@@ -275,7 +275,21 @@ class LanguageChooser(grok.Viewlet):
 class Back(grok.Viewlet):
     """ Back button
     """
-    
+
+    def isHome(self):
+        context= aq_inner(self.context)
+        self.parent = aq_parent(context)
+        
+        breadcrumbs_view = getView(self.context, self.request, 'breadcrumbs_view')
+        breadcrumbs = breadcrumbs_view.breadcrumbs()
+        
+        # if (len(breadcrumbs)==1):
+        #     self.title = "Home"
+        # else:
+        #     self.title = self.parent.title()
+        
+        return len(breadcrumbs)==0
+
 class SearchBoxTop(grok.Viewlet):
     """ Search box top
     """

@@ -46,6 +46,27 @@
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f3ad2e), to(#fbebce));
 }
 
+.back-text {
+    -moz-border-radius-topright:5px;
+    -moz-border-radius-bottomright:5px;
+    -webkit-border-top-right-radius:5px;
+    -webkit-border-bottom-right-radius:5px;
+    background-image: -moz-linear-gradient(left, #8c8c8c, #6b6b6b);
+    background-image: -webkit-gradient(linear, 0% 0%, 100% 0%, from(#8c8c8c), to(#6b6b6b));
+    text-shadow:0 1px 1px #666;
+}
+
+
+.back-text:hover {
+    background-image: -moz-linear-gradient(left, #8c8c8c, #6F6F3E);
+    background-image: -webkit-gradient(linear, 0% 0%, 100% 0%, from(#8c8c8c), to(#6F6F3E));
+}
+
+.back a:hover {
+    text-decoration:none;
+}
+
+
 
 /* SEARCH BOX TOP */
 

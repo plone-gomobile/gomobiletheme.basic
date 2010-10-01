@@ -138,6 +138,50 @@ ul {
     background:#facc79;
 }
 
+.back {
+    margin:5px;
+    position:absolute;
+}
+
+.back-text {
+    background:#8c8c8c;
+    border:1px solid black;
+    color:#ddd;
+    float:left;
+    padding:1px 10px 1px 5px;
+    margin-left:13px;
+    border-top: 2px solid #666; 
+	border-bottom: 2px solid #666;
+	border-right: 2px solid #666;
+	border-left: 0;
+	height:20px;
+	max-width:80px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+
+.back-arrow {
+    position:absolute;
+	width:0; 
+	height:0; 
+	border-top: 13px solid transparent; 
+	border-bottom: 13px solid transparent;
+	border-right: 13px solid #666;
+	border-left: 0;
+}
+
+.back-arrow-inner {
+    position:absolute;
+	width:0; 
+	height:0; 
+	border-top: 12px solid transparent; 
+	border-bottom: 12px solid transparent;
+	border-right: 12px solid #8c8c8c;
+	border-left: 0;
+    top:-12px;
+    left:3px;
+}
+
 
 /* SEARCH BOX TOP */
 
