@@ -10,7 +10,7 @@
 								name="SearchableText" 
 								title="Search Site" 
 								i18n:attributes="title title_search_title;"
-								value="Search..."
+								value=""
 								class="searchfield" />
 					</td>
 					<td class="searchBtn">

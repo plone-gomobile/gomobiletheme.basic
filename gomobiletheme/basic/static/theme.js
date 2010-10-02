@@ -53,44 +53,55 @@ mobiletheme.fixMobileImages = function() {
 	}
 }
 
+
 /**
- * Add top bar search box effects
- * 
+ * Make search box blur and focus work cool
+ */
+mobiletheme.prepareSearchBox = function() {
+	
+	var elem = $(this);
+	
+	// TODO: i18n
+	var searchLabel  = "Search...";
+	
+	// Use hint text only if Javascript is enabled
+	elem.attr("value", searchLabel);
+	
+	elem.blur(function() {            	
+    	elem.toggleClass("blackText");
+        if (this.value == '') {
+            this.value = searchLabel;
+        }
+    });
+	
+    elem.focus(function(){
+        elem.toggleClass("blackText");
+        if (this.value == searchLabel) {
+            this.value = '';
+        }
+    });
+    
+    return elem;
+};
+
+/**
+ * Pimp up all search boxes on the page
  */
 mobiletheme.installSearchBox = function() {
-    $('li.action-search').click(function (e) {
+
+	var searchBoxIds = []
+	
+	// Top search appearing effect
+	$('li.action-search').click(function (e) {
         e.preventDefault();
         $("#search-box-top").slideToggle("fast");
         $("li.action-search").toggleClass("action-search-selected");
     });
     
-    $('#searchboxtop').blur(function(){
-        $('#searchboxtop').toggleClass("blackText");
-        if (this.value == '') {
-            this.value = 'Search...';
-        }
-        })
-        .focus(function(){
-            $('#searchboxtop').toggleClass("blackText");
-            if (this.value == 'Search...') {
-                this.value = '';
-            }
-        });
-    
-    $('#searchboxbottom').blur(function(){
-        $('#searchboxbottom').toggleClass("blackText");
-        if (this.value == '') {
-            this.value = 'Search...';
-        }
-        })
-        .focus(function(){
-            $('#searchboxbottom').toggleClass("blackText");
-            if (this.value == 'Search...') {
-                this.value = '';
-            }
-        });
-    
-});
+	// Manipulate controls on enter and exit
+	$("input#searchboxbottom, input#searchboxtop").each(mobiletheme.prepareSearchBox);
+	
+};
 
 
 jQuery(document).ready(function() {
@@ -102,5 +113,4 @@ jQuery(document).ready(function() {
 		if(mobiletheme.installSearchBox()) {	
 			mobiletheme.installSearchBox();
 		}
-
 })
