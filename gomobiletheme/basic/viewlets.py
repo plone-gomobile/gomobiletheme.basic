@@ -160,6 +160,10 @@ class AdditionalHead(Head):
     """
     
     grok.template("additionalhead")
+    
+    def update(self):
+        portal_state = getView(self.context, self.request, "plone_portal_state")
+        self.portal_url = portal_state.portal_url()    
             
 class Doctype(grok.Viewlet):
     """ Spit out document type according to what the HTTP user agent expects.

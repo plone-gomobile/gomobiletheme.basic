@@ -1,3 +1,9 @@
+/**
+ * Mobile theme specific Javascript which is run on 
+ */
+
+// Declare namespace so that other JS files can override functions
+mobiletheme = {};
 
 /**
  * Load upscaled action icon images if we detect high enough screen resolution.
@@ -6,7 +12,7 @@
  * without orignal vector source yields to very bad results.
  * 
  */
-function fixMobileImages() {
+mobiletheme.fixMobileImages = function() {
 	
 	var multiplier;
 	if(window.devicePixelRatio) {
@@ -47,7 +53,54 @@ function fixMobileImages() {
 	}
 }
 
+/**
+ * Add top bar search box effects
+ * 
+ */
+mobiletheme.installSearchBox = function() {
+    $('li.action-search').click(function (e) {
+        e.preventDefault();
+        $("#search-box-top").slideToggle("fast");
+        $("li.action-search").toggleClass("action-search-selected");
+    });
+    
+    $('#searchboxtop').blur(function(){
+        $('#searchboxtop').toggleClass("blackText");
+        if (this.value == '') {
+            this.value = 'Search...';
+        }
+        })
+        .focus(function(){
+            $('#searchboxtop').toggleClass("blackText");
+            if (this.value == 'Search...') {
+                this.value = '';
+            }
+        });
+    
+    $('#searchboxbottom').blur(function(){
+        $('#searchboxbottom').toggleClass("blackText");
+        if (this.value == '') {
+            this.value = 'Search...';
+        }
+        })
+        .focus(function(){
+            $('#searchboxbottom').toggleClass("blackText");
+            if (this.value == 'Search...') {
+                this.value = '';
+            }
+        });
+    
+});
+
 
 jQuery(document).ready(function() {
-        fixMobileImages();
+	
+		if(mobiletheme.fixMobileImages()) {	
+			mobiletheme.fixMobileImages();
+		}
+
+		if(mobiletheme.installSearchBox()) {	
+			mobiletheme.installSearchBox();
+		}
+
 })

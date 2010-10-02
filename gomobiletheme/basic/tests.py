@@ -42,7 +42,13 @@ def setup_zcml():
 
     fiveconfigure.debug_mode = True
     import gomobiletheme.basic
+    import gomobile.convergence
     zcml.load_config('configure.zcml', gomobiletheme.basic)
+    
+    # Need to explicitly declare depdendency on this 
+    # so that we can run overrider tests 
+    # (this is not natural dep for gomobiletheme.basic)
+    zcml.load_config('configure.zcml', gomobile.convergence)
     zcml.load_string(ZCML_INSTALL_TEST_DISCRIMINATOR)
     fiveconfigure.debug_mode = False
 
