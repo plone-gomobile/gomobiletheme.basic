@@ -64,22 +64,34 @@ class BaseTestCase(ptc.FunctionalTestCase):
 
     def setUp(self):
         ptc.FunctionalTestCase.setUp(self)
-
-        # This will force Go Mobile Default Theme to be active
-        # as it seems that if other theme packages are present
-        # when running tests over many packages,
-        # the functional test state is not reset between
-        # packages and we have crap as mobile_properties.mobile_skin name
-        # instead of Go Mobile Default Theme
-        # TODO: This could be fixed using test layers?
+        self.initializeLogger()
+        self.installMobileTheme(self.getProductName())
+    
+    def getProductName(self):
+        """ Subclass can override """
+        return "gomobiletheme.basic"
+    
+    def installMobileTheme(self, name):
+        """
+        This will force Go Mobile Default Theme to be active
+        as it seems that if other theme packages are present
+        when running tests over many packages,
+        the functional test state is not reset between
+        packages and we have crap as mobile_properties.mobile_skin name
+        instead of Go Mobile Default Theme
+        TODO: This could be fixed using test layers?
+        """
+        
         qi = self.portal.portal_quickinstaller
         
         try:
-            qi.uninstallProducts(["gomobiletheme.basic"])
+            qi.uninstallProducts([name])
         except:
             pass
-        qi.installProduct("gomobiletheme.basic")
+        qi.installProduct(name)
         
+
+    def initializeLogger(self):
         # Enable unit test friendly errors
         self.portal.error_log._ignored_exceptions = ()
 
@@ -95,8 +107,7 @@ class BaseTestCase(ptc.FunctionalTestCase):
 
         self.browser = Browser()
         self.browser.handleErrors = False
-        
-
+    
     def setDiscriminateMode(self, mode):
         """
         Spoof the following HTTP request media.
@@ -304,7 +315,7 @@ class ThemeTestCase(BaseTestCase):
         # Input some values to the search that we see we get
         # zero hits and at least one hit        
         for search_terms in [u"Plone", u"youcantfindthis"]:
-            form = self.browser.getForm("searchform")
+            form = self.browser.getForm(name="searchform")
             
             # Fill in the search field
             input = form.getControl(name="SearchableText")

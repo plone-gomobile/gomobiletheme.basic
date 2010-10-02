@@ -35,6 +35,8 @@ from gomobile.mobile.browser.resizer import getUserAgentBasedResizedImageURL
 
 from mobile.heurestics.contenttype import get_content_type_and_doctype
 
+from gomobiletheme.basic import MessageFactory as _ 
+
 from interfaces import IThemeLayer
 
 try: 
@@ -286,8 +288,11 @@ class Back(grok.Viewlet):
         if (len(breadcrumbs)==1):
             self.backTitle = "Home"
         else:
-            self.backTitle = parent.Title()
-        
+            if hasattr(parent, "Title"):
+                self.backTitle = parent.Title()
+            else:
+                self.backTitle = _(u"Back")
+                
         self.backUrl = parent.absolute_url()
         self.isHome = len(breadcrumbs)==0
 
