@@ -110,7 +110,18 @@ ul {
 }
 
 #language-chooser {
-  float: right;
+    float: right;
+    padding-top:18px;
+    padding-right:7px;
+    color:#CCC;
+}
+
+#language-chooser li {
+    padding: 0 3px;
+}
+
+#language-chooser a {
+    color:#CCC;
 }
 
 
