@@ -1,6 +1,7 @@
 <div id="footer-effect"><!-- --></div>
 
 <div id="footer">
+	<div tal:replace="structure context/@@viewlets/login" />
     <div tal:replace="structure context/@@viewlets/pathbar" />
     <div tal:replace="structure context/@@viewlets/sections" />
     <div tal:replace="structure context/@@viewlets/footertext" />

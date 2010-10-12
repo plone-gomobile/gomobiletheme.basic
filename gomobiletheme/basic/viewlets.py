@@ -307,6 +307,10 @@ class SearchBoxTop(grok.Viewlet):
 class SearchBoxBottom(grok.Viewlet):
     """ Search box bottom
     """
+    
+class Login(grok.Viewlet):
+    """ Login viewlet
+    """
 
 class Footer(grok.Viewlet):
     """ Breadcrumbs + Sections + Footer text
