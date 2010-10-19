@@ -31,6 +31,13 @@ from gomobile.mobile.tests.utils import MOBILE_USER_AGENT
 from gomobile.mobile.tests.utils import UABrowser
 from gomobile.mobile.tests.utils import ZCML_INSTALL_TEST_DISCRIMINATOR
 
+try: 
+    # Plone 4 and higher 
+    import plone.app.upgrade 
+    PLONE_VERSION = 4 
+except ImportError: 
+    PLONE_VERSION = 3
+
 # Which string marks output HTML pages that we are correctly rendered as mobile site
 MOBILE_HTML_MARKER = 'HandheldFriendly'
 
@@ -316,6 +323,10 @@ class ThemeTestCase(BaseTestCase):
         
     def test_render_search(self):
         """ Assert no exceptions risen """
+        
+        if PLONE_VERSION <= 3:
+            # Customizations not enabled on Plone 3
+            return
 
         self.setDiscriminateMode(MobileRequestType.MOBILE)
       
@@ -324,6 +335,8 @@ class ThemeTestCase(BaseTestCase):
         # Input some values to the search that we see we get
         # zero hits and at least one hit        
         for search_terms in [u"Plone", u"youcantfindthis"]:
+            
+            # XXX: Temporary fix to double form issue
             form = self.browser.getForm(name="searchform")
             
             # Fill in the search field
@@ -397,7 +410,6 @@ class TestMobileOverrides(BaseTestCase):
         """
 
         self.setDiscriminateMode("mobile")
-
 
         self.create_doc()
         doc = self.portal.doc
