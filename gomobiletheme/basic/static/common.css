@@ -141,6 +141,7 @@ ul {
 
 #mobile-site-actions li {
     float: left;
+    width:45px;
     text-align:center;
     border-left:1px solid #e8e7e7;
     border-right:1px solid #c6c6c6;
@@ -193,6 +194,40 @@ ul {
     top:-12px;
     left:3px;
 }
+
+
+@media screen and (min-device-width: 480px) {
+        
+        #mobile-site-actions li {
+            width:70px;
+        }
+        
+        .back {
+            margin:10px;
+        }
+
+        .back-text {
+            padding:5px 10px 5px 5px;
+        	height:20px;
+        	max-width:160px;
+        }
+
+        .back-arrow {
+        	border-top: 17px solid transparent; 
+        	border-bottom: 17px solid transparent;
+        	border-right: 17px solid #666;
+        	left:-4px;
+        }
+
+        .back-arrow-inner {
+        	border-top: 16px solid transparent; 
+        	border-bottom: 16px solid transparent;
+        	border-right: 16px solid #8c8c8c;
+            top:-16px;
+            left:3px;
+        }
+}
+
 
 
 /* SEARCH BOX TOP */
