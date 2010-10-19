@@ -502,6 +502,8 @@ class MobileTracker(grok.Viewlet):
     def update(self):
         context = aq_inner(self.context)
 
+        # a helper view which renderes mobile tracking HTML,
+        # allows dynamic switching between trackers
         # provided in gomobile.mobile.tracking.view
         tracker_renderer = getMultiAdapter((context, self.request), name="mobiletracker")
 

@@ -70,7 +70,9 @@ class BaseTestCase(ptc.FunctionalTestCase):
 
     def setUp(self):
         ptc.FunctionalTestCase.setUp(self)
-        self.initializeLogger()
+        
+    def afterSetUp(self):
+        self.initializeLogger()    
         self.installMobileTheme(self.getProductName())
     
     def getProductName(self):
@@ -141,6 +143,7 @@ class ThemeTestCase(BaseTestCase):
     """
 
     def afterSetUp(self):
+        BaseTestCase.afterSetUp(self)
         self._refreshSkinData()
 
     def prepare_render(self, object):
@@ -343,6 +346,7 @@ class TestMobileOverrides(BaseTestCase):
     """
 
     def afterSetUp(self):
+        BaseTestCase.afterSetUp(self)
         self._refreshSkinData()
 
     def create_doc(self):
@@ -447,7 +451,7 @@ class TestGAFunctional(BaseTestCase):
     def afterSetUp(self):
         
         BaseTestCase.afterSetUp(self)
-        
+                
         self.portal.portal_properties.mobile_properties.tracker_name = "google-mobile"
         
         # This id is updated in GA, manually check whether it gets hits or no
@@ -456,14 +460,16 @@ class TestGAFunctional(BaseTestCase):
         self.portal.portal_properties.mobile_properties.tracker_debug = True
         
         # Mobile tracking id string
-        self.MARKER = "http://www.google-analytics.com/__utm.gif"
-
+        #self.MARKER = "http://www.google-analytics.com/__utm.gif"
+        self.MARKER = '<img class="google-analytics"'
+        
     def test_homepage_has_marker(self):
         """
         Test that we have tracker on home page.
         """
+        
         self.setDiscriminateMode("mobile")
-        self.browser.open(self.portal.absolute_url())        
+        self.browser.open(self.portal.absolute_url())
         self.assertTrue(self.MARKER in self.browser.contents)
 
     def test_subfolder(self):
@@ -516,6 +522,26 @@ TEST_HTML_1="""
 <img src="foologo.jpg" />
 </p>
 """
+
+class TestDefaultTrackerFunctional(BaseTestCase):
+    """ Test Plone web site tracker code in mobile.
+    """ 
+
+    def afterSetUp(self):
+        
+        BaseTestCase.afterSetUp(self)
+        
+        self.portal.portal_properties.mobile_properties.tracker_name = "plone-default"        
+        self.MARKER = '<div id="analytics"'
+
+    def test_homepage_has_marker(self):
+        """
+        Test that we have tracker on home page.
+        """
+        self.setDiscriminateMode("mobile")
+        self.browser.open(self.portal.absolute_url())       
+        self.assertTrue(self.MARKER in self.browser.contents)
+
         
 class TestDocWithImage(BaseTestCase):
     """ Check that we transform document body text properly for mobile.
@@ -549,7 +575,6 @@ class TestDocWithImage(BaseTestCase):
    
         self.browser.open(self.doc.absolute_url())
         self.assertFalse('src="foologo.jpg"' in self.browser.contents)
-        import pdb ; pdb.set_trace()
 
 def test_suite():
     import unittest
@@ -558,5 +583,6 @@ def test_suite():
     suite.addTest(unittest.makeSuite(TestMobileOverrides))
     suite.addTest(unittest.makeSuite(TestPostPublication))
     suite.addTest(unittest.makeSuite(TestGAFunctional))
+    suite.addTest(unittest.makeSuite(TestDefaultTrackerFunctional))
     return suite
 
