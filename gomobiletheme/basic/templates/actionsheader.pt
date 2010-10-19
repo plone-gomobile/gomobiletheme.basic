@@ -1,4 +1,4 @@
-<div id="actions-header">
+<div id="actions-header" tal:condition="not: context/@@mobile_tool/isLowEndPhone">
 
 	<div tal:replace="structure context/@@viewlets/back" />
      
@@ -8,5 +8,5 @@
 
 </div>
 
-<div tal:replace="structure context/@@viewlets/searchboxtop" />
+<div tal:condition="not: context/@@mobile_tool/isLowEndPhone" tal:replace="structure context/@@viewlets/searchboxtop" />
 

@@ -303,10 +303,20 @@ class Back(grok.Viewlet):
 class SearchBoxTop(grok.Viewlet):
     """ Search box top
     """
+    
+    # def render(self):
+    #     mobile_tool = getMultiAdapter((self.context.inner, self.request), "mobile_tool")
+    #     if mobile_tool.isLowEndPhone(): 
+    #         return u""
 
 class SearchBoxBottom(grok.Viewlet):
     """ Search box bottom
     """
+    
+    # def render(self):
+    #     mobile_tool = getMultiAdapter((self.context.inner, self.request), "mobile_tool")
+    #     if mobile_tool.isLowEndPhone(): 
+    #         return u""
     
 class Login(grok.Viewlet):
     """ Login viewlet
