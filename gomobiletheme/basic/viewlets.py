@@ -468,6 +468,10 @@ class FooterText(grok.Viewlet):
 
     def update(self):
         super(grok.Viewlet, self).update()
+        
+        portal_state = getView(self.context, self.request, "plone_portal_state")
+        self.portal_url = portal_state.portal_url()
+
 
 
 class MobileFolderListing(grok.Viewlet):
