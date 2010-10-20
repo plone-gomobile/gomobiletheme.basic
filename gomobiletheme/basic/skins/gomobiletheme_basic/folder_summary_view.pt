@@ -111,7 +111,7 @@
                           </a>
                           </span>
                         </tal:name>
-                        &mdash;
+                        &#8212;
                         <span tal:replace="python:toLocalizedTime(item_modified,long_format=1)">
                         August 16, 2001 at 23:35:59
                         </span>
@@ -120,7 +120,7 @@
 
                     <p class="tileBody">
                         <span tal:omit-tag="" tal:condition="not:item_description">
-                            &nbsp;
+                            &#160;
                         </span>
                         <span class="description" tal:content="item_description">
                             <tal:comment replace="nothing">description</tal:comment>

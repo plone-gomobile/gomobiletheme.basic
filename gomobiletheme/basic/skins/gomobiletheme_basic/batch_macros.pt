@@ -28,7 +28,7 @@ Texts have been shortened for mobile.
       tal:condition="p">
         <a href=""
            tal:attributes="href python: '%s?%s' % (url , mq( batchlinkparams, {batch.b_start_str:p.first} ))">
-           &laquo;
+           &#171;
         </a>
     </span>
 
@@ -41,7 +41,7 @@ Texts have been shortened for mobile.
            tal:attributes="href python: '%s?%s' % (url, batch.pageurl(batchlinkparams,1));">1</a>
         <span tal:condition="python: 2 not in (batch.prevlist or batch.leapback)"
               tal:omit-tag="">
-           &hellip;
+           &#8230;
         </span>
     </span>
 
@@ -57,7 +57,7 @@ Texts have been shortened for mobile.
            tal:content="page"
            tal:attributes="href python: '%s?%s' % (url,query)" >
         </a>
-        &hellip;
+        &#8230;
     </span>
 
     <tal:comment tal:condition="nothing">
@@ -100,7 +100,7 @@ Texts have been shortened for mobile.
     <span tal:repeat="linklist python:batch.navurls(batchlinkparams, batch.leapforward)"
           tal:condition="batch/leapforward"
           tal:omit-tag="" >
-        &hellip;
+        &#8230;
         <a href=""
            tal:define="page python:linklist[0];
                        query python:linklist[1];"
@@ -114,7 +114,7 @@ Texts have been shortened for mobile.
       tal:condition="n">
         <a href=""
            tal:attributes="href python: '%s?%s' % (url , mq( batchlinkparams, {batch.b_start_str:n.first} ))">
-           &raquo;
+           &#170;
         </a>
     </span>
 
@@ -125,7 +125,7 @@ Texts have been shortened for mobile.
     <span tal:condition="python:batch.numpages not in batch.navlist">
         <span tal:condition="python: batch.numpages - 1 not in (batch.nextlist or batch.leapforward)"
               tal:omit-tag="">
-        &hellip;
+        &#8230;
         </span>
         <a href=""
            tal:attributes="href python: '%s?%s' % (url,batch.pageurl(batchlinkparams,batch.numpages));"

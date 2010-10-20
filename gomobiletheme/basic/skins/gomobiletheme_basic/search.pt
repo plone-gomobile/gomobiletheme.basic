@@ -89,7 +89,7 @@
 	                Search results
 	            </span>
 	            <span class="discreet">
-	            &mdash;
+	            &#8212;
 	            <span i18n:translate="batch_x_items_matching_your_criteria"
 	            ><span i18n:name="number" 
 	            tal:omit-tag="" 
@@ -159,7 +159,7 @@
 	                    </span>
 	
 	                    <span class="documentModified">
-	                      &mdash;
+	                      &#8212;
 	                        <span i18n:translate="box_last_modified">
 	                        last modified
 	                        </span>
@@ -171,7 +171,7 @@
 	
 	                    <span tal:define="tags result/Subject|nothing"
 	                          tal:condition="tags">
-	                        &mdash;
+	                        &#8212;
 	                        <tal:filedunder i18n:translate="label_filed_under">Filed under:</tal:filedunder>
 	                            <span tal:repeat="tag tags">
 	                                <a href=""
