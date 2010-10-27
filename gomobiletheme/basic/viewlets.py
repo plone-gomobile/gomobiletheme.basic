@@ -284,13 +284,17 @@ class Back(grok.Viewlet):
 
     def update(self):
         context= aq_inner(self.context)
-        parent = aq_parent(context)
+        
+        context_helper = getMultiAdapter((context, self.request), name="plone_context_state")
+        canonical = context_helper.canonical_object()
+        
+        parent = aq_parent(canonical)
         
         breadcrumbs_view = getView(self.context, self.request, 'breadcrumbs_view')
         breadcrumbs = breadcrumbs_view.breadcrumbs()
         
         if (len(breadcrumbs)==1):
-            self.backTitle = "Home"
+            self.backTitle = _(u"Home")
         else:
             if hasattr(parent, "Title"):
                 self.backTitle = parent.Title()

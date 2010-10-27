@@ -1,6 +1,15 @@
 Changelog
 =========
 
+0.9 - 0.9.1
+-----------
+
+* All inputs are in bold, easier to read on smaller screen [miohtama]
+
+* Fixed back viewlet labels [miohtama]
+
+* Changed action icon for contact [miohtama]
+
 0.9
 ---
 
