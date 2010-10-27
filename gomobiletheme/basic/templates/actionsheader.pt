@@ -1,6 +1,6 @@
 <div id="actions-header" tal:condition="not: context/@@mobile_tool/isLowEndPhone">
 
-	<div tal:replace="structure context/@@viewlets/back" />
+    <div tal:replace="structure context/@@viewlets/back" />
      
     <div tal:replace="structure context/@@viewlets/topactions" />
 
