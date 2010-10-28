@@ -18,7 +18,12 @@
         Get the global cache headers located in global_cache_settings.
     </metal:cache>
 
-    <head tal:replace="structure context/@@viewlets/head" />
+    <head>
+		<metal:block tal:replace="structure context/@@viewlets/head" />
+	
+  		<tal:comment replace="nothing"> A slot where you can insert CSS in the header from a template </tal:comment>
+  		<metal:styleslot define-slot="style_slot" />
+	</head>
 
   <body tal:define="isRTL portal_state/is_rtl;
                     body_class python:plone_view.bodyClass(template, view);"

@@ -5,7 +5,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:tal="http://xml.zope.org/namespaces/tal" tal:attributes="xml:lang context/@@plone_portal_state/language">
 
-    <head tal:replace="structure context/@@viewlets/head" />
+    <head>
+		<metal:block tal:replace="structure context/@@viewlets/head" />
+	
+  		<tal:comment replace="nothing"> A slot where you can insert CSS in the header from a template </tal:comment>
+  		<metal:styleslot define-slot="style_slot" />
+
+  		
+	</head>
 
     <body>
 
