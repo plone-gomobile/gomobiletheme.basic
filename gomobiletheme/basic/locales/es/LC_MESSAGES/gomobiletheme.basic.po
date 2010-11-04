@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gomobiletheme.basic\n"
-"POT-Creation-Date: 2010-05-28 04:27+0000\n"
+"POT-Creation-Date: 2010-11-04 22:59+0000\n"
 "PO-Revision-Date: 2010-05-27 23:58-0400\n"
 "Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
 "Language-Team: Spanish <plone-conosur@lists.plone.org>\n"
@@ -15,29 +15,22 @@ msgstr ""
 "Domain: gomobiletheme.basic\n"
 "X-Is-Fallback-For: es-ar es-bo es-cl es-co es-cr es-do es-ec es-es es-sv es-gt es-hn es-mx es-ni es-pa es-py es-pe es-pr es-us es-uy es-ve\n"
 
-#: ./templates/404.pt:8
+#: ./templates/404.pt:9
 msgid "404 Page Not Found"
 msgstr "404 Página No Encontrada"
 
-#: ./templates/sections.pt:23
-msgid "Feedback"
-msgstr "Contacto"
+#: ./viewlets.py:302
+msgid "Back"
+msgstr ""
 
 #: ./templates/logo.pt:2
+#: ./viewlets.py:297
 msgid "Home"
 msgstr "Inicio"
 
-#: ./templates/sections.pt:16
-msgid "Search"
-msgstr "Búsqueda"
-
-#. Default: "Go Mobile mobile CMS &#xa9; 2010 <a href=\"http://mfabrik.com\">mFabrik Research Oy</a>. For more information about Plone <a href=\"http://plone.org\">plone.org</a>"
-#: ./templates/footertext.pt:1
-msgid "footertext"
-msgstr "Go Mobile &#xa9; - El gestor de contenidos móviles es <acronym title=\"Copyright\">&copy;</acronym> 2010 para <a href=\"http://mfabrik.com\">mFabrik Research Oy</a>. Más información acerca de Plone <a href=\"http://plone.org\">plone.org</a>"
-
-#. Default: "Here you can find:"
-#: ./templates/mobilefolderlisting.pt:3
-msgid "mobile_folder_listing_heading"
-msgstr "Aquí tu puede buscar:"
+#. Default: "Search from <span>${DYNAMIC_CONTENT}</span>"
+#: ./skins/gomobiletheme_basic/search.pt:46
+#: ./skins/gomobiletheme_plone3/search.pt:46
+msgid "search_form_heading"
+msgstr ""
 
