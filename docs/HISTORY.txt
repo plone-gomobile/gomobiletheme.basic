@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.9.1 - 0.9.2
+0.9.1 - current
 -------------
 
 * Search form update for Plone 3 [miohtama]
@@ -9,6 +9,8 @@ Changelog
 * Updated i18n script [miohtama]
 
 * Updated Finnish translations [miohtama]
+
+* Fixed product name in the footer (was not valid XML) [miohtama]
 
 0.9 - 0.9.1
 -----------
