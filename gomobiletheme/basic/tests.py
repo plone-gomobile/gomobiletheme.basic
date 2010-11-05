@@ -320,14 +320,17 @@ class ThemeTestCase(BaseTestCase):
         viewlet = MobileTracker(self.portal, self.portal.REQUEST, None, None)
         viewlet.update()
         viewlet.render()
+
+    def test_render_empty_search_page(self):
+
+        self.setDiscriminateMode(MobileRequestType.MOBILE)
+      
+        self.browser.open(self.portal.absolute_url() + "/search")
+
         
     def test_render_search(self):
         """ Assert no exceptions risen """
         
-        if PLONE_VERSION <= 3:
-            # Customizations not enabled on Plone 3
-            return
-
         self.setDiscriminateMode(MobileRequestType.MOBILE)
       
         self.browser.open(self.portal.absolute_url() + "/search")

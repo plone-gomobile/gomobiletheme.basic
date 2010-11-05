@@ -26,9 +26,9 @@
                  sort_on request/sort_on|nothing;
                  sort_order python:(sort_on == 'created' or sort_on == 'modified') and 'descending' or 'ascending';
                  dummy python:request.form.update({'sort_order': sort_order});
-                 searchable_text request/SearchableText|string:'';
-				 searchable_text python:(' ' not in searchable_text and '*' not in searchable_text) and (searchable_text + '*') or searchable_text;       
-                 results python:context.queryCatalog({'SearchableText' : searchable_text}, use_types_blacklist=use_types_blacklist, use_navigation_root=use_navigation_root);
+                 searchable_text python:request.get('SearchableText', '');
+				 searchable_text python:(searchable_text != '' and ' ' not in searchable_text and '*' not in searchable_text) and (searchable_text + '*') or searchable_text;       
+                 results python:(searchable_text != '') and context.queryCatalog({'SearchableText' : searchable_text}, use_types_blacklist=use_types_blacklist, use_navigation_root=use_navigation_root) or None;
                  Batch python:modules['Products.CMFPlone'].Batch;
                  b_size python:30; b_size request/b_size | b_size;
                  b_start python:0;b_start request/b_start | b_start;
@@ -38,12 +38,12 @@
                  use_view_action site_properties/typesUseViewActionInListings|python:();
                  portal_url context/portal_url;
                  advanced_search_url string:${context/@@plone_portal_state/navigation_root_url}/search_form;
-                 searchterm request/SearchableText|nothing;">
+                 searchterm request/SearchableText|nothing">
 
     <div id="content-core">
     	
 	<div i18n:domain="gomobiletheme.basic" class="results-intro" tal:condition="python:request.get('SearchableText', '') == ''">
-		<h1 i18n:translate="search_form_heading">Search from <span i18n:name="site_title" tal:content="context/@@plone_portal_state/portal_title" /></h1>
+		<h1 i18n:translate="search_form_heading">Search from <span tal:content="context/@@plone_portal_state/portal_title" /></h1>
 	</div>
 	
         <form name="searchform"
@@ -82,7 +82,7 @@
 
         </script>
 	
-	<div class="results-intro" tal:condition="python:request.get('SearchableText', '') != ''">
+	<div class="results-intro" tal:condition="python:results is not None">
 	
 	        <h1 class="documentFirstHeading">
 	            <span i18n:translate="heading_search_results">
@@ -113,85 +113,91 @@
 		
 	</div>
 
-        <div tal:condition="results"
-              tal:define="normalizeString nocall: context/plone_utils/normalizeString;
+        <div tal:condition="python:results is not None">
+
+            <tal:batch tal:define="normalizeString nocall: context/plone_utils/normalizeString;
                           isAnon context/@@plone_portal_state/anonymous;
                           toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                           batch python:Batch(results, b_size, int(b_start), orphan=1);">
 
-            <dl class="searchResults">
-            <tal:results repeat="result batch">
-            	
-	            <div class="entry" tal:define="result_url result/getURL;
-	                               result_type result/portal_type;
-	                               item_icon python:plone_view.getIcon(result);
-	                               url python:(result_type in use_view_action) and result_url+'/view' or result_url">
-	                <dt tal:define="item_wf_state_class string:state-${result/review_state};"
-	                    tal:attributes="class python:'contenttype-' + normalizeString(result.portal_type)">
-	                  <img tal:replace="structure item_icon/html_tag" />
-	                   <a
-	                     href="#" 
-	                     tal:attributes="href url;
-	                                     class string:$item_wf_state_class"
-	                     tal:content="result/pretty_title_or_id" />
-	                </dt>
-	            
-	                <dd>
-	                    <span tal:replace="python:plone_view.cropText(result.Description, desc_length, desc_ellipsis)">
-	                        Cropped description
-	                    </span>
-	
-	                <span class="documentByLine"
-	                      tal:condition="python:not isAnon or site_properties.allowAnonymousViewAbout">
-	                    <span class="documentAuthor"
-	                        i18n:translate="label_by_author">
-	                    by
-	                        <tal:block tal:condition="result/Creator"
-	                            tal:define="author python:context.portal_membership.getMemberInfo(result.Creator)">
-	                          <a href="#"
-	                             tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/author/${result/Creator}"
-	                             tal:content="python:author and author['fullname'] or result.Creator"
-	                             tal:omit-tag="not:result/Creator"
-	                             i18n:name="author">
-	                            Bob Dobalina
-	                          </a>
-	                        </tal:block>  
-	                    </span>
-	
-	                    <span class="documentModified">
-	                      &#8212;
-	                        <span i18n:translate="box_last_modified">
-	                        last modified
-	                        </span>
-	                        <span tal:replace="python:toLocalizedTime(result.ModificationDate, long_format=1)">
-	                        August 16, 2001 at 23:35:59
-	                        </span>
-	                    </span>
-	
-	
-	                    <span tal:define="tags result/Subject|nothing"
-	                          tal:condition="tags">
-	                        &#8212;
-	                        <tal:filedunder i18n:translate="label_filed_under">Filed under:</tal:filedunder>
-	                            <span tal:repeat="tag tags">
-	                                <a href=""
-	                                   class="link-tag"
-	                                   rel="tag"
-	                                   tal:content="tag"
-	                                   tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/search?Subject%3Alist=${tag}">
-	                                   Tag
-	                                </a><tal:separator condition="not: repeat/tag/end">,</tal:separator>
-	                            </span>
-	                    </span>
-	                </span>
-	
-	                </dd>
-	
-	            </div>
-            </tal:results>
-            </dl>
-         
-            <div metal:use-macro="context/batch_macros/macros/navigation" />
+	            <dl class="searchResults">
+	            	
+	            <tal:results repeat="result batch">
+	            	
+		            <div class="entry" tal:define="result_url result/getURL;
+		                               result_type result/portal_type;
+		                               item_icon python:plone_view.getIcon(result);
+		                               url python:result_url+'/view' if result_type in use_view_action else result_url">
+		                <dt tal:define="item_wf_state_class string:state-${result/review_state};"
+		                    tal:attributes="class python:'contenttype-' + normalizeString(result.portal_type)">
+		                  <img tal:replace="structure item_icon/html_tag" />
+		                   <a
+		                     href="#" 
+		                     tal:attributes="href url;
+		                                     class string:$item_wf_state_class"
+		                     tal:content="result/pretty_title_or_id" />
+		                </dt>
+		            
+		                <dd>
+		                    <span tal:replace="python:plone_view.cropText(result.Description, desc_length, desc_ellipsis)">
+		                        Cropped description
+		                    </span>
+		
+		                <span class="documentByLine"
+		                      tal:condition="python:not isAnon or site_properties.allowAnonymousViewAbout">
+		                    <span class="documentAuthor"
+		                        i18n:translate="label_by_author">
+		                    by
+		                        <tal:block tal:condition="result/Creator"
+		                            tal:define="author python:context.portal_membership.getMemberInfo(result.Creator)">
+		                          <a href="#"
+		                             tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/author/${result/Creator}"
+		                             tal:content="python:author and author['fullname'] or result.Creator"
+		                             tal:omit-tag="not:result/Creator"
+		                             i18n:name="author">
+		                            Bob Dobalina
+		                          </a>
+		                        </tal:block>  
+		                    </span>
+		
+		                    <span class="documentModified">
+		                      &#8212;
+		                        <span i18n:translate="box_last_modified">
+		                        last modified
+		                        </span>
+		                        <span tal:replace="python:toLocalizedTime(result.ModificationDate, long_format=1)">
+		                        August 16, 2001 at 23:35:59
+		                        </span>
+		                    </span>
+		
+		
+		                    <span tal:define="tags result/Subject|nothing"
+		                          tal:condition="tags">
+		                        &#8212;
+		                        <tal:filedunder i18n:translate="label_filed_under">Filed under:</tal:filedunder>
+		                            <span tal:repeat="tag tags">
+		                                <a href=""
+		                                   class="link-tag"
+		                                   rel="tag"
+		                                   tal:content="tag"
+		                                   tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/search?Subject%3Alist=${tag}">
+		                                   Tag
+		                                </a><tal:separator condition="not: repeat/tag/end">,</tal:separator>
+		                            </span>
+		                    </span>
+		                </span>
+		
+		                </dd>
+		
+		            </div>
+	            </tal:results>
+	            </dl>
+
+	            <tal:pages tal:condition="python:results is not None">         
+	                <div metal:use-macro="context/batch_macros/macros/navigation" />
+	            </tal:pages>
+		    
+                </tal:batch>
 
         </div>
     </div>

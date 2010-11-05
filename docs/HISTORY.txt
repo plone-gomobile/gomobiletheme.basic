@@ -12,6 +12,8 @@ Changelog
 
 * Fixed product name in the footer (was not valid XML) [miohtama]
 
+* Fixed search page errors [miohtama]
+
 0.9 - 0.9.1
 -----------
 
