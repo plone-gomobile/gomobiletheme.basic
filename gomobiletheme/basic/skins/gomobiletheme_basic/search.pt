@@ -43,7 +43,7 @@
     <div id="content-core">
     	
 	<div i18n:domain="gomobiletheme.basic" class="results-intro" tal:condition="python:request.get('SearchableText', '') == ''">
-		<h1 i18n:translate="search_form_heading">Search from <span tal:content="context/@@plone_portal_state/portal_title" /></h1>
+		<h1 i18n:translate="search_form_heading">Search from <span i18n:name="site_title" tal:content="context/@@plone_portal_state/portal_title" /></h1>
 	</div>
 	
         <form name="searchform"
