@@ -286,6 +286,9 @@ class Back(grok.Viewlet):
         context= aq_inner(self.context)
         
         context_helper = getMultiAdapter((context, self.request), name="plone_context_state")
+        
+        portal_helper = getMultiAdapter((context, self.request), name="plone_portal_state")
+        
         canonical = context_helper.canonical_object()
         
         parent = aq_parent(canonical)
@@ -300,8 +303,12 @@ class Back(grok.Viewlet):
                 self.backTitle = parent.Title()
             else:
                 self.backTitle = _(u"Back")
-                
-        self.backUrl = parent.absolute_url()
+        
+        if hasattr(parent, "absolute_url"):
+            self.backUrl = parent.absolute_url()
+        else:
+            self.backUrl = portal_helper.portal_url()
+            
         self.isHome = len(breadcrumbs)==0
 
 class SearchBoxTop(grok.Viewlet):
