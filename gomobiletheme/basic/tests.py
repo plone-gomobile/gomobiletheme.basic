@@ -162,7 +162,7 @@ class BaseTestCase(ptc.FunctionalTestCase):
         browser.open(self.portal.absolute_url() + "/login_form")
         browser.getControl(name='__ac_name').value = portal_owner
         browser.getControl(name='__ac_password').value = default_password
-        browser.getControl(name='submit').click(
+        browser.getControl(name='submit').click()
 
 class ThemeTestCase(BaseTestCase):
     """
