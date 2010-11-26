@@ -143,6 +143,26 @@ class BaseTestCase(ptc.FunctionalTestCase):
         self.browser = UABrowser(user_agent)
         self.browser.handleErrors = False # Don't get HTTP 500 pages
         
+    def assertNotDefaultPloneTheme(self, html):
+        self.assertFalse(PLONE_DEFAULT_HTML_MARKER in html, "The rendered page used default Plone theme")
+
+    def loginAsAdmin(self):
+        """ Perform through-the-web login.
+
+        Simulate going to the login form and logging in.
+
+        We use username and password provided by PloneTestCase.
+
+        This sets session cookie for testbrowser.
+        """
+        from Products.PloneTestCase.setup import portal_owner, default_password
+
+        # Go admin
+        browser = self.browser
+        browser.open(self.portal.absolute_url() + "/login_form")
+        browser.getControl(name='__ac_name').value = portal_owner
+        browser.getControl(name='__ac_password').value = default_password
+        browser.getControl(name='submit').click(
 
 class ThemeTestCase(BaseTestCase):
     """
@@ -164,9 +184,6 @@ class ThemeTestCase(BaseTestCase):
         self.browser.open(object.absolute_url())
 
         return self.browser.contents
-
-    def assertNotDefaultPloneTheme(self, html):
-        self.assertFalse(PLONE_DEFAULT_HTML_MARKER in html, "The rendered page used default Plone theme")
 
     def test_installed(self):
         """ Check that we are installed
