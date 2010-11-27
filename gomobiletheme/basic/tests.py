@@ -142,7 +142,13 @@ class BaseTestCase(ptc.FunctionalTestCase):
         # Be sure to use Products.Five.testbrowser here
         self.browser = UABrowser(user_agent)
         self.browser.handleErrors = False # Don't get HTTP 500 pages
-        
+                
+    def useMobileMode(self):
+        self.setDiscriminateMode(MobileRequestType.MOBILE)
+
+    def useWebMode(self):
+        self.setDiscriminateMode(MobileRequestType.WEB)
+
     def assertNotDefaultPloneTheme(self, html):
         self.assertFalse(PLONE_DEFAULT_HTML_MARKER in html, "The rendered page used default Plone theme")
 
