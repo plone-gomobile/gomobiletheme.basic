@@ -114,7 +114,7 @@ Texts have been shortened for mobile.
       tal:condition="n">
         <a href=""
            tal:attributes="href python: '%s?%s' % (url , mq( batchlinkparams, {batch.b_start_str:n.first} ))">
-           &#170;
+           &#187;
         </a>
     </span>
 
