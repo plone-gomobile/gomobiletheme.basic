@@ -1,11 +1,17 @@
 Changelog
 =========
 
+Current
+-------
+
+* Added mobile-simulator and mobile-real CSS classes
+
+* Fixed Home button in preview
+
 0.9.2 - 0.9.3
 -------------
 
-* Copyright and description updates
-
+* Copyright and description updates [miohtama]
 
 0.9.1 - 0.9.2
 -------------
