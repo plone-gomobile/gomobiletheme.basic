@@ -195,6 +195,15 @@ ul {
     left:3px;
 }
 
+/* Special fixes needed for simulator */
+
+.mobile-preview .back {
+	margin: 1px;
+}
+
+.mobile-preview .back-text {
+        padding: 2px;
+}
 
 @media screen and (min-device-width: 480px) {
         
