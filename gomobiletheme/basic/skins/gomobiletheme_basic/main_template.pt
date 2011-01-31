@@ -26,8 +26,10 @@
 	</head>
 
   <body tal:define="isRTL portal_state/is_rtl;
-                    body_class python:plone_view.bodyClass(template, view);"
-        tal:attributes="class body_class;
+                    body_class python:plone_view.bodyClass(template, view);
+		    simulator context/@@mobile_tool/isPreviewRequest|python:False;
+		    simulator_class python:simulator and 'mobile-preview' or 'mobile-real'"
+        tal:attributes="class string:$body_class $simulator_class;
                         dir python: isRTL and 'rtl' or 'ltr'">
 
         <div id="margins">
