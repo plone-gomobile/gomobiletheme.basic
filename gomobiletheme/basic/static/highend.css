@@ -190,7 +190,7 @@ textarea, select {
 /* FOLDER LISTING */
 /* Automatic mobile folder listings at the end of the page - do iPhone style rounded corner navigation menu */
 
-#content ul#mobile-folder-listing {
+#content ul.button-links {
     border: 2px solid #ddd;
     list-style: none;
     
@@ -205,12 +205,12 @@ textarea, select {
 	margin-top: 1em;
 }
 
-#content #mobile-folder-listing li {
+#content .button-links li {
 	margin: 0;
 	padding: 0;
 }
 
-#mobile-folder-listing li a {     
+.button-links li a {     
     background: transparent url(++resource++gomobiletheme.basic/navigation_arrow_grey.png) no-repeat center right;
     padding: 5px 15px 5px 0;
     margin: 0;
@@ -218,22 +218,22 @@ textarea, select {
 	display: block;
 }
 
-#mobile-folder-listing li:last-child a {
+.button-links li:last-child a {
     border: 0;
 }
 
-#mobile-folder-listing li a span {
+.button-links li a span {
     margin: 1em 0 1em 0;
     display: block;
     width: 100%;    
     padding-left: 5px;
 }
 
-#mobile-folder-listing li a:hover {
+.button-links li a:hover {
     text-decoration: none;
 }     
 
-#mobile-folder-listing li:hover {
+.button-links li:hover {
     background: #ddd;
     color: white;
 }
