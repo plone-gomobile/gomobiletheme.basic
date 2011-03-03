@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.0.0 - current
+-------------------
+
+* Allow use touch friendly CSS class .button-links outside #mobile-folder-listing
+
 0.9.3 - 1.0.0
 -------------------
 
