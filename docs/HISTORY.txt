@@ -1,7 +1,14 @@
 Changelog
 =========
 
-1.0.0 - current
+1.0.1 - current
+-------------------
+
+* Added ability to define favicon and apple-touch-icon url from Head viewlet [jtoivola]
+* Removed <head> tag from head.pt to avoid duplicate tags. We need to have the 
+  head tag in main_template.pt to support styleslot. [jtoivola]
+
+1.0.0
 -------------------
 
 * Allow use touch friendly CSS class .button-links outside #mobile-folder-listing

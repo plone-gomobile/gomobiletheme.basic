@@ -1,4 +1,3 @@
-<head>
 
   <meta name="generator" tal:attributes="content viewlet/generator" />
 
@@ -69,4 +68,3 @@
 
   <tal:custom-head replace="structure context/@@viewlets/additionalhead" />
    
-</head>

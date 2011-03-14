@@ -112,6 +112,9 @@ class Head(MobileViewletBase):
 
     grok.template("head")
 
+    #: Have gloss for apple-touch-icon by default
+    apple_icon_precomposed = False
+
     def resource_url(self):
         """ Get static resource URL.
         
@@ -126,14 +129,34 @@ class Head(MobileViewletBase):
         
         * logo.png
         
-        * apple-touch-icon.png
-        
         The actual registration of static media is performed 
         by five.grok, by picking up *static* folder in your add-on
         product.        
+
+        See favicon_url and apple_icon_url for custom favicon and apple-touch-icon urls.
+
         """
         return self.portal_url + "/" + "++resource++gomobiletheme.basic"
     
+    def favicon_url(self):
+        """ Get url for favicon
+        """
+        return "/".join([self.resource_url(), "favicon.ico"])
+    
+    def apple_icon_url(self):
+        """ Get url for apple-touch-icon used on Apple devices.
+        """
+        return "/".join([self.resource_url(), "touch_icon.png"])
+     
+    def apple_icon_type(self):
+        """ Used by template to get rel attribute string for apple-touch-icon.
+        To change behavior, set apple_icon_precomposed property to True or False
+        """
+        if self.apple_icon_precomposed:
+            return "apple-touch-icon-precomposed"
+        else:
+            return "apple-touch-icon"
+
     def generator(self):
         """
         @return: Exposed generator name 
