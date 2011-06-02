@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.0.2 - current
+-------------------
+
+* Fixed mtool look-up compatibility between Plone versions [miohtama]
+
 1.0.1 - 1.0.2
 -------------------
 
