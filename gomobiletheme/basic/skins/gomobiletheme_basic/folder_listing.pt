@@ -97,8 +97,8 @@
                             <tal:byline condition="show_about">
                                 &#8212;
 
-                                <tal:name tal:condition="item_creator"
-                                    tal:define="author python:mtool.getMemberInfo(item_creator)">
+				<tal:name tal:condition="item_creator"
+				     tal:define="mtool mtool|context/portal_membership; author python:mtool.getMemberInfo(item_creator)"> 
                                   <span i18n:translate="label_by_author">
                                     by
                                   <a href="#"
