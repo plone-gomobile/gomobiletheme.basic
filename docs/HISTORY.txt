@@ -4,7 +4,11 @@ Changelog
 1.0.2 - current
 -------------------
 
+* Plone 4 compatible content-core fill-slot in main-template. May mess up existing theme
+  customizations [miohtama]
+
 * Fixed mtool look-up compatibility between Plone versions [miohtama]
+
 
 1.0.1 - 1.0.2
 -------------------

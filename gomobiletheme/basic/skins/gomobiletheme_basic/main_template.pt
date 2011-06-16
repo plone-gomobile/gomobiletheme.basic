@@ -51,9 +51,37 @@
                                 <tal:comment replace="nothing">Visual Header</tal:comment>
                               </metal:header>
 
-                              <metal:bodytext metal:define-slot="main" tal:content="nothing">
-                                <tal:comment replace="nothing">Page body text</tal:comment>
-                              </metal:bodytext>
+	                        <metal:main define-macro="main">
+	                            <div tal:replace="structure provider:plone.abovecontenttitle" />
+	                            <metal:title define-slot="content-title">
+	                                <metal:comment tal:content="nothing">
+	                                    If you write a custom title always use
+	                                    <h1 class="documentFirstHeading"></h1> for it.
+	                                </metal:comment>
+	                                <h1 metal:use-macro="context/kss_generic_macros/macros/generic_title_view">
+	                                    Generic KSS Title. Is rendered with class="documentFirstHeading".
+	                                </h1>
+	                            </metal:title>
+	                            <div tal:replace="structure provider:plone.belowcontenttitle" />
+	
+	                            <metal:description define-slot="content-description">
+	                                <metal:comment tal:content="nothing">
+	                                    If you write a custom description always use
+	                                    <div class="documentDescription"></div> for it.
+	                                </metal:comment>
+	                                <div metal:use-macro="context/kss_generic_macros/macros/generic_description_view">
+	                                    Generic KSS Description. Is rendered with class="documentDescription".
+	                                </div>
+	                            </metal:description>
+	
+	                            <div tal:replace="structure provider:plone.abovecontentbody" />
+	                            <div id="content-core">
+	                                <metal:text define-slot="content-core" tal:content="nothing">
+	                                    Page body text
+	                                </metal:text>
+	                            </div>
+	                            <div tal:replace="structure provider:plone.belowcontentbody" />
+	                        </metal:main>
 
                         </metal:slot>
 
