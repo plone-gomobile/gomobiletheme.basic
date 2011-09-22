@@ -1,7 +1,11 @@
 Changelog
 =========
 
-1.0.2 - current
+1.0.3 - current
+
+* Better event_view for mobile 
+
+1.0.2 - 1.0.3
 -------------------
 
 * Plone 4 compatible content-core fill-slot in main-template. May mess up existing theme

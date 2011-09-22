@@ -766,3 +766,22 @@ dl.error dd {
 #kss-spinner {
     display: none;
 }
+
+/* Event formatting */
+
+/* Event view */ 
+
+.eventDetails table {
+	margin-bottom: 10px;
+}
+
+.eventDetails td,
+.eventDetails th {
+
+	text-align: left;
+        vertical-align: top;
+}
+
+.eventDetails th { 
+        padding: 0 15px 5px 0;
+}
