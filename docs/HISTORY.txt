@@ -3,7 +3,9 @@ Changelog
 
 1.0.3 - current
 
-* Better event_view for mobile 
+* Better event_view for mobile [miohtama]
+
+* Fixed problems with content-core slot [miohtama]
 
 1.0.2 - 1.0.3
 -------------------
