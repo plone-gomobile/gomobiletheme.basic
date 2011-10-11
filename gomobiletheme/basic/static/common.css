@@ -290,8 +290,9 @@ ul {
 
 /* CONTENT */
 
+#portal-column-content { padding: 0.5em; }
+
 #content {
-    padding: 0.5em;
     background: #FFF;
     color: black;
 }
