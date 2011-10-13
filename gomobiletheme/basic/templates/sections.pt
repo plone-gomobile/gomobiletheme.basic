@@ -1,6 +1,7 @@
-<ul id="portal-sections" i18n:domain="gomobiletheme.basic">
+<ul id="portal-sections" tal:define="sections viewlet/sections" tal:condition="python:len(viewlet.sections) > 0"
+    i18n:domain="gomobiletheme.basic">
 
-    <tal:tabs tal:repeat="sec viewlet/sections" tal:condition="python:len(viewlet.sections) > 0">
+    <tal:tabs tal:repeat="sec sections">
         <li tal:attributes="id string:portaltab-${sec/id};">
             <a href=""
                tal:content="structure sec/title"
