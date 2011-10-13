@@ -19,6 +19,8 @@
     </metal:cache>
 
     <head>
+        <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+
 		<metal:block tal:replace="structure context/@@viewlets/head" />
 	
   		<tal:comment replace="nothing"> A slot where you can insert CSS in the header from a template </tal:comment>
