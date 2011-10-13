@@ -1,5 +1,5 @@
 <div id="logo" i18n:domain="gomobiletheme.basic">
-  <a tal:attributes="href string:${viewlet/portal_url}" alt="Home" i18n:attributes="alt">
+  <a i18n:attributes="title" tal:attributes="href string:${viewlet/portal_url}" title="Home">
     <img tal:attributes="src string:${viewlet/logo_url}; 
          alt context/@@plone_portal_state/portal_title" 
 	 />
