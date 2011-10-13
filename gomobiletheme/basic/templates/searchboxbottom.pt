@@ -14,7 +14,7 @@
 								class="searchfield" />
 					</td>
 					<td class="searchBtn">
-						<input type="submit" value="Go" class="button">
+						<input type="submit" value="Go" class="button" />
 					</td>
 				</tr>
 			</tbody>
