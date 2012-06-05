@@ -297,7 +297,7 @@ ul {
     color: black;
 }
 
-#content h2 {
+#content h2, #content h3 {
     margin-bottom: 0.5em;        
 }
 
@@ -314,6 +314,15 @@ ul {
 #content p,
 #content .description {
     margin-bottom: 1em;
+}
+
+#content ol {
+    list-style: decimal;
+    margin-left: 1.5em;
+    margin-bottom: 1em;
+}
+#content ol li {
+    display: list-item;
 }
 
 #content ul {

@@ -3,6 +3,8 @@ Changelog
 
 1.0.3 - current
 
+* Fix ordered list and h3 styling in #content. [totateis]
+
 * Add i18n support for JS [totateis]
 
 * Fixed i18n attribs missing from some templates [totateis]
