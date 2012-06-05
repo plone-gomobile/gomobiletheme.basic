@@ -3,6 +3,10 @@ Changelog
 
 1.0.3 - current
 
+* Add i18n support for JS [totateis]
+
+* Fixed i18n attribs missing from some templates [totateis]
+
 * Better event_view for mobile [miohtama]
 
 * Fixed problems with content-core slot [miohtama]

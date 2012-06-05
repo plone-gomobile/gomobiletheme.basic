@@ -6,6 +6,9 @@
 
 import sys, os
 
+import json
+import zope.i18n
+
 from Acquisition import aq_inner, aq_parent
 from zope.component import getMultiAdapter
 
@@ -595,3 +598,34 @@ class DocumentActions(plone_common_viewlets.ViewletBase):
     def render(self):
         return u""
 
+
+# Translatable strings used in theme JS.
+js_i18n_strings = {
+    'search_field_default_text': _(u"Search..."),
+}
+    
+class JSTranslations(MobileViewletBase):
+    """
+    Used to pass translated strings to JS.
+    """
+    
+    grok.name('gomobiletheme.basic.viewlets.JSTranslations')
+        
+    def update(self):
+        pass
+    def render(self):
+        try:
+            lang = self.request.get('LANGUAGE', 'en')
+        except AttributeError:
+            lang = "en"
+        
+        translated = {}
+        
+        for msgid, msgstr in js_i18n_strings.items():
+            translated[msgid] = zope.i18n.translate(msgid=msgstr,
+                                                    domain="gomobiletheme.basic",
+                                                    default=msgstr,
+                                                    target_language=lang
+                                                    )
+        return ('<script type="text/javascript">var gomobiletheme_basic_i18n = %s</script>' %
+            json.dumps(translated, indent=4).decode('utf-8'))

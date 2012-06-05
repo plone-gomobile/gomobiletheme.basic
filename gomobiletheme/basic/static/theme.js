@@ -61,8 +61,7 @@ mobiletheme.prepareSearchBox = function() {
 	
 	var elem = $(this);
 	
-	// TODO: i18n
-	var searchLabel  = "Search...";
+	var searchLabel = gomobiletheme_basic_i18n.search_field_default_text;
 	
 	// Use hint text only if Javascript is enabled
 	elem.attr("value", searchLabel);

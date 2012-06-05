@@ -43,6 +43,9 @@
   </tal:comment>  
   <meta name="HandheldFriendly" content="true" />
       
+  <script type="text/javascript" tal:replace="structure context/@@viewlets/gomobiletheme.basic.viewlets.JSTranslations">
+      <!-- Javascript i18n strings end up here -->
+  </script>
 
   <tal:comment replace="nothing">
       <!-- Special iPhone bookmark icon -->

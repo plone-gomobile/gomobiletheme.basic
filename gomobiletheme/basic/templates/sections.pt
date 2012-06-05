@@ -13,6 +13,6 @@
     </tal:tabs>
 
 	<li id="full-site">
-		<a href="" tal:attributes="href viewlet/get_web_site_url">Full Site</a>
+		<a href="" tal:attributes="href viewlet/get_web_site_url" i18n:translate="">Full Site</a>
 	</li>
 </ul>

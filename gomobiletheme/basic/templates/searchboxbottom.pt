@@ -1,5 +1,5 @@
-<div id="search-box-bottom" class="clear"  tal:condition="not: context/@@mobile_tool/isLowEndPhone">
-	<h2>Search</h2>
+<div id="search-box-bottom" class="clear"  tal:condition="not: context/@@mobile_tool/isLowEndPhone" i18n:domain="gomobiletheme.basic">
+	<h2 i18n:translate="">Search</h2>
 	<form action="search">
 		<table width="100%" cellspacing="0" cellpadding="0">
 			<tbody>
@@ -14,7 +14,7 @@
 								class="searchfield" />
 					</td>
 					<td class="searchBtn">
-						<input type="submit" value="Go" class="button" />
+						<input type="submit" value="Go" class="button" i18n:attributes="value search_go_button;" />
 					</td>
 				</tr>
 			</tbody>
