@@ -1,7 +1,8 @@
 Changelog
 =========
 
-1.0.3 - current
+1.0.3 - 1.0.4
+-------------------
 
 * Remade email icon to fix blurry 48px version [totateis]
 
@@ -28,7 +29,7 @@ Changelog
 
 * Added ability to define favicon and apple-touch-icon url from Head viewlet [jtoivola]
 
-* Removed <head> tag from head.pt to avoid duplicate tags. We need to have the 
+* Removed <head> tag from head.pt to avoid duplicate tags. We need to have the
   head tag in main_template.pt to support styleslot. [jtoivola]
 
 1.0.0
