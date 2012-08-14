@@ -7,6 +7,12 @@ Changelog
 - pypi.python.org woes re-release [miohtama]
 
 
+1.0.9 (unreleased)
+------------------
+
+- Nothing changed yet.
+
+
 1.0.8 (2012-08-14)
 ------------------
 
