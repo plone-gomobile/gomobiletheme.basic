@@ -1,23 +1,15 @@
 Changelog
 =========
 
-1.0.8
+1.0.9 (unreleased)
 ------------------
 
 - pypi.python.org woes re-release [miohtama]
 
-
-1.0.9 (unreleased)
+1.0.8
 ------------------
 
-- Nothing changed yet.
-
-
-1.0.8 (2012-08-14)
-------------------
-
-- Nothing changed yet.
-
+- pypi.python.org woes re-release [miohtama]
 
 1.0.6 (2012-06-20)
 ------------------
