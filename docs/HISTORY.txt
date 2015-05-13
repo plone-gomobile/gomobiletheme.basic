@@ -6,8 +6,8 @@ Unreleased
 
 - Can't depend on five.grok for Plone 4.3
 
-1.0.9 (unreleased)
-------------------
+1.0.10 (2015-05-13)
+-------------------
 
 - pypi.python.org woes re-release [miohtama]
 
