@@ -48,4 +48,10 @@
     
   <include file="content.zcml" />
 
+  <!-- Resource directory for resources -->
+  <browser:resourceDirectory
+      name="gomobiletheme.basic"
+      directory="static"
+      />
+
 </configure>
